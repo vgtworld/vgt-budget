@@ -1,7 +1,31 @@
 <ui:composition xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets" template="/templates/basic.xhtml">
     <ui:define name="pageTitle">Store list</ui:define>
     <ui:define name="content">
-        <h2 class="text-center">Store list placeholder</h2>
-        <h:link outcome="store-create" value="Create store"/>
+        <h2 class="text-center">Store list</h2>
+
+        <div class="container-fluid col-lg-6 col-lg-offset-3">
+            <div class="text-right">
+                <h:link styleClass="btn btn-default" outcome="store-create" value="Create store"/>
+            </div>
+
+            <table class="table">
+                <tr>
+                    <th>Name</th>
+                    <th>City</th>
+                    <th>Address</th>
+                    <th class="text-right">Options</th>
+                </tr>
+                <ui:repeat value="#{storeListController.storeList}" var="store">
+                    <tr>
+                        <td>#{store.name}</td>
+                        <td>#{store.city}</td>
+                        <td>#{store.address}</td>
+                        <td>
+
+                        </td>
+                    </tr>
+                </ui:repeat>
+            </table>
+        </div>
     </ui:define>
 </ui:composition>

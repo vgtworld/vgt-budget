@@ -5,12 +5,22 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import java.util.Date;
 
 @Entity
 @Table(name = "stores")
+@NamedQueries({
+	  @NamedQuery(
+			name = Store.QUERY_LIST_ALL,
+			query = "SELECT s FROM Store s WHERE s.deleted = FALSE ORDER BY s.name ASC"
+	  )
+})
 public class Store {
+
+	static final String QUERY_LIST_ALL = "Store.listAll";
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
