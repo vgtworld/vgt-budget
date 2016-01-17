@@ -14,6 +14,10 @@ public class NewStoreValidationResult extends AbstractResult {
 		this.store = store;
 	}
 
+	public NewStore getStore() {
+		return store;
+	}
+
 	@Override
 	public boolean isValid() {
 		return super.isValid() && store != null;

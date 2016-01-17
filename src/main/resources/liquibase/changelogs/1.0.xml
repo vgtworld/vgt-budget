@@ -5,21 +5,26 @@
 		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 		xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
 
-	<changeSet id="1.0-example-table" author="VGT">
-		<createTable tableName="example_table">
-			<column name="id" type="int">
-				<constraints primaryKey="true" nullable="false"/>
+	<changeSet id="1.0-create-table-stores" author="VGT">
+		<createTable tableName="stores">
+			<column name="id" type="int" autoIncrement="true">
+				<constraints nullable="false" primaryKey="true"/>
 			</column>
-			<column name="text_column" type="varchar(50)">
+			<column name="name" type="varchar(100)">
 				<constraints nullable="false"/>
 			</column>
-			<column name="integer_column" type="int">
+			<column name="city" type="varchar(50)">
 				<constraints nullable="false"/>
 			</column>
-			<column name="date_column" type="datetime">
+			<column name="address" type="varchar(200)">
 				<constraints nullable="false"/>
 			</column>
-			<column name="boolean_column" type="boolean" defaultValueBoolean="true"/>
+			<column name="created_at" type="datetime">
+				<constraints nullable="false"/>
+			</column>
+			<column name="deleted" type="boolean">
+				<constraints nullable="false"/>
+			</column>
 		</createTable>
 	</changeSet>
 

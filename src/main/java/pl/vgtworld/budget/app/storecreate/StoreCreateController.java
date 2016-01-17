@@ -5,7 +5,9 @@ import org.slf4j.LoggerFactory;
 import pl.vgtworld.budget.app.storecreate.dto.NewStoreForm;
 import pl.vgtworld.budget.app.storecreate.validator.NewStoreValidationResult;
 import pl.vgtworld.budget.app.storecreate.validator.NewStoreValidator;
+import pl.vgtworld.budget.services.storage.StoreService;
 
+import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,6 +16,9 @@ import java.util.List;
 public class StoreCreateController {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(StoreCreateController.class);
+
+	@EJB
+	private StoreService storeService;
 
 	private NewStoreForm store = new NewStoreForm();
 
@@ -40,7 +45,7 @@ public class StoreCreateController {
 		NewStoreValidator validator = new NewStoreValidator();
 		NewStoreValidationResult result = validator.validate(store);
 		if (result.isValid()) {
-			//TODO Store in database.
+			storeService.createNewStore(result.getStore());
 			return "store-create-success.xhtml";
 		} else {
 			submitErrors = result.getErrors();
