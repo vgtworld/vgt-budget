@@ -1,0 +1,27 @@
+<taglib>
+	<tlib-version>1.0</tlib-version>
+	<jsp-version>2.0</jsp-version>
+	<short-name>VGT TLD</short-name>
+	<tag>
+		<name>TimeAgo</name>
+		<tag-class>pl.vgtworld.budget.core.jsptags.date.TimeAgoTag</tag-class>
+		<body-content>empty</body-content>
+		<attribute>
+			<name>since</name>
+			<required>true</required>
+			<type>java.util.Date</type>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+	<tag>
+		<name>SimpleDatetime</name>
+		<tag-class>pl.vgtworld.budget.core.jsptags.date.SimpleDatetimeTag</tag-class>
+		<body-content>empty</body-content>
+		<attribute>
+			<name>date</name>
+			<required>true</required>
+			<type>java.util.Date</type>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+</taglib>
