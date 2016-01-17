@@ -6,6 +6,16 @@
         <div class="container-fluid col-lg-6 col-lg-offset-3">
             <h:form>
 
+                <h:panelGroup rendered="#{!empty storeCreateController.submitErrors}">
+                    <div class="form-group">
+                        <div class="errors">
+                            <ui:repeat value="#{storeCreateController.submitErrors}" var="errorMessage">
+                                <div class="alert alert-danger">#{errorMessage}</div>
+                            </ui:repeat>
+                        </div>
+                    </div>
+                </h:panelGroup>
+
                 <div class="form-group">
                     <h:outputLabel for="form-name" value="Name"/>
                     <h:inputText id="form-name" styleClass="form-control" value="#{storeCreateController.store.storeName}"/>
