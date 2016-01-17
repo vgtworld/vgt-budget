@@ -1,9 +1,30 @@
-<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets" template="/templates/basic.xhtml">
+<ui:composition xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets" template="/templates/basic.xhtml">
     <ui:define name="pageTitle">Create receipt</ui:define>
     <ui:define name="content">
         <h2 class="text-center">Create new receipt</h2>
 
-        <div class="container-fluid col-lg-6 col-lg-offset-3">
+        <div class="container-fluid col-lg-6">
+
+            <div>
+                <h3>Store</h3>
+                <h:panelGroup rendered="#{!empty receiptCreateController.receipt.store}">
+                    <table>
+                        <tr>
+                            <th>Name:</th>
+                            <td>#{receiptCreateController.receipt.store.name}</td>
+                        </tr>
+                        <tr>
+                            <th>City:</th>
+                            <td>#{receiptCreateController.receipt.store.city}</td>
+                        </tr>
+                        <tr>
+                            <th>Address:</th>
+                            <td>#{receiptCreateController.receipt.store.address}</td>
+                        </tr>
+                    </table>
+                </h:panelGroup>
+                <h:link styleClass="btn btn-default" value="Choose store" outcome="receipt-create-choose-store.xhtml" />
+            </div>
 
         </div>
     </ui:define>

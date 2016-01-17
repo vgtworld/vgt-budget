@@ -21,6 +21,19 @@ public class StoreService {
 	@EJB
 	private StoreDao storeDao;
 
+	public StoreItem findById(String id) {
+		try {
+			int convertedId = Integer.parseInt(id);
+			return findById(convertedId);
+		} catch (NumberFormatException e) {
+			return null;
+		}
+	}
+
+	public StoreItem findById(int id) {
+		return asStoreItem(storeDao.findById(id));
+	}
+
 	public void createNewStore(NewStore newStore) {
 		LOGGER.debug("Create new store: {}", newStore);
 		Store entity = new Store();
