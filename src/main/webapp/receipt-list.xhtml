@@ -1,0 +1,12 @@
+<ui:composition xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets" template="/templates/basic.xhtml">
+    <ui:define name="pageTitle">Receipt list</ui:define>
+    <ui:define name="content">
+        <h2 class="text-center">Receipt list</h2>
+
+        <div class="container-fluid col-lg-6 col-lg-offset-3">
+            <div class="text-right">
+                <h:link styleClass="btn btn-default" outcome="receipt-create" value="Add receipt"/>
+            </div>
+        </div>
+    </ui:define>
+</ui:composition>
