@@ -26,6 +26,26 @@
                 <h:link styleClass="btn btn-default" value="Choose store" outcome="receipt-create-choose-store.xhtml" />
             </div>
 
+            <div class="bubble">
+                <h3>Products</h3>
+                <table class="table">
+                    <tr>
+                        <th>Name</th>
+                        <th class="text-right">Amount</th>
+                        <th class="text-right">Unit price</th>
+                        <th class="text-right">Total price</th>
+                    </tr>
+                    <ui:repeat value="#{receiptCreateController.receipt.products}" var="product">
+                        <tr>
+                            <td>#{product.name}</td>
+                            <td class="text-right">#{product.amount}</td>
+                            <td class="text-right">#{product.pricePerUnit}</td>
+                            <td class="text-right">#{product.totalPrice}</td>
+                        </tr>
+                    </ui:repeat>
+                </table>
+            </div>
+
         </div>
     </ui:define>
 </ui:composition>
