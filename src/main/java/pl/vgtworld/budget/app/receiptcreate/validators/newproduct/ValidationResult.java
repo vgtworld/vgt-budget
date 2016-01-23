@@ -14,6 +14,10 @@ public class ValidationResult extends AbstractResult {
 		this.product = product;
 	}
 
+	public NewProduct getProduct() {
+		return product;
+	}
+
 	@Override
 	public boolean isValid() {
 		return super.isValid() && product != null;
