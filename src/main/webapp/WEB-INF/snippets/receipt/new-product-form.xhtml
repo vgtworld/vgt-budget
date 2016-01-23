@@ -5,13 +5,13 @@
 
         <div class="form-group">
             <h:outputLabel for="form-name" value="Name"/>
-            <h:inputText id="form-name" styleClass="form-control" value="#{newProductForReceiptController.name}"/>
+            <h:inputText id="form-name" styleClass="form-control" value="#{newProductForReceiptController.product.name}"/>
         </div>
 
         <div class="form-group">
             <h:outputLabel for="form-tags" value="Tags"/>
             <p>(comma separated)</p>
-            <h:inputText id="form-tags" styleClass="form-control" value="#{newProductForReceiptController.tags}"/>
+            <h:inputText id="form-tags" styleClass="form-control" value="#{newProductForReceiptController.product.tags}"/>
         </div>
 
         <div class="form-group">
