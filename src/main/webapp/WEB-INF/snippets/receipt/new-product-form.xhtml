@@ -1,7 +1,17 @@
-<div xmlns:h="http://xmlns.jcp.org/jsf/html">
+<div xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <h2 class="text-center">Create new product</h2>
 
     <h:form>
+
+        <h:panelGroup rendered="#{!empty newProductForReceiptController.submitErrors}">
+            <div class="form-group">
+                <div class="errors">
+                    <ui:repeat value="#{newProductForReceiptController.submitErrors}" var="errorMessage">
+                        <div class="alert alert-danger">#{errorMessage}</div>
+                    </ui:repeat>
+                </div>
+            </div>
+        </h:panelGroup>
 
         <div class="form-group">
             <h:outputLabel for="form-name" value="Name"/>
