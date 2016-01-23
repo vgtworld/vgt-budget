@@ -29,7 +29,7 @@ public class ProductService {
 	@EJB
 	private ProductTagService productTagService;
 
-	public void createNewProduct(NewProduct product) {
+	public int createNewProduct(NewProduct product) {
 		Product productEntity = new Product();
 		productEntity.setName(product.getName());
 		productDao.create(productEntity);
@@ -38,6 +38,7 @@ public class ProductService {
 		for (Integer tagId : tagIds) {
 			linkProductToTag(productEntity.getId(), tagId);
 		}
+		return productEntity.getId();
 	}
 
 	private void linkProductToTag(int productId, int tagId) {

@@ -3,6 +3,7 @@ package pl.vgtworld.budget.app.receiptcreate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pl.vgtworld.budget.app.receiptcreate.dto.NewReceiptForm;
+import pl.vgtworld.budget.app.receiptcreate.dto.ReceiptProduct;
 import pl.vgtworld.budget.app.receiptcreate.dto.ReceiptStore;
 import pl.vgtworld.budget.services.dto.stores.StoreItem;
 import pl.vgtworld.budget.services.storage.StoreService;
@@ -33,6 +34,15 @@ public class ReceiptCreateController {
 
 	public List<StoreItem> listAvailableStores() {
 		return storeService.listAllStores();
+	}
+
+	public void addProductToReceipt(int productId, String productName) {
+		ReceiptProduct newProduct = new ReceiptProduct();
+		newProduct.setId(productId);
+		newProduct.setName(productName);
+		newProduct.setPricePerUnit(0.0);
+		newProduct.setAmount(0.0);
+		receipt.getProducts().add(newProduct);
 	}
 
 	public String addStoreToReceipt(String storeId) {

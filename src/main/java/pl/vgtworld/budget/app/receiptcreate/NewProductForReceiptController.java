@@ -9,6 +9,7 @@ import pl.vgtworld.budget.services.ProductService;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,6 +24,9 @@ public class NewProductForReceiptController {
 
 	@EJB
 	private ProductService productService;
+
+	@ManagedProperty("#{receiptCreateController}")
+	private ReceiptCreateController receiptCreateController;
 
 	public NewProductForm getProduct() {
 		return product;
@@ -40,14 +44,22 @@ public class NewProductForReceiptController {
 		this.submitErrors = submitErrors;
 	}
 
+	public ReceiptCreateController getReceiptCreateController() {
+		return receiptCreateController;
+	}
+
+	public void setReceiptCreateController(ReceiptCreateController receiptCreateController) {
+		this.receiptCreateController = receiptCreateController;
+	}
+
 	public void createProduct() {
 		LOGGER.debug("Create new product for receipt. name={}, tags={}", product.getName(), product.getTags());
 		NewProductValidator validator = new NewProductValidator();
 		ValidationResult result = validator.validate(product);
 		if (result.isValid()) {
-			productService.createNewProduct(result.getProduct());
-			//TODO Add product to receipt.
-			product = new NewProductForm();
+			int productId = productService.createNewProduct(result.getProduct());
+			receiptCreateController.addProductToReceipt(productId, product.getName());
+			this.product = new NewProductForm();
 		} else {
 			submitErrors = result.getErrors();
 		}

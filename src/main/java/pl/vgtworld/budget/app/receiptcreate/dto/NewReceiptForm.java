@@ -1,12 +1,13 @@
 package pl.vgtworld.budget.app.receiptcreate.dto;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class NewReceiptForm {
 
 	private ReceiptStore store;
 
-	private List<ReceiptProduct> products;
+	private List<ReceiptProduct> products = new ArrayList<>();
 
 	public ReceiptStore getStore() {
 		return store;
