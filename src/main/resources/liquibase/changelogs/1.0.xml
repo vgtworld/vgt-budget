@@ -50,4 +50,33 @@
 		</createTable>
 	</changeSet>
 
+	<changeSet id="1.0-create-table-product_tags" author="VGT">
+		<createTable tableName="product_tags">
+			<column name="product_id" type="int">
+				<constraints nullable="false" primaryKey="true"/>
+			</column>
+			<column name="tag_id" type="int">
+				<constraints nullable="false" primaryKey="true"/>
+			</column>
+		</createTable>
+		<addForeignKeyConstraint
+				constraintName="fk_products_product_tags"
+				baseTableName="products"
+				baseColumnNames="id"
+				referencedTableName="product_tags"
+				referencedColumnNames="product_id"
+				onUpdate="CASCADE"
+				onDelete="CASCADE"
+				/>
+		<addForeignKeyConstraint
+				constraintName="fk_tags_product_tags"
+				baseTableName="tags"
+				baseColumnNames="id"
+				referencedTableName="product_tags"
+				referencedColumnNames="tag_id"
+				onUpdate="CASCADE"
+				onDelete="RESTRICT"
+				/>
+	</changeSet>
+
 </databaseChangeLog>
