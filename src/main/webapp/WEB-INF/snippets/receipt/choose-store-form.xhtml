@@ -1,0 +1,24 @@
+<div xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h2 class="text-center">Choose store for receipt</h2>
+
+    <table class="table">
+        <tr>
+            <th>Name</th>
+            <th>City</th>
+            <th>Address</th>
+            <th/>
+        </tr>
+        <ui:repeat value="#{receiptCreateController.listAvailableStores()}" var="store">
+            <tr>
+                <td>#{store.name}</td>
+                <td>#{store.city}</td>
+                <td>#{store.address}</td>
+                <td>
+                    <h:form>
+                        <h:commandButton value="Choose" styleClass="btn btn-default" action="#{receiptCreateController.addStoreToReceipt(store.id)}"/>
+                    </h:form>
+                </td>
+            </tr>
+        </ui:repeat>
+    </table>
+</div>

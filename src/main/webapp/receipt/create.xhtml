@@ -22,8 +22,15 @@
                             <td>#{receiptCreateController.receipt.store.address}</td>
                         </tr>
                     </table>
+                    <h:form>
+                        <h:commandButton styleClass="btn btn-default" action="#{receiptCreateController.removeStoreFromReceipt}" value="Choose different store"/>
+                    </h:form>
                 </h:panelGroup>
-                <h:link styleClass="btn btn-default" value="Choose store" outcome="receipt-create-choose-store.xhtml" />
+                <h:panelGroup rendered="#{empty receiptCreateController.receipt.store}">
+                    <div class="alert alert-danger">
+                        Store not selected.
+                    </div>
+                </h:panelGroup>
             </div>
 
             <div class="bubble">
@@ -44,8 +51,19 @@
                         </tr>
                     </ui:repeat>
                 </table>
+                <h:panelGroup rendered="#{empty receiptCreateController.receipt.products}">
+                    <div class="alert alert-danger">
+                        No product added.
+                    </div>
+                </h:panelGroup>
             </div>
 
+        </div>
+
+        <div class="container-fluid col-lg-6">
+            <h:panelGroup rendered="#{empty receiptCreateController.receipt.store}">
+                <ui:include src="/WEB-INF/snippets/receipt/choose-store-form.xhtml"/>
+            </h:panelGroup>
         </div>
     </ui:define>
 </ui:composition>

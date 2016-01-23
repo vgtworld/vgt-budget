@@ -35,7 +35,7 @@ public class ReceiptCreateController {
 		return storeService.listAllStores();
 	}
 
-	public String chooseStore(String storeId) {
+	public String addStoreToReceipt(String storeId) {
 		LOGGER.debug("Store with id: {} chosen for receipt.", storeId);
 		StoreItem store = storeService.findById(storeId);
 		if (store == null) {
@@ -49,7 +49,13 @@ public class ReceiptCreateController {
 		chosenStore.setCity(store.getCity());
 		chosenStore.setAddress(store.getAddress());
 		receipt.setStore(chosenStore);
-		return "receipt-create";
+		return "receipt/create.xhtml";
+	}
+
+	public String removeStoreFromReceipt() {
+		LOGGER.debug("Removing store from receipt.");
+		receipt.setStore(null);
+		return "receipt/create.xhtml";
 	}
 
 }
