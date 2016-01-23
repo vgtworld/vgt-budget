@@ -39,4 +39,15 @@
 		</createTable>
 	</changeSet>
 
+	<changeSet id="1.0-create-table-tags" author="VGT">
+		<createTable tableName="tags">
+			<column name="id" type="int" autoIncrement="true">
+				<constraints nullable="false" primaryKey="true"/>
+			</column>
+			<column name="name" type="varchar(100)">
+				<constraints nullable="false" unique="true"/>
+			</column>
+		</createTable>
+	</changeSet>
+
 </databaseChangeLog>
