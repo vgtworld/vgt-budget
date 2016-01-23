@@ -60,20 +60,20 @@
 			</column>
 		</createTable>
 		<addForeignKeyConstraint
-				constraintName="fk_products_product_tags"
-				baseTableName="products"
-				baseColumnNames="id"
-				referencedTableName="product_tags"
-				referencedColumnNames="product_id"
+				constraintName="fk_product_tags_products"
+				baseTableName="product_tags"
+				baseColumnNames="product_id"
+				referencedTableName="products"
+				referencedColumnNames="id"
 				onUpdate="CASCADE"
 				onDelete="CASCADE"
 				/>
 		<addForeignKeyConstraint
-				constraintName="fk_tags_product_tags"
-				baseTableName="tags"
-				baseColumnNames="id"
-				referencedTableName="product_tags"
-				referencedColumnNames="tag_id"
+				constraintName="fk_product_tags_tags"
+				baseTableName="product_tags"
+				baseColumnNames="tag_id"
+				referencedTableName="tags"
+				referencedColumnNames="id"
 				onUpdate="CASCADE"
 				onDelete="RESTRICT"
 				/>
