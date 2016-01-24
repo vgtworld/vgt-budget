@@ -6,6 +6,7 @@ public class NewProduct {
 
 	private String name;
 
+	//TODO Remove, when products CRUD is removed from creating receipt page.
 	private List<String> tags;
 
 	public String getName() {
