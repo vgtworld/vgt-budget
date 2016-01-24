@@ -18,7 +18,7 @@ public class ProductTagService {
 	private ProductTagDao productTagDao;
 
 	public void createNewLink(int productId, int tagId) {
-		LOGGER.debug("Create link between product:{} and tag:{}", productId, tagId);
+		LOGGER.debug("Create new link between product:{} and tag:{}", productId, tagId);
 		ProductTagPK id = new ProductTagPK();
 		id.setProductId(productId);
 		id.setTagId(tagId);

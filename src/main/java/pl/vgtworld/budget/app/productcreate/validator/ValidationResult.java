@@ -1,20 +1,20 @@
 package pl.vgtworld.budget.app.productcreate.validator;
 
+import pl.vgtworld.budget.app.productcreate.dto.NewProductWithTags;
 import pl.vgtworld.budget.core.validation.AbstractResult;
-import pl.vgtworld.budget.services.dto.products.NewProduct;
 
 import java.util.List;
 
 public class ValidationResult extends AbstractResult {
 
-	private NewProduct product;
+	private NewProductWithTags product;
 
-	public ValidationResult(List<String> errors, NewProduct product) {
+	public ValidationResult(List<String> errors, NewProductWithTags product) {
 		super(errors);
 		this.product = product;
 	}
 
-	public NewProduct getProduct() {
+	public NewProductWithTags getProduct() {
 		return product;
 	}
 

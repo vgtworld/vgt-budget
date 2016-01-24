@@ -6,6 +6,7 @@ import pl.vgtworld.budget.app.productcreate.dto.NewProductForm;
 import pl.vgtworld.budget.app.productcreate.validator.NewProductValidator;
 import pl.vgtworld.budget.app.productcreate.validator.ValidationResult;
 
+import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,6 +19,9 @@ public class ProductCreateController {
 	private NewProductForm product = new NewProductForm();
 
 	private List<String> submitErrors = new ArrayList<>();
+
+	@EJB
+	private ProductCreateService productCreateService;
 
 	public NewProductForm getProduct() {
 		return product;
@@ -40,7 +44,7 @@ public class ProductCreateController {
 		NewProductValidator validator = new NewProductValidator();
 		ValidationResult result = validator.validate(product);
 		if (result.isValid()) {
-			//TODO Save to database.
+			productCreateService.createNewProduct(result.getProduct());
 			return "product-create-success.xhtml";
 		} else {
 			submitErrors = result.getErrors();

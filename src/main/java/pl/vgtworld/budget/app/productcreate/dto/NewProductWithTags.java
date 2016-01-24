@@ -1,12 +1,11 @@
-package pl.vgtworld.budget.services.dto.products;
+package pl.vgtworld.budget.app.productcreate.dto;
 
 import java.util.List;
 
-public class NewProduct {
+public class NewProductWithTags {
 
 	private String name;
 
-	//TODO Remove, when products CRUD is removed from creating receipt page.
 	private List<String> tags;
 
 	public String getName() {
@@ -27,8 +26,9 @@ public class NewProduct {
 
 	@Override
 	public String toString() {
-		return "NewProduct{" +
+		return "NewProductWithTags{" +
 			  "name='" + name + '\'' +
+			  ", tags=" + tags +
 			  '}';
 	}
 

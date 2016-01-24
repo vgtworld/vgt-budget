@@ -1,7 +1,7 @@
 package pl.vgtworld.budget.app.productcreate.validator;
 
 import pl.vgtworld.budget.app.productcreate.dto.NewProductForm;
-import pl.vgtworld.budget.services.dto.products.NewProduct;
+import pl.vgtworld.budget.app.productcreate.dto.NewProductWithTags;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,7 +26,7 @@ public class NewProductValidator {
 		List<String> extractedTags = extractTags(product.getTags());
 		validateTags(extractedTags);
 		if (errors.isEmpty()) {
-			NewProduct newProduct = new NewProduct();
+			NewProductWithTags newProduct = new NewProductWithTags();
 			newProduct.setName(product.getName());
 			newProduct.setTags(extractedTags);
 			return new ValidationResult(errors, newProduct);
