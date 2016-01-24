@@ -5,7 +5,7 @@ import org.slf4j.LoggerFactory;
 import pl.vgtworld.budget.app.receiptcreate.dto.NewProductForm;
 import pl.vgtworld.budget.app.receiptcreate.validators.newproduct.NewProductValidator;
 import pl.vgtworld.budget.app.receiptcreate.validators.newproduct.ValidationResult;
-import pl.vgtworld.budget.services.ProductService;
+import pl.vgtworld.budget.services.ProductsService;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
@@ -23,7 +23,7 @@ public class NewProductForReceiptController {
 	private List<String> submitErrors = new ArrayList<>();
 
 	@EJB
-	private ProductService productService;
+	private ProductsService productsService;
 
 	@ManagedProperty("#{receiptCreateController}")
 	private ReceiptCreateController receiptCreateController;
@@ -57,7 +57,7 @@ public class NewProductForReceiptController {
 		NewProductValidator validator = new NewProductValidator();
 		ValidationResult result = validator.validate(product);
 		if (result.isValid()) {
-			int productId = productService.createNewProduct(result.getProduct());
+			int productId = productsService.createNewProduct(result.getProduct());
 			receiptCreateController.addProductToReceipt(productId, product.getName());
 			this.product = new NewProductForm();
 		} else {

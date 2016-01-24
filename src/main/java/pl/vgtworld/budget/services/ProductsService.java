@@ -6,7 +6,6 @@ import pl.vgtworld.budget.services.dto.products.NewProduct;
 import pl.vgtworld.budget.services.storage.ProductTagService;
 import pl.vgtworld.budget.storage.products.Product;
 import pl.vgtworld.budget.storage.products.ProductDao;
-import pl.vgtworld.budget.storage.producttags.ProductTagDao;
 import pl.vgtworld.budget.storage.tags.Tag;
 import pl.vgtworld.budget.storage.tags.TagDao;
 
@@ -16,9 +15,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Stateless
-public class ProductService {
+public class ProductsService {
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(ProductService.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(ProductsService.class);
 
 	@EJB
 	private ProductDao productDao;
