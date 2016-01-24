@@ -36,15 +36,6 @@ public class ReceiptCreateController {
 		return storeService.listAllStores();
 	}
 
-	public void addProductToReceipt(int productId, String productName) {
-		ReceiptProduct newProduct = new ReceiptProduct();
-		newProduct.setId(productId);
-		newProduct.setName(productName);
-		newProduct.setPricePerUnit(0.0);
-		newProduct.setAmount(0.0);
-		receipt.getProducts().add(newProduct);
-	}
-
 	public String addStoreToReceipt(String storeId) {
 		LOGGER.debug("Store with id: {} chosen for receipt.", storeId);
 		StoreItem store = storeService.findById(storeId);

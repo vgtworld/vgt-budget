@@ -1,0 +1,27 @@
+<ui:composition xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets" template="/WEB-INF/templates/basic.xhtml">
+    <ui:define name="pageTitle">Create product</ui:define>
+    <ui:define name="content">
+        <h2 class="text-center">Create new product</h2>
+
+        <div class="container-fluid col-lg-6 col-lg-offset-3">
+            <h:form>
+
+                <div class="form-group">
+                    <h:outputLabel for="form-name" value="Name"/>
+                    <h:inputText id="form-name" styleClass="form-control" value=""/>
+                </div>
+
+                <div class="form-group">
+                    <h:outputLabel for="form-tags" value="Tags"/>
+                    <p>(comma separated)</p>
+                    <h:inputText id="form-tags" styleClass="form-control" value=""/>
+                </div>
+
+                <div class="form-group">
+                    <h:commandButton styleClass="btn btn-default" value="Add product to receipt" type="submit" action="#{productCreateController.submitForm}"/>
+                </div>
+
+            </h:form>
+        </div>
+    </ui:define>
+</ui:composition>
