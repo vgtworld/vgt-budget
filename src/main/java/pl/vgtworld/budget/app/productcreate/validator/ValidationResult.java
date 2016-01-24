@@ -1,4 +1,4 @@
-package pl.vgtworld.budget.app.receiptcreate.validators.newproduct;
+package pl.vgtworld.budget.app.productcreate.validator;
 
 import pl.vgtworld.budget.core.validation.AbstractResult;
 import pl.vgtworld.budget.services.dto.products.NewProduct;

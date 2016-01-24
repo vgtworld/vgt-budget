@@ -1,6 +1,6 @@
-package pl.vgtworld.budget.app.receiptcreate.validators.newproduct;
+package pl.vgtworld.budget.app.productcreate.validator;
 
-import pl.vgtworld.budget.app.receiptcreate.dto.NewProductForm;
+import pl.vgtworld.budget.app.productcreate.dto.NewProductForm;
 import pl.vgtworld.budget.services.dto.products.NewProduct;
 
 import java.util.ArrayList;
