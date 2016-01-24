@@ -1,6 +1,6 @@
 package pl.vgtworld.budget.app.productlist;
 
-import pl.vgtworld.budget.services.dto.stores.ProductItem;
+import pl.vgtworld.budget.services.dto.products.ProductItem;
 import pl.vgtworld.budget.services.storage.ProductService;
 
 import javax.annotation.PostConstruct;

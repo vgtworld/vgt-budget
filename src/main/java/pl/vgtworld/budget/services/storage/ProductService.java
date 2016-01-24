@@ -1,6 +1,6 @@
 package pl.vgtworld.budget.services.storage;
 
-import pl.vgtworld.budget.services.dto.stores.ProductItem;
+import pl.vgtworld.budget.services.dto.products.ProductItem;
 import pl.vgtworld.budget.storage.products.Product;
 import pl.vgtworld.budget.storage.products.ProductDao;
 

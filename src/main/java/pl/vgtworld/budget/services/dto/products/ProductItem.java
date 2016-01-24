@@ -1,4 +1,4 @@
-package pl.vgtworld.budget.services.dto.stores;
+package pl.vgtworld.budget.services.dto.products;
 
 public class ProductItem {
 
