@@ -9,6 +9,8 @@ import pl.vgtworld.budget.storage.tags.TagDao;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Stateless
 public class TagService {
@@ -28,6 +30,10 @@ public class TagService {
 
 	public TagItem findByName(String name) {
 		return asTagItem(tagDao.findByName(name));
+	}
+
+	public List<TagItem> findForProduct(int productId) {
+		return tagDao.findForProduct(productId).stream().map(TagService::asTagItem).collect(Collectors.toList());
 	}
 
 	public boolean existWithName(String name) {

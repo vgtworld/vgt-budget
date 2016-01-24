@@ -11,11 +11,17 @@
             <table class="table">
                 <tr>
                     <th>Name</th>
+                    <th>Tags</th>
                     <th class="text-right">Options</th>
                 </tr>
                 <ui:repeat value="#{productListController.products}" var="product">
                     <tr>
-                        <td>#{product.name}</td>
+                        <td>#{product.product.name}</td>
+                        <td>
+                            <ui:repeat value="#{product.tags}" var="tag">
+                                <span class="label label-primary">#{tag.name}</span>
+                            </ui:repeat>
+                        </td>
                         <td>
 
                         </td>

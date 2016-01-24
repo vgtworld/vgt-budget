@@ -15,11 +15,17 @@ import javax.persistence.Table;
 	  @NamedQuery(
 			name = Tag.QUERY_FIND_BY_NAME,
 			query = "SELECT t FROM Tag t WHERE t.name = :NAME"
+	  ),
+	  @NamedQuery(
+			name = Tag.QUERY_FIND_FOR_PRODUCT,
+			query = "SELECT t FROM ProductTag pt INNER JOIN pt.tag t WHERE pt.product.id = :PRODUCT_ID ORDER BY pt.tag.name ASC"
 	  )
 })
 public class Tag {
 
 	static final String QUERY_FIND_BY_NAME = "Tag.findByName";
+
+	static final String QUERY_FIND_FOR_PRODUCT = "Tag.findForProduct";
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

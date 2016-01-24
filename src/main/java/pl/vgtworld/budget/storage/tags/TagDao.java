@@ -6,6 +6,7 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import java.util.List;
 
 @Stateless
 public class TagDao {
@@ -22,6 +23,12 @@ public class TagDao {
 		Query query = em.createNamedQuery(Tag.QUERY_FIND_BY_NAME);
 		query.setParameter("NAME", name);
 		return PersistenceUtil.getSingleResult(query);
+	}
+
+	public List<Tag> findForProduct(int productId) {
+		Query query = em.createNamedQuery(Tag.QUERY_FIND_FOR_PRODUCT);
+		query.setParameter("PRODUCT_ID", productId);
+		return PersistenceUtil.getResultList(query);
 	}
 
 }
