@@ -9,6 +9,7 @@ import pl.vgtworld.budget.storage.products.ProductDao;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -38,6 +39,7 @@ public class ProductService {
 		LOGGER.debug("Create new product: {}", product);
 		Product entity = new Product();
 		entity.setName(product.getName());
+		entity.setCreatedAt(new Date());
 		return productDao.create(entity);
 	}
 

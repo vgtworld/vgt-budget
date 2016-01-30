@@ -36,6 +36,9 @@
 			<column name="name" type="varchar(100)">
 				<constraints nullable="false" unique="true"/>
 			</column>
+			<column name="created_at" type="datetime">
+				<constraints nullable="false"/>
+			</column>
 		</createTable>
 	</changeSet>
 

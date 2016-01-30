@@ -8,6 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import java.util.Date;
 
 @Entity
 @Table(name = "products")
@@ -28,6 +29,9 @@ public class Product {
 	@Column(name = "name", nullable = false, length = 100, unique = true)
 	private String name;
 
+	@Column(name = "created_at", nullable = false)
+	private Date createdAt;
+
 	public Integer getId() {
 		return id;
 	}
@@ -42,6 +46,14 @@ public class Product {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public Date getCreatedAt() {
+		return createdAt;
+	}
+
+	public void setCreatedAt(Date createdAt) {
+		this.createdAt = createdAt;
 	}
 
 }
