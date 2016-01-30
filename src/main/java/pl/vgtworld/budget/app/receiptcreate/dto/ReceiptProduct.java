@@ -49,4 +49,14 @@ public class ReceiptProduct {
 		return 0.0;
 	}
 
+	@Override
+	public String toString() {
+		return "ReceiptProduct{" +
+			  "id=" + id +
+			  ", name='" + name + '\'' +
+			  ", pricePerUnit=" + pricePerUnit +
+			  ", amount=" + amount +
+			  '}';
+	}
+
 }

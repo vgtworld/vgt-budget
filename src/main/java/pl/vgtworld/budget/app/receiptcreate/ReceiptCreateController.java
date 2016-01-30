@@ -88,4 +88,10 @@ public class ReceiptCreateController {
 		LOGGER.debug("Refresh receipt form data.");
 	}
 
+	public void submitForm() {
+		LOGGER.info("Submitted new receipt form: {}", receipt);
+		//TODO Validate receipt.
+		//TODO Store receipt in database.
+	}
+
 }

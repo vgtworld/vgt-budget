@@ -42,4 +42,14 @@ public class ReceiptStore {
 		this.address = address;
 	}
 
+	@Override
+	public String toString() {
+		return "ReceiptStore{" +
+			  "id=" + id +
+			  ", name='" + name + '\'' +
+			  ", city='" + city + '\'' +
+			  ", address='" + address + '\'' +
+			  '}';
+	}
+
 }

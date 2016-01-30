@@ -25,4 +25,12 @@ public class NewReceiptForm {
 		this.products = products;
 	}
 
+	@Override
+	public String toString() {
+		return "NewReceiptForm{" +
+			  "store=" + store +
+			  ", products=" + products +
+			  '}';
+	}
+
 }
