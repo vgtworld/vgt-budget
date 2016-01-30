@@ -3,6 +3,7 @@ package pl.vgtworld.budget.app.receiptcreate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pl.vgtworld.budget.app.receiptcreate.dto.NewReceiptForm;
+import pl.vgtworld.budget.app.receiptcreate.dto.ReceiptProduct;
 import pl.vgtworld.budget.app.receiptcreate.dto.ReceiptStore;
 import pl.vgtworld.budget.services.dto.products.ProductItem;
 import pl.vgtworld.budget.services.dto.stores.StoreItem;
@@ -68,7 +69,19 @@ public class ReceiptCreateController {
 	}
 
 	public void addProductToReceipt(String productId) {
-
+		LOGGER.debug("Product with id: {} chosen for receipt.", productId);
+		ProductItem product = productService.findById(productId);
+		if (product == null) {
+			LOGGER.debug("Unable to find product with provided id.");
+			//TODO Prepare and display error message.
+			return;
+		}
+		ReceiptProduct chosenProduct = new ReceiptProduct();
+		chosenProduct.setId(product.getId());
+		chosenProduct.setName(product.getName());
+		chosenProduct.setAmount(0.0);
+		chosenProduct.setPricePerUnit(0.0);
+		receipt.getProducts().add(chosenProduct);
 	}
 
 }

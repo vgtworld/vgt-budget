@@ -20,6 +20,20 @@ public class ProductService {
 	@EJB
 	private ProductDao productDao;
 
+	public ProductItem findById(String id) {
+		try {
+			int convertedId = Integer.parseInt(id);
+			return findById(convertedId);
+		} catch (NumberFormatException e) {
+			LOGGER.trace("Unable to convert product id to integer: {}", id);
+			return null;
+		}
+	}
+
+	public ProductItem findById(int id) {
+		return asProductItem(productDao.findById(id));
+	}
+
 	public int createNewProduct(NewProduct product) {
 		LOGGER.debug("Create new product: {}", product);
 		Product entity = new Product();

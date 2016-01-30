@@ -19,6 +19,10 @@ public class ProductDao {
 		return product.getId();
 	}
 
+	public Product findById(int id) {
+		return em.find(Product.class, id);
+	}
+
 	public List<Product> listAll() {
 		Query query = em.createNamedQuery(Product.QUERY_LIST_ALL);
 		return PersistenceUtil.getResultList(query);
