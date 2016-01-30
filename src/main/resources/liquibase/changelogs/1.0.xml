@@ -81,5 +81,36 @@
 				onDelete="RESTRICT"
 				/>
 	</changeSet>
+	<changeSet id="1.0-create-table-receipts" author="VGT">
+		<createTable tableName="receipts">
+			<column name="id" type="int" autoIncrement="true">
+				<constraints nullable="false" primaryKey="true"/>
+			</column>
+			<column name="store_id" type="int">
+				<constraints nullable="false"/>
+			</column>
+			<column name="purchase_date" type="date">
+				<constraints nullable="false"/>
+			</column>
+			<column name="total_amount" type="double">
+				<constraints nullable="false"/>
+			</column>
+			<column name="created_at" type="datetime">
+				<constraints nullable="false"/>
+			</column>
+		</createTable>
+		<createIndex tableName="receipts" indexName="idx_receipts_purchase_date">
+			<column name="purchase_date"/>
+		</createIndex>
+		<addForeignKeyConstraint
+				constraintName="fk_receipts_store"
+				baseTableName="receipts"
+				baseColumnNames="store_id"
+				referencedTableName="stores"
+				referencedColumnNames="id"
+				onUpdate="CASCADE"
+				onDelete="RESTRICT"
+				/>
+	</changeSet>
 
 </databaseChangeLog>
