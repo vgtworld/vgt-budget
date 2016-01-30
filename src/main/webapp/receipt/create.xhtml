@@ -1,4 +1,5 @@
-<ui:composition xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets" template="/WEB-INF/templates/basic.xhtml">
+<ui:composition xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="/WEB-INF/templates/basic.xhtml">
     <ui:define name="pageTitle">Create receipt</ui:define>
     <ui:define name="content">
         <h2 class="text-center">Create new receipt</h2>
@@ -33,42 +34,50 @@
                 </h:panelGroup>
             </div>
 
-            <h:form styleClass="bubble">
-                <h3>Products</h3>
-                <table class="table">
-                    <tr>
-                        <th>Name</th>
-                        <th class="text-right">Amount</th>
-                        <th class="text-right">Unit price</th>
-                        <th class="text-right">Total price</th>
-                    </tr>
-                    <ui:repeat value="#{receiptCreateController.receipt.products}" varStatus="loop">
+            <h:form>
+                <div class="bubble">
+                    <h:outputLabel for="form-date" value="Purchase date"/>
+                    <p>Format: YYYY-MM-DD</p>
+                    <h:inputText id="form-date" styleClass="form-control" value="#{receiptCreateController.receipt.purchaseDate}"/>
+                </div>
+
+                <div class="bubble">
+                    <h3>Products</h3>
+                    <table class="table">
                         <tr>
-                            <td>#{receiptCreateController.receipt.products[loop.index].name}</td>
-                            <td class="text-right">
-                                <h:inputText styleClass="form-control" value="#{receiptCreateController.receipt.products[loop.index].amount}"/>
-                            </td>
-                            <td class="text-right">
-                                <h:inputText styleClass="form-control" value="#{receiptCreateController.receipt.products[loop.index].pricePerUnit}"/>
-                            </td>
-                            <td class="text-right">#{receiptCreateController.receipt.products[loop.index].totalPrice}</td>
+                            <th>Name</th>
+                            <th class="text-right">Amount</th>
+                            <th class="text-right">Unit price</th>
+                            <th class="text-right">Total price</th>
                         </tr>
-                    </ui:repeat>
-                    <tr>
-                        <td colspan="3" class="text-right">Total:</td>
-                        <td class="text-right">#{receiptCreateController.receipt.totalAmount}</td>
-                    </tr>
-                    <ui:repeat value="#{receiptCreateController.receipt.products}" var="product">
-                    </ui:repeat>
-                </table>
-                <h:panelGroup rendered="#{empty receiptCreateController.receipt.products}">
-                    <div class="alert alert-danger">
-                        No product added.
+                        <ui:repeat value="#{receiptCreateController.receipt.products}" varStatus="loop">
+                            <tr>
+                                <td>#{receiptCreateController.receipt.products[loop.index].name}</td>
+                                <td class="text-right">
+                                    <h:inputText styleClass="form-control" value="#{receiptCreateController.receipt.products[loop.index].amount}"/>
+                                </td>
+                                <td class="text-right">
+                                    <h:inputText styleClass="form-control" value="#{receiptCreateController.receipt.products[loop.index].pricePerUnit}"/>
+                                </td>
+                                <td class="text-right">#{receiptCreateController.receipt.products[loop.index].totalPrice}</td>
+                            </tr>
+                        </ui:repeat>
+                        <tr>
+                            <td colspan="3" class="text-right">Total:</td>
+                            <td class="text-right">#{receiptCreateController.receipt.totalAmount}</td>
+                        </tr>
+                        <ui:repeat value="#{receiptCreateController.receipt.products}" var="product">
+                        </ui:repeat>
+                    </table>
+                    <h:panelGroup rendered="#{empty receiptCreateController.receipt.products}">
+                        <div class="alert alert-danger">
+                            No product added.
+                        </div>
+                    </h:panelGroup>
+                    <div class="form-group">
+                        <h:commandButton styleClass="btn btn-default" value="Save receipt" type="submit" action="#{receiptCreateController.submitForm()}"/>
+                        <h:commandButton styleClass="btn btn-default" value="Recalculate" type="submit" action="#{receiptCreateController.refreshReceiptForm()}"/>
                     </div>
-                </h:panelGroup>
-                <div class="form-group">
-                    <h:commandButton styleClass="btn btn-default" value="Save receipt" type="submit" action="#{receiptCreateController.submitForm()}"/>
-                    <h:commandButton styleClass="btn btn-default" value="Recalculate" type="submit" action="#{receiptCreateController.refreshReceiptForm()}"/>
                 </div>
             </h:form>
 

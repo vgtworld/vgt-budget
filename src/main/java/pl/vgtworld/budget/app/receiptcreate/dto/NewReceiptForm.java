@@ -9,6 +9,8 @@ public class NewReceiptForm {
 
 	private List<ReceiptProduct> products = new ArrayList<>();
 
+	private String purchaseDate;
+
 	public ReceiptStore getStore() {
 		return store;
 	}
@@ -25,6 +27,14 @@ public class NewReceiptForm {
 		this.products = products;
 	}
 
+	public String getPurchaseDate() {
+		return purchaseDate;
+	}
+
+	public void setPurchaseDate(String purchaseDate) {
+		this.purchaseDate = purchaseDate;
+	}
+
 	public double getTotalAmount() {
 		double totalAmount = 0.0;
 		for (ReceiptProduct product : products) {
@@ -38,6 +48,7 @@ public class NewReceiptForm {
 		return "NewReceiptForm{" +
 			  "store=" + store +
 			  ", products=" + products +
+			  ", purchaseDate=" + purchaseDate +
 			  '}';
 	}
 
