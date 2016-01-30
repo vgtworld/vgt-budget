@@ -33,7 +33,7 @@
                 </h:panelGroup>
             </div>
 
-            <div class="bubble">
+            <h:form styleClass="bubble">
                 <h3>Products</h3>
                 <table class="table">
                     <tr>
@@ -42,13 +42,19 @@
                         <th class="text-right">Unit price</th>
                         <th class="text-right">Total price</th>
                     </tr>
-                    <ui:repeat value="#{receiptCreateController.receipt.products}" var="product">
+                    <ui:repeat value="#{receiptCreateController.receipt.products}" varStatus="loop">
                         <tr>
-                            <td>#{product.name}</td>
-                            <td class="text-right">#{product.amount}</td>
-                            <td class="text-right">#{product.pricePerUnit}</td>
-                            <td class="text-right">#{product.totalPrice}</td>
+                            <td>#{receiptCreateController.receipt.products[loop.index].name}</td>
+                            <td class="text-right">
+                                <h:inputText styleClass="form-control" value="#{receiptCreateController.receipt.products[loop.index].amount}"/>
+                            </td>
+                            <td class="text-right">
+                                <h:inputText styleClass="form-control" value="#{receiptCreateController.receipt.products[loop.index].pricePerUnit}"/>
+                            </td>
+                            <td class="text-right">#{receiptCreateController.receipt.products[loop.index].totalPrice}</td>
                         </tr>
+                    </ui:repeat>
+                    <ui:repeat value="#{receiptCreateController.receipt.products}" var="product">
                     </ui:repeat>
                 </table>
                 <h:panelGroup rendered="#{empty receiptCreateController.receipt.products}">
@@ -56,7 +62,10 @@
                         No product added.
                     </div>
                 </h:panelGroup>
-            </div>
+                <div class="form-group">
+                    <h:commandButton styleClass="btn btn-default" value="Recalculate" type="submit" action="#{receiptCreateController.refreshReceiptForm()}"/>
+                </div>
+            </h:form>
 
         </div>
 

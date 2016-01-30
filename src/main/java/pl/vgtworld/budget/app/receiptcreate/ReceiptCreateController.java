@@ -84,4 +84,8 @@ public class ReceiptCreateController {
 		receipt.getProducts().add(chosenProduct);
 	}
 
+	public void refreshReceiptForm() {
+		LOGGER.debug("Refresh receipt form data.");
+	}
+
 }
