@@ -38,7 +38,7 @@ public class ReceiptCreateController {
 	}
 
 	public List<StoreItem> listAvailableStores() {
-		return storeService.listAllStores();
+		return storeService.listAvailableStores();
 	}
 
 	public List<ProductItem> listAvailableProducts() {

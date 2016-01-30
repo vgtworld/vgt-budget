@@ -23,8 +23,8 @@ public class StoreDao {
 		return em.find(Store.class, id);
 	}
 
-	public List<Store> listAll() {
-		Query query = em.createNamedQuery(Store.QUERY_LIST_ALL);
+	public List<Store> listAvailable() {
+		Query query = em.createNamedQuery(Store.QUERY_LIST_AVAILABLE);
 		return PersistenceUtil.getResultList(query);
 	}
 

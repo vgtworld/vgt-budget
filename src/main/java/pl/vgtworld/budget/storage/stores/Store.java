@@ -14,13 +14,13 @@ import java.util.Date;
 @Table(name = "stores")
 @NamedQueries({
 	  @NamedQuery(
-			name = Store.QUERY_LIST_ALL,
-			query = "SELECT s FROM Store s WHERE s.deleted = FALSE ORDER BY s.name ASC"
+			name = Store.QUERY_LIST_AVAILABLE,
+			query = "SELECT s FROM Store s WHERE s.archived = FALSE ORDER BY s.name ASC"
 	  )
 })
 public class Store {
 
-	static final String QUERY_LIST_ALL = "Store.listAll";
+	static final String QUERY_LIST_AVAILABLE = "Store.listAvailable";
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -38,8 +38,8 @@ public class Store {
 	@Column(name = "created_at", nullable = false)
 	private Date createdAt;
 
-	@Column(name = "deleted", nullable = false)
-	private Boolean deleted;
+	@Column(name = "archived", nullable = false)
+	private Boolean archived;
 
 	public Integer getId() {
 		return id;
@@ -81,12 +81,12 @@ public class Store {
 		this.createdAt = createdAt;
 	}
 
-	public Boolean getDeleted() {
-		return deleted;
+	public Boolean getArchived() {
+		return archived;
 	}
 
-	public void setDeleted(Boolean deleted) {
-		this.deleted = deleted;
+	public void setArchived(Boolean archived) {
+		this.archived = archived;
 	}
 
 }

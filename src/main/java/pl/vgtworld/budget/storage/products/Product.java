@@ -19,7 +19,7 @@ import javax.persistence.Table;
 })
 public class Product {
 
-	static final String QUERY_LIST_ALL = "Product.listAll";
+	static final String QUERY_LIST_ALL = "Product.listAvailable";
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

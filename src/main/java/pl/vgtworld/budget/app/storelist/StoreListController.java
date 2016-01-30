@@ -26,6 +26,6 @@ public class StoreListController {
 
 	@PostConstruct
 	public void loadStores() {
-		storeList = storeService.listAllStores();
+		storeList = storeService.listAvailableStores();
 	}
 }

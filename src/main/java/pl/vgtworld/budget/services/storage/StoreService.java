@@ -41,14 +41,14 @@ public class StoreService {
 		entity.setCity(newStore.getCity());
 		entity.setAddress(newStore.getAddress());
 		entity.setCreatedAt(new Date());
-		entity.setDeleted(false);
+		entity.setArchived(false);
 		int id = storeDao.create(entity);
 		LOGGER.debug("Saved store with id: {}", id);
 	}
 
-	public List<StoreItem> listAllStores() {
+	public List<StoreItem> listAvailableStores() {
 		LOGGER.debug("List all stores");
-		return storeDao.listAll().stream().map(StoreService::asStoreItem).collect(Collectors.toList());
+		return storeDao.listAvailable().stream().map(StoreService::asStoreItem).collect(Collectors.toList());
 	}
 
 	private static StoreItem asStoreItem(Store store) {
