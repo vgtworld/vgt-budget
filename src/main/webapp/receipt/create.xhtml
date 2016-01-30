@@ -60,10 +60,13 @@
 
         </div>
 
-        <div class="container-fluid col-lg-6">
-            <h:panelGroup rendered="#{empty receiptCreateController.receipt.store}">
+        <h:panelGroup rendered="#{empty receiptCreateController.receipt.store}">
+            <div class="bubble container-fluid col-lg-6">
                 <ui:include src="/WEB-INF/snippets/receipt/choose-store-form.xhtml"/>
-            </h:panelGroup>
+            </div>
+        </h:panelGroup>
+        <div class="bubble container-fluid col-lg-6">
+            <ui:include src="/WEB-INF/snippets/receipt/choose-product-form.xhtml"/>
         </div>
     </ui:define>
 </ui:composition>

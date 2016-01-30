@@ -3,9 +3,10 @@ package pl.vgtworld.budget.app.receiptcreate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pl.vgtworld.budget.app.receiptcreate.dto.NewReceiptForm;
-import pl.vgtworld.budget.app.receiptcreate.dto.ReceiptProduct;
 import pl.vgtworld.budget.app.receiptcreate.dto.ReceiptStore;
+import pl.vgtworld.budget.services.dto.products.ProductItem;
 import pl.vgtworld.budget.services.dto.stores.StoreItem;
+import pl.vgtworld.budget.services.storage.ProductService;
 import pl.vgtworld.budget.services.storage.StoreService;
 
 import javax.ejb.EJB;
@@ -24,6 +25,9 @@ public class ReceiptCreateController {
 	@EJB
 	private StoreService storeService;
 
+	@EJB
+	private ProductService productService;
+
 	public NewReceiptForm getReceipt() {
 		return receipt;
 	}
@@ -34,6 +38,10 @@ public class ReceiptCreateController {
 
 	public List<StoreItem> listAvailableStores() {
 		return storeService.listAllStores();
+	}
+
+	public List<ProductItem> listAvailableProducts() {
+		return productService.listAvailableProducts();
 	}
 
 	public String addStoreToReceipt(String storeId) {
@@ -57,6 +65,10 @@ public class ReceiptCreateController {
 		LOGGER.debug("Removing store from receipt.");
 		receipt.setStore(null);
 		return "receipt/create.xhtml";
+	}
+
+	public void addProductToReceipt(String productId) {
+
 	}
 
 }
