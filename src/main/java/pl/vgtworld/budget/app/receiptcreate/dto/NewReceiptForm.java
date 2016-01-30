@@ -1,6 +1,7 @@
 package pl.vgtworld.budget.app.receiptcreate.dto;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class NewReceiptForm {
@@ -9,7 +10,7 @@ public class NewReceiptForm {
 
 	private List<ReceiptProduct> products = new ArrayList<>();
 
-	private String purchaseDate;
+	private Date purchaseDate;
 
 	public ReceiptStore getStore() {
 		return store;
@@ -27,11 +28,11 @@ public class NewReceiptForm {
 		this.products = products;
 	}
 
-	public String getPurchaseDate() {
+	public Date getPurchaseDate() {
 		return purchaseDate;
 	}
 
-	public void setPurchaseDate(String purchaseDate) {
+	public void setPurchaseDate(Date purchaseDate) {
 		this.purchaseDate = purchaseDate;
 	}
 
