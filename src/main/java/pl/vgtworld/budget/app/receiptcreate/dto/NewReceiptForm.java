@@ -25,6 +25,14 @@ public class NewReceiptForm {
 		this.products = products;
 	}
 
+	public double getTotalAmount() {
+		double totalAmount = 0.0;
+		for (ReceiptProduct product : products) {
+			totalAmount += product.getTotalPrice();
+		}
+		return totalAmount;
+	}
+
 	@Override
 	public String toString() {
 		return "NewReceiptForm{" +

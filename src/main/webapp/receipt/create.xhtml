@@ -54,6 +54,10 @@
                             <td class="text-right">#{receiptCreateController.receipt.products[loop.index].totalPrice}</td>
                         </tr>
                     </ui:repeat>
+                    <tr>
+                        <td colspan="3" class="text-right">Total:</td>
+                        <td class="text-right">#{receiptCreateController.receipt.totalAmount}</td>
+                    </tr>
                     <ui:repeat value="#{receiptCreateController.receipt.products}" var="product">
                     </ui:repeat>
                 </table>
