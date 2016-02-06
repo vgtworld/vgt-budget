@@ -1,5 +1,6 @@
 package pl.vgtworld.budget.app.receiptcreate.dto;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -37,11 +38,12 @@ public class NewReceiptForm {
 	}
 
 	public double getTotalAmount() {
-		double totalAmount = 0.0;
+		BigDecimal totalAmount = new BigDecimal(0);
 		for (ReceiptProduct product : products) {
-			totalAmount += product.getTotalPrice();
+			totalAmount = totalAmount.add(BigDecimal.valueOf(product.getTotalPrice()));
 		}
-		return totalAmount;
+		totalAmount = totalAmount.setScale(2, BigDecimal.ROUND_HALF_EVEN);
+		return totalAmount.doubleValue();
 	}
 
 	@Override
