@@ -1,5 +1,7 @@
 package pl.vgtworld.budget.app.receiptcreate.dto;
 
+import java.math.BigDecimal;
+
 public class ReceiptProduct {
 
 	private Integer id;
@@ -44,7 +46,10 @@ public class ReceiptProduct {
 
 	public Double getTotalPrice() {
 		if (amount != null && pricePerUnit != null) {
-			return amount * pricePerUnit;
+			BigDecimal totalAmount = new BigDecimal(amount);
+			totalAmount = totalAmount.multiply(new BigDecimal(pricePerUnit));
+			totalAmount = totalAmount.setScale(2, BigDecimal.ROUND_HALF_EVEN);
+			return totalAmount.doubleValue();
 		}
 		return 0.0;
 	}
