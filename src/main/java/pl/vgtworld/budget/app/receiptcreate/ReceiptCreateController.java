@@ -94,4 +94,10 @@ public class ReceiptCreateController {
 		//TODO Store receipt in database.
 	}
 
+	public String cancel() {
+		LOGGER.debug("Cancel receipt create.");
+		receipt = new NewReceiptForm();
+		return "receipt-list.xhtml";
+	}
+
 }
