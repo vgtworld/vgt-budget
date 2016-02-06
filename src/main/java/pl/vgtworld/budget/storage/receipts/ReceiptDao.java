@@ -14,4 +14,9 @@ public class ReceiptDao {
 		em.persist(receipt);
 		return receipt.getId();
 	}
+
+	public Receipt findById(int id) {
+		return em.find(Receipt.class, id);
+	}
+
 }
