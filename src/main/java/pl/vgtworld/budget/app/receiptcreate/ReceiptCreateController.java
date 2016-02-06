@@ -59,13 +59,13 @@ public class ReceiptCreateController {
 		chosenStore.setCity(store.getCity());
 		chosenStore.setAddress(store.getAddress());
 		receipt.setStore(chosenStore);
-		return "receipt/create.xhtml";
+		return "receipt-create.xhtml";
 	}
 
 	public String removeStoreFromReceipt() {
 		LOGGER.debug("Removing store from receipt.");
 		receipt.setStore(null);
-		return "receipt/create.xhtml";
+		return "receipt-create.xhtml";
 	}
 
 	public void addProductToReceipt(String productId) {
