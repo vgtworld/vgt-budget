@@ -57,10 +57,12 @@
                             <tr>
                                 <td>#{receiptCreateController.receipt.products[loop.index].name}</td>
                                 <td class="text-right">
-                                    <h:inputText styleClass="form-control" value="#{receiptCreateController.receipt.products[loop.index].amount}"/>
+                                    <h:message for="form-product-amount" styleClass="alert alert-danger" style="display:block;"/>
+                                    <h:inputText id="form-product-amount" styleClass="form-control" value="#{receiptCreateController.receipt.products[loop.index].amount}"/>
                                 </td>
                                 <td class="text-right">
-                                    <h:inputText styleClass="form-control" value="#{receiptCreateController.receipt.products[loop.index].pricePerUnit}"/>
+                                    <h:message for="form-product-unitprice" styleClass="alert alert-danger" style="display:block;"/>
+                                    <h:inputText id="form-product-unitprice" styleClass="form-control" value="#{receiptCreateController.receipt.products[loop.index].pricePerUnit}"/>
                                 </td>
                                 <td class="text-right">#{receiptCreateController.receipt.products[loop.index].totalPrice}</td>
                             </tr>
