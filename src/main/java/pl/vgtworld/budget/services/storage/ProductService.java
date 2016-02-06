@@ -26,12 +26,13 @@ public class ProductService {
 			int convertedId = Integer.parseInt(id);
 			return findById(convertedId);
 		} catch (NumberFormatException e) {
-			LOGGER.trace("Unable to convert product id to integer: {}", id);
+			LOGGER.debug("Unable to convert product id to integer: {}", id);
 			return null;
 		}
 	}
 
 	public ProductItem findById(int id) {
+		LOGGER.debug("Find by id: {}", id);
 		return asProductItem(productDao.findById(id));
 	}
 

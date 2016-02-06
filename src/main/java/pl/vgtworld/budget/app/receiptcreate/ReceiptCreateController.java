@@ -72,7 +72,7 @@ public class ReceiptCreateController {
 		LOGGER.debug("Product with id: {} chosen for receipt.", productId);
 		ProductItem product = productService.findById(productId);
 		if (product == null) {
-			LOGGER.debug("Unable to find product with provided id.");
+			LOGGER.warn("Unable to find product with provided id.");
 			//TODO Prepare and display error message.
 			return;
 		}
