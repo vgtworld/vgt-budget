@@ -5,6 +5,8 @@ import org.slf4j.LoggerFactory;
 import pl.vgtworld.budget.app.receiptcreate.dto.NewReceiptForm;
 import pl.vgtworld.budget.app.receiptcreate.dto.ReceiptProduct;
 import pl.vgtworld.budget.app.receiptcreate.dto.ReceiptStore;
+import pl.vgtworld.budget.app.receiptcreate.validator.NewReceiptValidator;
+import pl.vgtworld.budget.app.receiptcreate.validator.ValidationResult;
 import pl.vgtworld.budget.services.dto.products.ProductItem;
 import pl.vgtworld.budget.services.dto.stores.StoreItem;
 import pl.vgtworld.budget.services.storage.ProductService;
@@ -13,6 +15,7 @@ import pl.vgtworld.budget.services.storage.StoreService;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import java.util.ArrayList;
 import java.util.List;
 
 @ManagedBean
@@ -22,6 +25,8 @@ public class ReceiptCreateController {
 	private static final Logger LOGGER = LoggerFactory.getLogger(ReceiptCreateController.class);
 
 	private NewReceiptForm receipt = new NewReceiptForm();
+
+	private List<String> submitErrors = new ArrayList<>();
 
 	@EJB
 	private StoreService storeService;
@@ -88,10 +93,17 @@ public class ReceiptCreateController {
 		LOGGER.debug("Refresh receipt form data.");
 	}
 
-	public void submitForm() {
+	public String submitForm() {
 		LOGGER.info("Submitted new receipt form: {}", receipt);
-		//TODO Validate receipt.
-		//TODO Store receipt in database.
+		NewReceiptValidator validator = new NewReceiptValidator(storeService, productService);
+		ValidationResult result = validator.validate(receipt);
+		if (result.isValid()) {
+			//TODO Store receipt in database.
+			receipt = new NewReceiptForm();
+			return "receipt-create-success.xhtml";
+		}
+		submitErrors = result.getErrors();
+		return "receipt-create.xhtml";
 	}
 
 	public String cancel() {

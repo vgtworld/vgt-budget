@@ -6,6 +6,14 @@
 
         <div class="container-fluid col-lg-6">
 
+            <h:panelGroup rendered="#{!empty storeCreateController.submitErrors}">
+                <div class="errors">
+                    <ui:repeat value="#{storeCreateController.submitErrors}" var="errorMessage">
+                        <div class="alert alert-danger">#{errorMessage}</div>
+                    </ui:repeat>
+                </div>
+            </h:panelGroup>
+
             <div class="bubble">
                 <h3>Store</h3>
                 <h:panelGroup rendered="#{!empty receiptCreateController.receipt.store}">
