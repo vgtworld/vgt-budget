@@ -22,6 +22,7 @@ public class StoreService {
 	private StoreDao storeDao;
 
 	public StoreItem findById(String id) {
+		LOGGER.debug("Find store by id: {}", id);
 		try {
 			int convertedId = Integer.parseInt(id);
 			return findById(convertedId);
@@ -31,6 +32,7 @@ public class StoreService {
 	}
 
 	public StoreItem findById(int id) {
+		LOGGER.debug("Find store by id: {}", id);
 		return asStoreItem(storeDao.findById(id));
 	}
 

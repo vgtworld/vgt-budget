@@ -22,6 +22,7 @@ public class ProductService {
 	private ProductDao productDao;
 
 	public ProductItem findById(String id) {
+		LOGGER.debug("Find product by id: {}", id);
 		try {
 			int convertedId = Integer.parseInt(id);
 			return findById(convertedId);
@@ -32,7 +33,7 @@ public class ProductService {
 	}
 
 	public ProductItem findById(int id) {
-		LOGGER.debug("Find by id: {}", id);
+		LOGGER.debug("Find product by id: {}", id);
 		return asProductItem(productDao.findById(id));
 	}
 
@@ -45,6 +46,7 @@ public class ProductService {
 	}
 
 	public List<ProductItem> listAvailableProducts() {
+		LOGGER.debug("List available products.");
 		return productDao.listAll().stream().map(ProductService::asProductItem).collect(Collectors.toList());
 	}
 

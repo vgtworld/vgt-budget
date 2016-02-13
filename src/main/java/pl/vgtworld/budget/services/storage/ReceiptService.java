@@ -20,6 +20,7 @@ public class ReceiptService {
 	private ReceiptDao receiptDao;
 
 	public ReceiptItem findById(int id) {
+		LOGGER.debug("Find receipt by id: {}", id);
 		return asReceiptItem(receiptDao.findById(id));
 	}
 
