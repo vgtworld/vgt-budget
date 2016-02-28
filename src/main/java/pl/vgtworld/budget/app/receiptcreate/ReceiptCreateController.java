@@ -7,7 +7,7 @@ import pl.vgtworld.budget.app.receiptcreate.dto.ReceiptProduct;
 import pl.vgtworld.budget.app.receiptcreate.dto.ReceiptStore;
 import pl.vgtworld.budget.app.receiptcreate.validator.NewReceiptValidator;
 import pl.vgtworld.budget.app.receiptcreate.validator.ValidationResult;
-import pl.vgtworld.budget.services.dto.products.ProductItem;
+import pl.vgtworld.budget.services.dto.products.ProductDto;
 import pl.vgtworld.budget.services.dto.stores.StoreDto;
 import pl.vgtworld.budget.services.storage.ProductService;
 import pl.vgtworld.budget.services.storage.StoreService;
@@ -46,7 +46,7 @@ public class ReceiptCreateController {
 		return storeService.listAvailableStores();
 	}
 
-	public List<ProductItem> listAvailableProducts() {
+	public List<ProductDto> listAvailableProducts() {
 		return productService.listAvailableProducts();
 	}
 
@@ -75,7 +75,7 @@ public class ReceiptCreateController {
 
 	public void addProductToReceipt(String productId) {
 		LOGGER.debug("Product with id: {} chosen for receipt.", productId);
-		ProductItem product = productService.findById(productId);
+		ProductDto product = productService.findById(productId);
 		if (product == null) {
 			LOGGER.warn("Unable to find product with provided id.");
 			//TODO Prepare and display error message.

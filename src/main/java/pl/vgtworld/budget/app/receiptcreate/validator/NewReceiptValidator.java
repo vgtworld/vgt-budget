@@ -2,7 +2,7 @@ package pl.vgtworld.budget.app.receiptcreate.validator;
 
 import pl.vgtworld.budget.app.receiptcreate.dto.NewReceiptForm;
 import pl.vgtworld.budget.app.receiptcreate.dto.ReceiptProduct;
-import pl.vgtworld.budget.services.dto.products.ProductItem;
+import pl.vgtworld.budget.services.dto.products.ProductDto;
 import pl.vgtworld.budget.services.dto.stores.StoreDto;
 import pl.vgtworld.budget.services.storage.ProductService;
 import pl.vgtworld.budget.services.storage.StoreService;
@@ -86,20 +86,20 @@ public class NewReceiptValidator {
 			errors.add(ERROR_PRODUCT_MISSING_ID);
 			return false;
 		}
-		ProductItem productItem = productService.findById(product.getId());
-		if (productItem == null) {
+		ProductDto productDto = productService.findById(product.getId());
+		if (productDto == null) {
 			errors.add(ERROR_PRODUCT_MISSING_ID);
 			return false;
 		}
 		boolean validationResult = true;
 		Double amount = product.getAmount();
 		if (amount == null || amount <= 0) {
-			errors.add(String.format(ERROR_PRODUCT_AMOUNT_REQUIRED, productItem.getName()));
+			errors.add(String.format(ERROR_PRODUCT_AMOUNT_REQUIRED, productDto.getName()));
 			validationResult = false;
 		}
 		Double pricePerUnit = product.getPricePerUnit();
 		if (pricePerUnit == null || pricePerUnit <= 0) {
-			errors.add(String.format(ERROR_PRODUCT_PRICE_PER_UNIT_REQUIRED, productItem.getName()));
+			errors.add(String.format(ERROR_PRODUCT_PRICE_PER_UNIT_REQUIRED, productDto.getName()));
 			validationResult = false;
 		}
 		return validationResult;

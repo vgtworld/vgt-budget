@@ -2,8 +2,7 @@ package pl.vgtworld.budget.services.storage;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import pl.vgtworld.budget.services.dto.tags.NewTag;
-import pl.vgtworld.budget.services.dto.tags.TagItem;
+import pl.vgtworld.budget.services.dto.tags.TagDto;
 import pl.vgtworld.budget.storage.tags.Tag;
 import pl.vgtworld.budget.storage.tags.TagDao;
 
@@ -20,7 +19,7 @@ public class TagService {
 	@EJB
 	private TagDao tagDao;
 
-	public TagItem createNewTag(NewTag tag) {
+	public TagDto createNewTag(TagDto tag) {
 		LOGGER.debug("Create new tag: {}", tag);
 		Tag entity = new Tag();
 		entity.setName(tag.getName());
@@ -28,11 +27,11 @@ public class TagService {
 		return findByName(tag.getName());
 	}
 
-	public TagItem findByName(String name) {
+	public TagDto findByName(String name) {
 		return asTagItem(tagDao.findByName(name));
 	}
 
-	public List<TagItem> findForProduct(int productId) {
+	public List<TagDto> findForProduct(int productId) {
 		return tagDao.findForProduct(productId).stream().map(TagService::asTagItem).collect(Collectors.toList());
 	}
 
@@ -40,11 +39,11 @@ public class TagService {
 		return findByName(name) != null;
 	}
 
-	private static TagItem asTagItem(Tag tag) {
+	private static TagDto asTagItem(Tag tag) {
 		if (tag == null) {
 			return null;
 		}
-		TagItem result = new TagItem();
+		TagDto result = new TagDto();
 		result.setId(tag.getId());
 		result.setName(tag.getName());
 		return result;

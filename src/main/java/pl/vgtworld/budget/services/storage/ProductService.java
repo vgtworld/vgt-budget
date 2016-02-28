@@ -2,8 +2,7 @@ package pl.vgtworld.budget.services.storage;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import pl.vgtworld.budget.services.dto.products.NewProduct;
-import pl.vgtworld.budget.services.dto.products.ProductItem;
+import pl.vgtworld.budget.services.dto.products.ProductDto;
 import pl.vgtworld.budget.storage.products.Product;
 import pl.vgtworld.budget.storage.products.ProductDao;
 
@@ -21,7 +20,7 @@ public class ProductService {
 	@EJB
 	private ProductDao productDao;
 
-	public ProductItem findById(String id) {
+	public ProductDto findById(String id) {
 		LOGGER.debug("Find product by id: {}", id);
 		try {
 			int convertedId = Integer.parseInt(id);
@@ -32,12 +31,12 @@ public class ProductService {
 		}
 	}
 
-	public ProductItem findById(int id) {
+	public ProductDto findById(int id) {
 		LOGGER.debug("Find product by id: {}", id);
 		return asProductItem(productDao.findById(id));
 	}
 
-	public int createNewProduct(NewProduct product) {
+	public int createNewProduct(ProductDto product) {
 		LOGGER.debug("Create new product: {}", product);
 		Product entity = new Product();
 		entity.setName(product.getName());
@@ -45,16 +44,16 @@ public class ProductService {
 		return productDao.create(entity);
 	}
 
-	public List<ProductItem> listAvailableProducts() {
+	public List<ProductDto> listAvailableProducts() {
 		LOGGER.debug("List available products.");
 		return productDao.listAll().stream().map(ProductService::asProductItem).collect(Collectors.toList());
 	}
 
-	private static ProductItem asProductItem(Product product) {
+	private static ProductDto asProductItem(Product product) {
 		if (product == null) {
 			return null;
 		}
-		ProductItem result = new ProductItem();
+		ProductDto result = new ProductDto();
 		result.setId(product.getId());
 		result.setName(product.getName());
 		return result;

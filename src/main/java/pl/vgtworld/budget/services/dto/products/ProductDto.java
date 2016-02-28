@@ -1,8 +1,18 @@
 package pl.vgtworld.budget.services.dto.products;
 
-public class NewProduct {
+public class ProductDto {
+
+	private Integer id;
 
 	private String name;
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
 
 	public String getName() {
 		return name;
@@ -10,13 +20,6 @@ public class NewProduct {
 
 	public void setName(String name) {
 		this.name = name;
-	}
-
-	@Override
-	public String toString() {
-		return "NewProduct{" +
-			  "name='" + name + '\'' +
-			  '}';
 	}
 
 }

@@ -1,11 +1,10 @@
-package pl.vgtworld.budget.app.productcreate;
+package pl.vgtworld.budget.app.productedit;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import pl.vgtworld.budget.app.productcreate.dto.NewProductWithTags;
-import pl.vgtworld.budget.services.dto.products.NewProduct;
-import pl.vgtworld.budget.services.dto.tags.NewTag;
-import pl.vgtworld.budget.services.dto.tags.TagItem;
+import pl.vgtworld.budget.app.productedit.dto.ProductWithTags;
+import pl.vgtworld.budget.services.dto.products.ProductDto;
+import pl.vgtworld.budget.services.dto.tags.TagDto;
 import pl.vgtworld.budget.services.storage.ProductService;
 import pl.vgtworld.budget.services.storage.ProductTagService;
 import pl.vgtworld.budget.services.storage.TagService;
@@ -27,17 +26,17 @@ public class ProductCreateService {
 	@EJB
 	private ProductTagService productTagService;
 
-	public void createNewProduct(NewProductWithTags product) {
+	public void createNewProduct(ProductWithTags product) {
 		LOGGER.debug("Create new product with tags: {}", product);
-		NewProduct productServiceDto = new NewProduct();
+		ProductDto productServiceDto = new ProductDto();
 		productServiceDto.setName(product.getName());
 		int productId = productService.createNewProduct(productServiceDto);
 		for (String tagName : product.getTags()) {
-			TagItem tag;
+			TagDto tag;
 			if (tagService.existWithName(tagName)) {
 				tag = tagService.findByName(tagName);
 			} else {
-				NewTag newTag = new NewTag();
+				TagDto newTag = new TagDto();
 				newTag.setName(tagName);
 				tag = tagService.createNewTag(newTag);
 			}

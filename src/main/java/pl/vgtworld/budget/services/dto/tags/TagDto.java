@@ -1,6 +1,6 @@
 package pl.vgtworld.budget.services.dto.tags;
 
-public class TagItem {
+public class TagDto {
 
 	private Integer id;
 

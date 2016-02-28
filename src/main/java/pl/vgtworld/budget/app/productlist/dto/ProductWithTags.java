@@ -1,29 +1,29 @@
 package pl.vgtworld.budget.app.productlist.dto;
 
-import pl.vgtworld.budget.services.dto.products.ProductItem;
-import pl.vgtworld.budget.services.dto.tags.TagItem;
+import pl.vgtworld.budget.services.dto.products.ProductDto;
+import pl.vgtworld.budget.services.dto.tags.TagDto;
 
 import java.util.List;
 
 public class ProductWithTags {
 
-	private ProductItem product;
+	private ProductDto product;
 
-	private List<TagItem> tags;
+	private List<TagDto> tags;
 
-	public ProductItem getProduct() {
+	public ProductDto getProduct() {
 		return product;
 	}
 
-	public void setProduct(ProductItem product) {
+	public void setProduct(ProductDto product) {
 		this.product = product;
 	}
 
-	public List<TagItem> getTags() {
+	public List<TagDto> getTags() {
 		return tags;
 	}
 
-	public void setTags(List<TagItem> tags) {
+	public void setTags(List<TagDto> tags) {
 		this.tags = tags;
 	}
 

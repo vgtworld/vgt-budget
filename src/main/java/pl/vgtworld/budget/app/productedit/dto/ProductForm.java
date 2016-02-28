@@ -1,8 +1,8 @@
-package pl.vgtworld.budget.app.productcreate.dto;
+package pl.vgtworld.budget.app.productedit.dto;
 
 import java.util.List;
 
-public class NewProductWithTags {
+public class ProductForm {
 
 	private String name;
 
@@ -26,9 +26,9 @@ public class NewProductWithTags {
 
 	@Override
 	public String toString() {
-		return "NewProductWithTags{" +
+		return "NewProductForm{" +
 			  "name='" + name + '\'' +
-			  ", tags=" + tags +
+			  ", tags='" + tags + '\'' +
 			  '}';
 	}
 
