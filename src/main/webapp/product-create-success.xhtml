@@ -1,4 +1,9 @@
-<ui:composition xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets" template="/WEB-INF/templates/messagePage.xhtml">
+<ui:composition
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:h="http://xmlns.jcp.org/jsf/html"
+        xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+        template="/WEB-INF/templates/messagePage.xhtml"
+        >
     <ui:define name="message">Product successfully created.</ui:define>
     <ui:define name="navigation">
         <h:link styleClass="btn btn-default" outcome="product-create.xhtml" value="Create another"/>
