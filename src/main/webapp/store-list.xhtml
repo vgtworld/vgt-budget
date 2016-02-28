@@ -25,8 +25,8 @@
                         <td>#{store.name}</td>
                         <td>#{store.city}</td>
                         <td>#{store.address}</td>
-                        <td>
-
+                        <td class="text-right">
+                            <h:link styleClass="btn btn-default btn-xs" outcome="/store-edit?storeId=#{store.id}" value="Edit"/>
                         </td>
                     </tr>
                 </ui:repeat>

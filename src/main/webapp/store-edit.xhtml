@@ -5,9 +5,19 @@
         xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
         template="/WEB-INF/templates/basic.xhtml"
         >
-    <ui:define name="pageTitle">Create store</ui:define>
+    <f:metadata>
+        <f:viewParam name="storeId" value="#{storeEditController.storeId}"/>
+        <f:viewAction if="#{not empty param.storeId}" action="#{storeEditController.fillFormWithEditedStoreData}"/>
+    </f:metadata>
+    <ui:define name="pageTitle">
+        <h:outputText rendered="#{empty storeEditController.storeId}" value="Create store"/>
+        <h:outputText rendered="#{not empty storeEditController.storeId}" value="Update store"/>
+    </ui:define>
     <ui:define name="content">
-        <h2 class="text-center">Create new store</h2>
+        <h2 class="text-center">
+            <h:outputText rendered="#{empty storeEditController.storeId}" value="Create new store"/>
+            <h:outputText rendered="#{not empty storeEditController.storeId}" value="Update store"/>
+        </h2>
 
         <div class="container-fluid col-lg-6 col-lg-offset-3">
             <h:form>
@@ -57,7 +67,7 @@
                 </div>
 
                 <div class="form-group">
-                    <h:commandButton styleClass="btn btn-default" value="Create store" type="submit" action="#{storeEditController.submitForm}"/>
+                    <h:commandButton styleClass="btn btn-default" value="Save store" type="submit" action="#{storeEditController.submitForm}"/>
                 </div>
 
             </h:form>

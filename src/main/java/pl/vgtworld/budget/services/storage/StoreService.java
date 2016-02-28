@@ -47,6 +47,13 @@ public class StoreService {
 		LOGGER.debug("Saved store with id: {}", id);
 	}
 
+	public void updateStore(StoreDto store) {
+		Store entity = storeDao.findById(store.getId());
+		entity.setName(store.getName());
+		entity.setCity(store.getCity());
+		entity.setAddress(store.getAddress());
+	}
+
 	public List<StoreDto> listAvailableStores() {
 		LOGGER.debug("List all stores");
 		return storeDao.listAvailable().stream().map(StoreService::asStoreItem).collect(Collectors.toList());
