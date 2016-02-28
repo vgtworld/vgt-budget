@@ -46,10 +46,10 @@ public class StoreCreateController {
 		NewStoreValidationResult result = validator.validate(store);
 		if (result.isValid()) {
 			storeService.createNewStore(result.getStore());
-			return "store-create-success.xhtml";
+			return "store-list?faces-redirect=true";
 		} else {
 			submitErrors = result.getErrors();
-			return "store-create.xhtml";
+			return null;
 		}
 	}
 
