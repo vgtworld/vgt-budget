@@ -13,9 +13,9 @@ import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
 @Stateless
-public class ProductCreateService {
+public class ProductEditService {
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(ProductCreateService.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(ProductEditService.class);
 
 	@EJB
 	private ProductService productService;

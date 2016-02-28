@@ -19,7 +19,7 @@
                     <h:inputText
                             id="form-name"
                             styleClass="form-control"
-                            value="#{productCreateController.product.name}"
+                            value="#{productEditController.product.name}"
                             required="true"
                             requiredMessage="Name is required"
                             >
@@ -33,7 +33,7 @@
                     <h:inputText
                             id="form-tags"
                             styleClass="form-control"
-                            value="#{productCreateController.product.tags}"
+                            value="#{productEditController.product.tags}"
                             required="true"
                             requiredMessage="There should be at least one tag added for product"
                             >
@@ -43,7 +43,7 @@
                 </div>
 
                 <div class="form-group">
-                    <h:commandButton styleClass="btn btn-default" value="Create product" type="submit" action="#{productCreateController.submitForm}"/>
+                    <h:commandButton styleClass="btn btn-default" value="Create product" type="submit" action="#{productEditController.submitForm}"/>
                 </div>
 
             </h:form>

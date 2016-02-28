@@ -11,12 +11,12 @@ import javax.inject.Named;
 
 @Named
 @RequestScoped
-public class ProductCreateController {
+public class ProductEditController {
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(ProductCreateController.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(ProductEditController.class);
 
 	@EJB
-	private ProductCreateService productCreateService;
+	private ProductEditService productEditService;
 
 	private ProductForm product = new ProductForm();
 
@@ -30,7 +30,7 @@ public class ProductCreateController {
 
 	public String submitForm() {
 		LOGGER.debug("Submitted new product form: {}", product);
-		productCreateService.createNewProduct(asProductWithTags(product));
+		productEditService.createNewProduct(asProductWithTags(product));
 		return "product-list?faces-redirect=true";
 	}
 
