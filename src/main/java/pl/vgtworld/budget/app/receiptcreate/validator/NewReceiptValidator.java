@@ -3,7 +3,7 @@ package pl.vgtworld.budget.app.receiptcreate.validator;
 import pl.vgtworld.budget.app.receiptcreate.dto.NewReceiptForm;
 import pl.vgtworld.budget.app.receiptcreate.dto.ReceiptProduct;
 import pl.vgtworld.budget.services.dto.products.ProductItem;
-import pl.vgtworld.budget.services.dto.stores.StoreItem;
+import pl.vgtworld.budget.services.dto.stores.StoreDto;
 import pl.vgtworld.budget.services.storage.ProductService;
 import pl.vgtworld.budget.services.storage.StoreService;
 
@@ -49,7 +49,7 @@ public class NewReceiptValidator {
 			errors.add(ERROR_STORE_REQUIRED);
 			return false;
 		}
-		StoreItem store = storeService.findById(id);
+		StoreDto store = storeService.findById(id);
 		if (store == null) {
 			errors.add(ERROR_STORE_DOES_NOT_EXIST);
 			return false;

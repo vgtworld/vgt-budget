@@ -1,12 +1,22 @@
 package pl.vgtworld.budget.services.dto.stores;
 
-public class NewStore {
+public class StoreDto {
+
+	private Integer id;
 
 	private String name;
 
 	private String city;
 
 	private String address;
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
 
 	public String getName() {
 		return name;
@@ -30,15 +40,6 @@ public class NewStore {
 
 	public void setAddress(String address) {
 		this.address = address;
-	}
-
-	@Override
-	public String toString() {
-		return "NewStore{" +
-			  "name='" + name + '\'' +
-			  ", city='" + city + '\'' +
-			  ", address='" + address + '\'' +
-			  '}';
 	}
 
 }

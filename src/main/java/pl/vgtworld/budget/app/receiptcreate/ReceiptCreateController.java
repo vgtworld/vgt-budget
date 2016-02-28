@@ -8,7 +8,7 @@ import pl.vgtworld.budget.app.receiptcreate.dto.ReceiptStore;
 import pl.vgtworld.budget.app.receiptcreate.validator.NewReceiptValidator;
 import pl.vgtworld.budget.app.receiptcreate.validator.ValidationResult;
 import pl.vgtworld.budget.services.dto.products.ProductItem;
-import pl.vgtworld.budget.services.dto.stores.StoreItem;
+import pl.vgtworld.budget.services.dto.stores.StoreDto;
 import pl.vgtworld.budget.services.storage.ProductService;
 import pl.vgtworld.budget.services.storage.StoreService;
 
@@ -42,7 +42,7 @@ public class ReceiptCreateController {
 		this.receipt = receipt;
 	}
 
-	public List<StoreItem> listAvailableStores() {
+	public List<StoreDto> listAvailableStores() {
 		return storeService.listAvailableStores();
 	}
 
@@ -52,7 +52,7 @@ public class ReceiptCreateController {
 
 	public String addStoreToReceipt(String storeId) {
 		LOGGER.debug("Store with id: {} chosen for receipt.", storeId);
-		StoreItem store = storeService.findById(storeId);
+		StoreDto store = storeService.findById(storeId);
 		if (store == null) {
 			LOGGER.debug("Unable to find store with provided id.");
 			//TODO Prepare and display error message.

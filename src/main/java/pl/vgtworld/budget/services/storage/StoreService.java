@@ -2,8 +2,7 @@ package pl.vgtworld.budget.services.storage;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import pl.vgtworld.budget.services.dto.stores.NewStore;
-import pl.vgtworld.budget.services.dto.stores.StoreItem;
+import pl.vgtworld.budget.services.dto.stores.StoreDto;
 import pl.vgtworld.budget.storage.stores.Store;
 import pl.vgtworld.budget.storage.stores.StoreDao;
 
@@ -21,7 +20,7 @@ public class StoreService {
 	@EJB
 	private StoreDao storeDao;
 
-	public StoreItem findById(String id) {
+	public StoreDto findById(String id) {
 		LOGGER.debug("Find store by id: {}", id);
 		try {
 			int convertedId = Integer.parseInt(id);
@@ -31,12 +30,12 @@ public class StoreService {
 		}
 	}
 
-	public StoreItem findById(int id) {
+	public StoreDto findById(int id) {
 		LOGGER.debug("Find store by id: {}", id);
 		return asStoreItem(storeDao.findById(id));
 	}
 
-	public void createNewStore(NewStore newStore) {
+	public void createNewStore(StoreDto newStore) {
 		LOGGER.debug("Create new store: {}", newStore);
 		Store entity = new Store();
 		entity.setName(newStore.getName());
@@ -48,16 +47,16 @@ public class StoreService {
 		LOGGER.debug("Saved store with id: {}", id);
 	}
 
-	public List<StoreItem> listAvailableStores() {
+	public List<StoreDto> listAvailableStores() {
 		LOGGER.debug("List all stores");
 		return storeDao.listAvailable().stream().map(StoreService::asStoreItem).collect(Collectors.toList());
 	}
 
-	private static StoreItem asStoreItem(Store store) {
+	private static StoreDto asStoreItem(Store store) {
 		if (store == null) {
 			return null;
 		}
-		StoreItem result = new StoreItem();
+		StoreDto result = new StoreDto();
 		result.setId(store.getId());
 		result.setName(store.getName());
 		result.setCity(store.getCity());

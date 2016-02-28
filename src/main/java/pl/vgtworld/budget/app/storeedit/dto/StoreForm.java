@@ -1,6 +1,6 @@
-package pl.vgtworld.budget.app.storecreate.dto;
+package pl.vgtworld.budget.app.storeedit.dto;
 
-public class NewStoreForm {
+public class StoreForm {
 
 	private String storeName;
 
