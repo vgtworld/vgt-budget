@@ -4,14 +4,18 @@
         xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
         template="/WEB-INF/templates/basic.xhtml"
         >
-    <ui:define name="pageTitle">Receipt list</ui:define>
+    <ui:define name="pageTitle">Create receipt</ui:define>
     <ui:define name="content">
-        <h2 class="text-center">Receipt list</h2>
+        <h2 class="text-center">Create new receipt</h2>
 
         <div class="container-fluid col-lg-6 col-lg-offset-3">
-            <div class="text-right">
-                <h:link styleClass="btn btn-default" outcome="receipt-edit" value="Add receipt"/>
-            </div>
+
+            <h:form>
+
+                <h:messages styleClass="alert alert-danger"/>
+
+            </h:form>
+
         </div>
     </ui:define>
 </ui:composition>
