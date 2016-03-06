@@ -5,6 +5,10 @@
         xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
         template="/WEB-INF/templates/basic.xhtml"
         >
+    <f:metadata>
+        <f:viewParam name="receiptId" value="#{receiptEditController.receiptId}"/>
+        <f:viewAction if="#{not empty param.receiptId}" action="#{receiptEditController.fillFormWithEditedReceiptData()}"/>
+    </f:metadata>
     <ui:define name="pageTitle">Create receipt</ui:define>
     <ui:define name="content">
         <h2 class="text-center">Create new receipt</h2>

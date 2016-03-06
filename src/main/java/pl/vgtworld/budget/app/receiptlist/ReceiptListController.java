@@ -34,6 +34,7 @@ public class ReceiptListController {
 		receiptList = new ArrayList<>();
 		for (ReceiptDto receiptDto : receiptDtos) {
 			ReceiptWithStore receiptWithStore = new ReceiptWithStore();
+			receiptWithStore.setId(receiptDto.getId());
 			receiptWithStore.setPurchaseDate(receiptDto.getPurchaseDate());
 			receiptWithStore.setTotalAmount(receiptDto.getTotalAmount());
 			receiptWithStore.setStore(storeService.findById(receiptDto.getStoreId()).getName());

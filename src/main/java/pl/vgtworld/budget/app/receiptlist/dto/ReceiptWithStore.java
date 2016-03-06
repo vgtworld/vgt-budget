@@ -4,11 +4,21 @@ import java.util.Date;
 
 public class ReceiptWithStore {
 
+	private Integer id;
+
 	private String store;
 
 	private Date purchaseDate;
 
 	private Double totalAmount;
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
 
 	public String getStore() {
 		return store;

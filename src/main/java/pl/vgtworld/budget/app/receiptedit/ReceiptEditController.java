@@ -30,12 +30,22 @@ public class ReceiptEditController implements Serializable {
 
 	private ReceiptForm receipt = new ReceiptForm();
 
+	private Integer receiptId;
+
 	public ReceiptForm getReceipt() {
 		return receipt;
 	}
 
 	public void setReceipt(ReceiptForm receipt) {
 		this.receipt = receipt;
+	}
+
+	public Integer getReceiptId() {
+		return receiptId;
+	}
+
+	public void setReceiptId(Integer receiptId) {
+		this.receiptId = receiptId;
 	}
 
 	public Map<String, Integer> getAvailableStores() {
@@ -50,8 +60,29 @@ public class ReceiptEditController implements Serializable {
 
 	public String submitForm() {
 		LOGGER.debug("Submitted receipt form: {}", receipt);
-		receiptService.createNewReceipt(asReceiptDto(receipt));
+		ReceiptDto dto = asReceiptDto(this.receipt);
+		if (receiptId == null) {
+			receiptService.createNewReceipt(dto);
+		} else {
+			dto.setId(receiptId);
+			receiptService.updateReceipt(dto);
+		}
 		return "receipt-list?faces-redirect=true";
+	}
+
+	public void fillFormWithEditedReceiptData() {
+		if (receiptId != null) {
+			ReceiptDto dto = receiptService.findById(receiptId);
+			if (dto != null) {
+				receipt.setStoreId(dto.getStoreId());
+				receipt.setPurchaseDate(dto.getPurchaseDate());
+				return;
+			}
+			LOGGER.debug("Receipt with provided id does not exist. ID:{}", receiptId);
+			receiptId = null;
+			return;
+		}
+		LOGGER.warn("Receipt id not available. Unable to fill form.");
 	}
 
 	private ReceiptDto asReceiptDto(ReceiptForm receipt) {
