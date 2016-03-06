@@ -2,8 +2,7 @@ package pl.vgtworld.budget.services.storage;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import pl.vgtworld.budget.services.dto.receipts.NewReceipt;
-import pl.vgtworld.budget.services.dto.receipts.ReceiptItem;
+import pl.vgtworld.budget.services.dto.receipts.ReceiptDto;
 import pl.vgtworld.budget.storage.receipts.Receipt;
 import pl.vgtworld.budget.storage.receipts.ReceiptDao;
 
@@ -19,12 +18,12 @@ public class ReceiptService {
 	@EJB
 	private ReceiptDao receiptDao;
 
-	public ReceiptItem findById(int id) {
+	public ReceiptDto findById(int id) {
 		LOGGER.debug("Find receipt by id: {}", id);
 		return asReceiptItem(receiptDao.findById(id));
 	}
 
-	public int createNewReceipt(NewReceipt receipt) {
+	public int createNewReceipt(ReceiptDto receipt) {
 		LOGGER.debug("Create new receipt: {}", receipt);
 		Receipt entity = new Receipt();
 		entity.setStoreId(receipt.getStoreId());
@@ -34,11 +33,11 @@ public class ReceiptService {
 		return receiptDao.create(entity);
 	}
 
-	private static ReceiptItem asReceiptItem(Receipt receipt) {
+	private static ReceiptDto asReceiptItem(Receipt receipt) {
 		if (receipt == null) {
 			return null;
 		}
-		ReceiptItem result = new ReceiptItem();
+		ReceiptDto result = new ReceiptDto();
 		result.setId(receipt.getId());
 		result.setStoreId(receipt.getStoreId());
 		result.setPurchaseDate(receipt.getPurchaseDate());

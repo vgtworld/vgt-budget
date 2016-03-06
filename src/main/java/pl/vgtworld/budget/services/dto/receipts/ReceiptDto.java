@@ -2,13 +2,25 @@ package pl.vgtworld.budget.services.dto.receipts;
 
 import java.util.Date;
 
-public class NewReceipt {
+public class ReceiptDto {
+
+	private Integer id;
 
 	private Integer storeId;
 
 	private Date purchaseDate;
 
 	private Double totalAmount;
+
+	private Date createdAt;
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
 
 	public Integer getStoreId() {
 		return storeId;
@@ -34,13 +46,12 @@ public class NewReceipt {
 		this.totalAmount = totalAmount;
 	}
 
-	@Override
-	public String toString() {
-		return "NewReceipt{" +
-			  "storeId=" + storeId +
-			  ", purchaseDate=" + purchaseDate +
-			  ", totalAmount=" + totalAmount +
-			  '}';
+	public Date getCreatedAt() {
+		return createdAt;
+	}
+
+	public void setCreatedAt(Date createdAt) {
+		this.createdAt = createdAt;
 	}
 
 }
