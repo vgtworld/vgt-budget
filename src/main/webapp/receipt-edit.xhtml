@@ -1,5 +1,6 @@
 <ui:composition
         xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:f="http://xmlns.jcp.org/jsf/core"
         xmlns:h="http://xmlns.jcp.org/jsf/html"
         xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
         template="/WEB-INF/templates/basic.xhtml"
@@ -14,6 +15,36 @@
 
                 <h:messages styleClass="alert alert-danger"/>
 
+                <div class="form-group">
+                    <h:outputLabel for="form-store" value="Store"/>
+                    <h:selectOneMenu
+                            id="form-store"
+                            styleClass="form-control"
+                            value="#{receiptEditController.receipt.storeId}"
+                            required="true"
+                            requiredMessage="Store is required"
+                            >
+                        <f:selectItems value="#{receiptEditController.availableStores}"/>
+                    </h:selectOneMenu>
+                </div>
+
+                <div class="form-group">
+                    <h:outputLabel for="form-purchase-date" value="Purchase date"/>
+                    <h:inputText
+                            id="form-purchase-date"
+                            styleClass="form-control"
+                            value="#{receiptEditController.receipt.purchaseDate}"
+                            required="true"
+                            requiredMessage="Purchase date is required"
+                            converterMessage="Invalid purchase date. Expected format: yyyy-MM-dd"
+                            >
+                        <f:convertDateTime pattern="yyyy-MM-dd"/>
+                    </h:inputText>
+                </div>
+
+                <div class="form-group">
+                    <h:commandButton styleClass="btn btn-default" value="Save store" type="submit" action="#{receiptEditController.submitForm()}"/>
+                </div>
             </h:form>
 
         </div>
