@@ -3,7 +3,9 @@ package pl.vgtworld.budget.app.receiptedit;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pl.vgtworld.budget.app.receiptedit.dto.ReceiptForm;
+import pl.vgtworld.budget.services.dto.receipts.ReceiptDto;
 import pl.vgtworld.budget.services.dto.stores.StoreDto;
+import pl.vgtworld.budget.services.storage.ReceiptService;
 import pl.vgtworld.budget.services.storage.StoreService;
 
 import javax.ejb.EJB;
@@ -22,6 +24,9 @@ public class ReceiptEditController implements Serializable {
 
 	@EJB
 	private StoreService storeService;
+
+	@EJB
+	private ReceiptService receiptService;
 
 	private ReceiptForm receipt = new ReceiptForm();
 
@@ -43,7 +48,16 @@ public class ReceiptEditController implements Serializable {
 		return result;
 	}
 
-	public void submitForm() {
+	public String submitForm() {
 		LOGGER.debug("Submitted receipt form: {}", receipt);
+		receiptService.createNewReceipt(asReceiptDto(receipt));
+		return "receipt-list?faces-redirect=true";
+	}
+
+	private ReceiptDto asReceiptDto(ReceiptForm receipt) {
+		ReceiptDto dto = new ReceiptDto();
+		dto.setStoreId(receipt.getStoreId());
+		dto.setPurchaseDate(receipt.getPurchaseDate());
+		return dto;
 	}
 }
