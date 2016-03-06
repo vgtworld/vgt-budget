@@ -9,6 +9,8 @@ import pl.vgtworld.budget.storage.receipts.ReceiptDao;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import java.util.Date;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Stateless
 public class ReceiptService {
@@ -20,7 +22,7 @@ public class ReceiptService {
 
 	public ReceiptDto findById(int id) {
 		LOGGER.debug("Find receipt by id: {}", id);
-		return asReceiptItem(receiptDao.findById(id));
+		return asReceiptDto(receiptDao.findById(id));
 	}
 
 	public int createNewReceipt(ReceiptDto receipt) {
@@ -33,7 +35,12 @@ public class ReceiptService {
 		return receiptDao.create(entity);
 	}
 
-	private static ReceiptDto asReceiptItem(Receipt receipt) {
+	public List<ReceiptDto> listNewestReceipts() {
+		List<Receipt> entities = receiptDao.listNewest();
+		return entities.stream().map(ReceiptService::asReceiptDto).collect(Collectors.toList());
+	}
+
+	private static ReceiptDto asReceiptDto(Receipt receipt) {
 		if (receipt == null) {
 			return null;
 		}

@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -12,7 +14,15 @@ import java.util.Date;
 
 @Entity
 @Table(name = "receipts")
+@NamedQueries({
+	  @NamedQuery(
+			name = Receipt.QUERY_LIST_NEWEST,
+			query = "SELECT r FROM Receipt r ORDER BY r.id DESC"
+	  )
+})
 public class Receipt {
+
+	static final String QUERY_LIST_NEWEST = "Receipt.listNewest";
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

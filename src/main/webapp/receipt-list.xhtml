@@ -12,6 +12,24 @@
             <div class="text-right">
                 <h:link styleClass="btn btn-default" outcome="receipt-edit" value="Add receipt"/>
             </div>
+
+            <table class="table">
+                <tr>
+                    <th>Store</th>
+                    <th class="text-right">Purchase date</th>
+                    <th class="text-right">Total amount</th>
+                    <th class="text-right">Options</th>
+                </tr>
+                <ui:repeat value="#{receiptListController.receiptList}" var="receipt">
+                    <tr>
+                        <td>#{receipt.store}</td>
+                        <td class="text-right">#{receipt.purchaseDate}</td>
+                        <td class="text-right">#{receipt.totalAmount}</td>
+                        <td class="text-right">
+                        </td>
+                    </tr>
+                </ui:repeat>
+            </table>
         </div>
     </ui:define>
 </ui:composition>
