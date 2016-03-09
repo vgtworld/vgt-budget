@@ -113,4 +113,40 @@
 				/>
 	</changeSet>
 
+	<changeSet id="1.0-create-table-receipt-products" author="VGT">
+		<createTable tableName="receipt_products">
+			<column name="receipt_id" type="int">
+				<constraints nullable="false" primaryKey="true"/>
+			</column>
+			<column name="product_id" type="int">
+				<constraints nullable="false" primaryKey="true"/>
+			</column>
+			<column name="amount" type="decimal(10,3)">
+				<constraints nullable="false"/>
+			</column>
+			<column name="price_per_unit" type="decimal(10,2)">
+				<constraints nullable="false"/>
+			</column>
+			<column name="description" type="text"/>
+		</createTable>
+		<addForeignKeyConstraint
+				constraintName="fk_receipt_products_receipts"
+				baseTableName="receipt_products"
+				baseColumnNames="receipt_id"
+				referencedTableName="receipts"
+				referencedColumnNames="id"
+				onUpdate="CASCADE"
+				onDelete="CASCADE"
+				/>
+		<addForeignKeyConstraint
+				constraintName="fk_receipt_products_products"
+				baseTableName="receipt_products"
+				baseColumnNames="product_id"
+				referencedTableName="products"
+				referencedColumnNames="id"
+				onUpdate="CASCADE"
+				onDelete="RESTRICT"
+				/>
+	</changeSet>
+
 </databaseChangeLog>
