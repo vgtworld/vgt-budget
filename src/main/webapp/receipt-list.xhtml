@@ -27,6 +27,7 @@
                         <td class="text-right">#{receipt.totalAmount}</td>
                         <td class="text-right">
                             <h:link styleClass="btn btn-default btn-xs" outcome="/receipt-edit?receiptId=#{receipt.id}" value="Edit"/>
+                            <h:link styleClass="btn btn-default btn-xs" outcome="/receipt-product-list?receiptId=#{receipt.id}" value="Products"/>
                         </td>
                     </tr>
                 </ui:repeat>
