@@ -36,6 +36,11 @@ public class ProductService {
 		return asProductItem(productDao.findById(id));
 	}
 
+	public List<ProductDto> searchProductsByName(String phrase) {
+		LOGGER.debug("Search products. phrase:{}", phrase);
+		return productDao.searchByName(phrase).stream().map(ProductService::asProductItem).collect(Collectors.toList());
+	}
+
 	public int createNewProduct(ProductDto product) {
 		LOGGER.debug("Create new product: {}", product);
 		Product entity = new Product();

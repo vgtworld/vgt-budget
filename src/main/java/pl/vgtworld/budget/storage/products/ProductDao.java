@@ -23,6 +23,12 @@ public class ProductDao {
 		return em.find(Product.class, id);
 	}
 
+	public List<Product> searchByName(String phrase) {
+		Query query = em.createNamedQuery(Product.QUERY_SEARCH_BY_NAME);
+		query.setParameter("PHRASE", "%" + phrase + "%");
+		return PersistenceUtil.getResultList(query);
+	}
+
 	public List<Product> listAll() {
 		Query query = em.createNamedQuery(Product.QUERY_LIST_ALL);
 		return PersistenceUtil.getResultList(query);

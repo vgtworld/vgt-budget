@@ -16,11 +16,17 @@ import java.util.Date;
 	  @NamedQuery(
 			name = Product.QUERY_LIST_ALL,
 			query = "SELECT p FROM Product p ORDER BY p.name ASC"
+	  ),
+	  @NamedQuery(
+			name = Product.QUERY_SEARCH_BY_NAME,
+			query = "SELECT p FROM Product p WHERE p.name like :PHRASE ORDER BY p.name ASC"
 	  )
 })
 public class Product {
 
 	static final String QUERY_LIST_ALL = "Product.listAvailable";
+
+	static final String QUERY_SEARCH_BY_NAME = "Product.searchByName";
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

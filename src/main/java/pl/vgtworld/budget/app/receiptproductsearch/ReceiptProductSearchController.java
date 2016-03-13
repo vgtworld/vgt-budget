@@ -2,12 +2,15 @@ package pl.vgtworld.budget.app.receiptproductsearch;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import pl.vgtworld.budget.services.dto.products.ProductDto;
+import pl.vgtworld.budget.services.storage.ProductService;
 import pl.vgtworld.budget.services.storage.ReceiptService;
 
 import javax.ejb.EJB;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 import java.io.Serializable;
+import java.util.List;
 
 @Named
 @ViewScoped
@@ -18,7 +21,14 @@ public class ReceiptProductSearchController implements Serializable {
 	@EJB
 	private ReceiptService receiptService;
 
+	@EJB
+	private ProductService productService;
+
 	private Integer receiptId;
+
+	private String searchPhrase;
+
+	private List<ProductDto> productsSearch;
 
 	public Integer getReceiptId() {
 		return receiptId;
@@ -26,6 +36,24 @@ public class ReceiptProductSearchController implements Serializable {
 
 	public void setReceiptId(Integer receiptId) {
 		this.receiptId = receiptId;
+	}
+
+	public String getSearchPhrase() {
+		return searchPhrase;
+	}
+
+	public void setSearchPhrase(String searchPhrase) {
+		this.searchPhrase = searchPhrase;
+	}
+
+	public List<ProductDto> getProductsSearch() {
+		return productsSearch;
+	}
+
+	public void searchProducts() {
+		LOGGER.debug("Search products. Phrase:{}", searchPhrase);
+		productsSearch = productService.searchProductsByName(searchPhrase);
+		LOGGER.debug("Products found: {}", productsSearch.size());
 	}
 
 	public String initData() {
