@@ -27,10 +27,17 @@
                 <table class="table">
                     <tr>
                         <th>Name</th>
+                        <th class="text-right">Actions</th>
                     </tr>
                     <ui:repeat value="#{receiptProductSearchController.productsSearch}" var="product">
                         <tr>
                             <td>#{product.name}</td>
+                            <td class="text-right">
+                                <h:link styleClass="btn btn-default btn-xs" outcome="receipt-product-edit" value="Add to receipt">
+                                    <f:param name="receiptId" value="#{receiptProductSearchController.receiptId}"/>
+                                    <f:param name="productId" value="#{product.id}"/>
+                                </h:link>
+                            </td>
                         </tr>
                     </ui:repeat>
                 </table>
