@@ -15,6 +15,14 @@ public class ReceiptProductPK implements Serializable {
 	@Column(name = "product_id", nullable = false)
 	private Integer productId;
 
+	public ReceiptProductPK() {
+	}
+
+	public ReceiptProductPK(Integer receiptId, Integer productId) {
+		this.receiptId = receiptId;
+		this.productId = productId;
+	}
+
 	public Integer getReceiptId() {
 		return receiptId;
 	}

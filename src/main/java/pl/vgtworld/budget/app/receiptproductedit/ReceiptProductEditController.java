@@ -5,7 +5,9 @@ import org.slf4j.LoggerFactory;
 import pl.vgtworld.budget.app.receiptproductedit.dto.ReceiptProductForm;
 import pl.vgtworld.budget.services.dto.products.ProductDto;
 import pl.vgtworld.budget.services.dto.receipts.ReceiptDto;
+import pl.vgtworld.budget.services.dto.receipts.ReceiptProductDto;
 import pl.vgtworld.budget.services.storage.ProductService;
+import pl.vgtworld.budget.services.storage.ReceiptProductService;
 import pl.vgtworld.budget.services.storage.ReceiptService;
 
 import javax.ejb.EJB;
@@ -24,6 +26,9 @@ public class ReceiptProductEditController implements Serializable {
 
 	@EJB
 	private ProductService productService;
+
+	@EJB
+	private ReceiptProductService receiptProductService;
 
 	private Integer receiptId;
 
@@ -63,8 +68,9 @@ public class ReceiptProductEditController implements Serializable {
 
 	public String submitForm() {
 		LOGGER.debug("Submitted receipt product form: {}", form);
-		//TODO
-		return null;
+		receiptProductService.addNewProduct(asReceiptProductDto(receiptId, productId, form));
+		//TODO Update total amount in receipt.
+		return "receipt-product-list?receiptId=" + receiptId + "&amp;faces-redirect=true";
 	}
 
 	public String initData() {
@@ -83,6 +89,16 @@ public class ReceiptProductEditController implements Serializable {
 		}
 		LOGGER.warn("Receipt id not available. Unable to fill form.");
 		return "receipt-list?faces-redirect=true";
+	}
+
+	private ReceiptProductDto asReceiptProductDto(Integer receiptId, Integer productId, ReceiptProductForm form) {
+		ReceiptProductDto result = new ReceiptProductDto();
+		result.setReceiptId(receiptId);
+		result.setProductId(productId);
+		result.setAmount(form.getAmount());
+		result.setPricePerUnit(form.getUnitPrice());
+		result.setDescription(form.getDescription());
+		return result;
 	}
 
 }
