@@ -7,6 +7,8 @@ import pl.vgtworld.budget.storage.receiptproducts.ReceiptProductPK;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Stateless
 public class ReceiptProductService {
@@ -21,6 +23,20 @@ public class ReceiptProductService {
 		entity.setPricePerUnit(product.getPricePerUnit());
 		entity.setDescription(product.getDescription());
 		receiptProductDao.create(entity);
+	}
+
+	public List<ReceiptProductDto> findProductsForReceipt(int receiptId) {
+		return receiptProductDao.findForReceipt(receiptId).stream().map(ReceiptProductService::asReceiptProductDto).collect(Collectors.toList());
+	}
+
+	private static ReceiptProductDto asReceiptProductDto(ReceiptProduct entity) {
+		ReceiptProductDto dto = new ReceiptProductDto();
+		dto.setReceiptId(entity.getId().getReceiptId());
+		dto.setProductId(entity.getId().getProductId());
+		dto.setAmount(entity.getAmount());
+		dto.setPricePerUnit(entity.getPricePerUnit());
+		dto.setDescription(entity.getDescription());
+		return dto;
 	}
 
 }

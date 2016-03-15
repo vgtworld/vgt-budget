@@ -38,6 +38,23 @@
                     <f:param name="receiptId" value="#{receiptProductListController.receiptId}"/>
                 </h:link>
             </div>
+
+            <table class="table">
+                <tr>
+                    <th>Name</th>
+                    <th class="text-right">Amount</th>
+                    <th class="text-right">Price per unit</th>
+                    <th class="text-right">Total price</th>
+                </tr>
+                <ui:repeat value="#{receiptProductListController.products}" var="product">
+                    <tr>
+                        <td>#{product.productName}</td>
+                        <td class="text-right">#{product.amount}</td>
+                        <td class="text-right">#{product.pricePerUnit}</td>
+                        <td class="text-right">#{product.totalPrice}</td>
+                    </tr>
+                </ui:repeat>
+            </table>
         </div>
     </ui:define>
 </ui:composition>

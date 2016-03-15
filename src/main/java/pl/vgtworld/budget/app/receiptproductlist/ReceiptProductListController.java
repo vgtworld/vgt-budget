@@ -2,6 +2,7 @@ package pl.vgtworld.budget.app.receiptproductlist;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import pl.vgtworld.budget.app.receiptproductlist.dto.AddedProductDto;
 import pl.vgtworld.budget.services.dto.receipts.ReceiptDto;
 import pl.vgtworld.budget.services.dto.stores.StoreDto;
 import pl.vgtworld.budget.services.storage.ReceiptService;
@@ -11,6 +12,8 @@ import javax.ejb.EJB;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 @Named
 @ViewScoped
@@ -24,11 +27,16 @@ public class ReceiptProductListController implements Serializable {
 	@EJB
 	private StoreService storeService;
 
+	@EJB
+	private ReceiptProductListService receiptProductListService;
+
 	private ReceiptDto receipt;
 
 	private StoreDto store;
 
 	private Integer receiptId;
+
+	private List<AddedProductDto> products = new ArrayList<>();
 
 	public ReceiptDto getReceipt() {
 		return receipt;
@@ -54,11 +62,17 @@ public class ReceiptProductListController implements Serializable {
 		this.receiptId = receiptId;
 	}
 
+	public List<AddedProductDto> getProducts() {
+		return products;
+	}
+
 	public String initData() {
+		LOGGER.debug("Init data");
 		if (receiptId != null) {
 			receipt = receiptService.findById(receiptId);
 			if (receipt != null) {
 				store = storeService.findById(receipt.getStoreId());
+				products = receiptProductListService.findProductsForReceipt(receiptId);
 				return null;
 			}
 			LOGGER.debug("Receipt with provided id does not exist. ID:{}", receiptId);

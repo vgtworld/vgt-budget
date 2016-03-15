@@ -9,12 +9,22 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import java.math.BigDecimal;
 
 @Entity
 @Table(name = "receipt_products")
+@NamedQueries({
+	  @NamedQuery(
+			name = ReceiptProduct.QUERY_FIND_FOR_RECEIPT,
+			query = "SELECT rp FROM ReceiptProduct rp WHERE rp.id.receiptId = :RECEIPT_ID"
+	  )
+})
 public class ReceiptProduct {
+
+	static final String QUERY_FIND_FOR_RECEIPT = "ReceiptProduct.findForReceipt";
 
 	@EmbeddedId
 	private ReceiptProductPK id;
