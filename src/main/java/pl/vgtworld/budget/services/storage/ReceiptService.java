@@ -8,6 +8,7 @@ import pl.vgtworld.budget.storage.receipts.ReceiptDao;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -30,7 +31,7 @@ public class ReceiptService {
 		Receipt entity = new Receipt();
 		entity.setStoreId(receipt.getStoreId());
 		entity.setPurchaseDate(receipt.getPurchaseDate());
-		entity.setTotalAmount(0D);
+		entity.setTotalAmount(BigDecimal.ZERO);
 		entity.setCreatedAt(new Date());
 		return receiptDao.create(entity);
 	}

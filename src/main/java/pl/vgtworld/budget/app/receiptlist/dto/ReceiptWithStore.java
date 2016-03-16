@@ -1,5 +1,6 @@
 package pl.vgtworld.budget.app.receiptlist.dto;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 public class ReceiptWithStore {
@@ -10,7 +11,7 @@ public class ReceiptWithStore {
 
 	private Date purchaseDate;
 
-	private Double totalAmount;
+	private BigDecimal totalAmount;
 
 	public Integer getId() {
 		return id;
@@ -36,11 +37,11 @@ public class ReceiptWithStore {
 		this.purchaseDate = purchaseDate;
 	}
 
-	public Double getTotalAmount() {
+	public BigDecimal getTotalAmount() {
 		return totalAmount;
 	}
 
-	public void setTotalAmount(Double totalAmount) {
+	public void setTotalAmount(BigDecimal totalAmount) {
 		this.totalAmount = totalAmount;
 	}
 

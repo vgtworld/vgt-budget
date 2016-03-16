@@ -92,7 +92,7 @@
 			<column name="purchase_date" type="date">
 				<constraints nullable="false"/>
 			</column>
-			<column name="total_amount" type="double">
+			<column name="total_amount" type="decimal(10,2)">
 				<constraints nullable="false"/>
 			</column>
 			<column name="created_at" type="datetime">

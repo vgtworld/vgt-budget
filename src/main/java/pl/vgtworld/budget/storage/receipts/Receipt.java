@@ -10,6 +10,7 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import java.math.BigDecimal;
 import java.util.Date;
 
 @Entity
@@ -36,7 +37,7 @@ public class Receipt {
 	private Date purchaseDate;
 
 	@Column(name = "total_amount")
-	private Double totalAmount;
+	private BigDecimal totalAmount;
 
 	@Column(name = "created_at")
 	private Date createdAt;
@@ -65,11 +66,11 @@ public class Receipt {
 		this.purchaseDate = purchaseDate;
 	}
 
-	public Double getTotalAmount() {
+	public BigDecimal getTotalAmount() {
 		return totalAmount;
 	}
 
-	public void setTotalAmount(Double totalAmount) {
+	public void setTotalAmount(BigDecimal totalAmount) {
 		this.totalAmount = totalAmount;
 	}
 
