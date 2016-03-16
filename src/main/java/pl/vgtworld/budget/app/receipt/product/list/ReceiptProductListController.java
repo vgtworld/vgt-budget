@@ -2,6 +2,7 @@ package pl.vgtworld.budget.app.receipt.product.list;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import pl.vgtworld.budget.app.receipt.product.ReceiptProductControllerService;
 import pl.vgtworld.budget.app.receipt.product.list.dto.AddedProductDto;
 import pl.vgtworld.budget.services.dto.receipts.ReceiptDto;
 import pl.vgtworld.budget.services.dto.stores.StoreDto;
@@ -28,7 +29,7 @@ public class ReceiptProductListController implements Serializable {
 	private StoreService storeService;
 
 	@EJB
-	private ReceiptProductListService receiptProductListService;
+	private ReceiptProductControllerService receiptProductControllerService;
 
 	private ReceiptDto receipt;
 
@@ -72,7 +73,7 @@ public class ReceiptProductListController implements Serializable {
 			receipt = receiptService.findById(receiptId);
 			if (receipt != null) {
 				store = storeService.findById(receipt.getStoreId());
-				products = receiptProductListService.findProductsForReceipt(receiptId);
+				products = receiptProductControllerService.findProductsForReceipt(receiptId);
 				return null;
 			}
 			LOGGER.debug("Receipt with provided id does not exist. ID:{}", receiptId);

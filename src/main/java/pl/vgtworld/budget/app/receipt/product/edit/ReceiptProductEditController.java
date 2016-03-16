@@ -2,6 +2,7 @@ package pl.vgtworld.budget.app.receipt.product.edit;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import pl.vgtworld.budget.app.receipt.product.ReceiptProductControllerService;
 import pl.vgtworld.budget.app.receipt.product.edit.dto.ReceiptProductForm;
 import pl.vgtworld.budget.services.dto.products.ProductDto;
 import pl.vgtworld.budget.services.dto.receipts.ReceiptDto;
@@ -29,6 +30,9 @@ public class ReceiptProductEditController implements Serializable {
 
 	@EJB
 	private ReceiptProductService receiptProductService;
+
+	@EJB
+	private ReceiptProductControllerService receiptProductControllerService;
 
 	private Integer receiptId;
 
@@ -69,7 +73,7 @@ public class ReceiptProductEditController implements Serializable {
 	public String submitForm() {
 		LOGGER.debug("Submitted receipt product form: {}", form);
 		receiptProductService.addNewProduct(asReceiptProductDto(receiptId, productId, form));
-		//TODO Update total amount in receipt.
+		receiptProductControllerService.updateReceiptTotalAmount(receiptId);
 		return "receipt-product-list?receiptId=" + receiptId + "&amp;faces-redirect=true";
 	}
 

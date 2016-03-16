@@ -42,6 +42,11 @@ public class ReceiptService {
 		entity.setPurchaseDate(receipt.getPurchaseDate());
 	}
 
+	public void updateReceiptTotalAmount(int receiptId, BigDecimal total) {
+		Receipt entity = receiptDao.findById(receiptId);
+		entity.setTotalAmount(total);
+	}
+
 	public List<ReceiptDto> listNewestReceipts() {
 		List<Receipt> entities = receiptDao.listNewest();
 		return entities.stream().map(ReceiptService::asReceiptDto).collect(Collectors.toList());
