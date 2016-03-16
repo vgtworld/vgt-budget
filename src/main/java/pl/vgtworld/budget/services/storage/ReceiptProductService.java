@@ -3,7 +3,6 @@ package pl.vgtworld.budget.services.storage;
 import pl.vgtworld.budget.services.dto.receipts.ReceiptProductDto;
 import pl.vgtworld.budget.storage.receiptproducts.ReceiptProduct;
 import pl.vgtworld.budget.storage.receiptproducts.ReceiptProductDao;
-import pl.vgtworld.budget.storage.receiptproducts.ReceiptProductPK;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -18,7 +17,8 @@ public class ReceiptProductService {
 
 	public void addNewProduct(ReceiptProductDto product) {
 		ReceiptProduct entity = new ReceiptProduct();
-		entity.setId(new ReceiptProductPK(product.getReceiptId(), product.getProductId()));
+		entity.setReceiptId(product.getReceiptId());
+		entity.setProductId(product.getProductId());
 		entity.setAmount(product.getAmount());
 		entity.setPricePerUnit(product.getPricePerUnit());
 		entity.setDescription(product.getDescription());
@@ -31,8 +31,8 @@ public class ReceiptProductService {
 
 	private static ReceiptProductDto asReceiptProductDto(ReceiptProduct entity) {
 		ReceiptProductDto dto = new ReceiptProductDto();
-		dto.setReceiptId(entity.getId().getReceiptId());
-		dto.setProductId(entity.getId().getProductId());
+		dto.setReceiptId(entity.getReceiptId());
+		dto.setProductId(entity.getProductId());
 		dto.setAmount(entity.getAmount());
 		dto.setPricePerUnit(entity.getPricePerUnit());
 		dto.setDescription(entity.getDescription());

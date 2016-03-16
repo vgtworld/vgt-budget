@@ -4,9 +4,11 @@ import pl.vgtworld.budget.storage.products.Product;
 import pl.vgtworld.budget.storage.receipts.Receipt;
 
 import javax.persistence.Column;
-import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
@@ -19,23 +21,22 @@ import java.math.BigDecimal;
 @NamedQueries({
 	  @NamedQuery(
 			name = ReceiptProduct.QUERY_FIND_FOR_RECEIPT,
-			query = "SELECT rp FROM ReceiptProduct rp WHERE rp.id.receiptId = :RECEIPT_ID"
+			query = "SELECT rp FROM ReceiptProduct rp WHERE rp.receiptId = :RECEIPT_ID ORDER BY rp.receiptId ASC"
 	  )
 })
 public class ReceiptProduct {
 
 	static final String QUERY_FIND_FOR_RECEIPT = "ReceiptProduct.findForReceipt";
 
-	@EmbeddedId
-	private ReceiptProductPK id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer id;
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "receipt_id", insertable = false, updatable = false)
-	private Receipt receipt;
+	@Column(name = "receipt_id", nullable = false)
+	private Integer receiptId;
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "product_id", insertable = false, updatable = false)
-	private Product product;
+	@Column(name = "product_id", nullable = false)
+	private Integer productId;
 
 	@Column(name = "amount", nullable = false)
 	private BigDecimal amount;
@@ -46,28 +47,36 @@ public class ReceiptProduct {
 	@Column(name = "description")
 	private String description;
 
-	public ReceiptProductPK getId() {
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "receipt_id", insertable = false, updatable = false)
+	private Receipt receipt;
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "product_id", insertable = false, updatable = false)
+	private Product product;
+
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(ReceiptProductPK id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
-	public Receipt getReceipt() {
-		return receipt;
+	public Integer getReceiptId() {
+		return receiptId;
 	}
 
-	public void setReceipt(Receipt receipt) {
-		this.receipt = receipt;
+	public void setReceiptId(Integer receiptId) {
+		this.receiptId = receiptId;
 	}
 
-	public Product getProduct() {
-		return product;
+	public Integer getProductId() {
+		return productId;
 	}
 
-	public void setProduct(Product product) {
-		this.product = product;
+	public void setProductId(Integer productId) {
+		this.productId = productId;
 	}
 
 	public BigDecimal getAmount() {
@@ -92,6 +101,22 @@ public class ReceiptProduct {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	public Receipt getReceipt() {
+		return receipt;
+	}
+
+	public void setReceipt(Receipt receipt) {
+		this.receipt = receipt;
+	}
+
+	public Product getProduct() {
+		return product;
+	}
+
+	public void setProduct(Product product) {
+		this.product = product;
 	}
 
 }
