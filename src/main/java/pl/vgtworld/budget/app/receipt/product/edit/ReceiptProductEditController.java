@@ -38,6 +38,8 @@ public class ReceiptProductEditController implements Serializable {
 
 	private Integer productId;
 
+	private Integer receiptProductId;
+
 	private ProductDto product;
 
 	private ReceiptProductForm form = new ReceiptProductForm();
@@ -58,6 +60,14 @@ public class ReceiptProductEditController implements Serializable {
 		this.productId = productId;
 	}
 
+	public Integer getReceiptProductId() {
+		return receiptProductId;
+	}
+
+	public void setReceiptProductId(Integer receiptProductId) {
+		this.receiptProductId = receiptProductId;
+	}
+
 	public ProductDto getProduct() {
 		return product;
 	}
@@ -74,24 +84,19 @@ public class ReceiptProductEditController implements Serializable {
 		LOGGER.debug("Submitted receipt product form: {}", form);
 		receiptProductService.addNewProduct(asReceiptProductDto(receiptId, productId, form));
 		receiptProductControllerService.updateReceiptTotalAmount(receiptId);
+		LOGGER.info("New product added to receipt. receiptId:{}, productId:{}, productName:{}", receiptId, productId, product.getName());
 		return "receipt-product-list?receiptId=" + receiptId + "&amp;faces-redirect=true";
 	}
 
 	public String initData() {
-		if (receiptId != null) {
-			ReceiptDto receipt = receiptService.findById(receiptId);
-			if (receipt != null) {
-				product = productService.findById(productId);
-				if (product != null) {
-					return null;
-				}
-				LOGGER.debug("Product with provided id does not exist. ID:{}", productId);
-				return "receipt-list?faces-redirect=true";
-			}
-			LOGGER.debug("Receipt with provided id does not exist. ID:{}", receiptId);
-			return "receipt-list?faces-redirect=true";
+		LOGGER.debug("Init data");
+		if (receiptProductId != null) {
+			return initDataForEditingExistingProduct();
 		}
-		LOGGER.warn("Receipt id not available. Unable to fill form.");
+		if (receiptId != null && productId != null) {
+			return initDataForAddingNewProduct();
+		}
+		LOGGER.debug("Missing parameters. Redirecting.");
 		return "receipt-list?faces-redirect=true";
 	}
 
@@ -103,6 +108,27 @@ public class ReceiptProductEditController implements Serializable {
 		result.setPricePerUnit(form.getUnitPrice());
 		result.setDescription(form.getDescription());
 		return result;
+	}
+
+	private String initDataForEditingExistingProduct() {
+		LOGGER.trace("Init data for editing existing product");
+		//TODO
+		return null;
+	}
+
+	private String initDataForAddingNewProduct() {
+		LOGGER.trace("Init data for adding new product");
+		ReceiptDto receipt = receiptService.findById(receiptId);
+		if (receipt != null) {
+			product = productService.findById(productId);
+			if (product != null) {
+				return null;
+			}
+			LOGGER.debug("Product with provided id does not exist. ID:{}", productId);
+			return "receipt-list?faces-redirect=true";
+		}
+		LOGGER.debug("Receipt with provided id does not exist. ID:{}", receiptId);
+		return "receipt-list?faces-redirect=true";
 	}
 
 }

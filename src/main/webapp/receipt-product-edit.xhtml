@@ -8,7 +8,8 @@
     <f:metadata>
         <f:viewParam name="receiptId" value="#{receiptProductEditController.receiptId}"/>
         <f:viewParam name="productId" value="#{receiptProductEditController.productId}"/>
-        <f:viewAction if="#{not empty param.receiptId and not empty param.productId}" action="#{receiptProductEditController.initData()}"/>
+        <f:viewParam name="receiptProductId" value="#{receiptProductEditController.receiptProductId}"/>
+        <f:viewAction action="#{receiptProductEditController.initData()}"/>
     </f:metadata>
     <ui:define name="content">
         <div class="container-fluid col-lg-6 col-lg-offset-3">
