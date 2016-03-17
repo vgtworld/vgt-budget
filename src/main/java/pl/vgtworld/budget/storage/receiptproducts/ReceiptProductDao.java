@@ -18,6 +18,10 @@ public class ReceiptProductDao {
 		em.persist(receiptProduct);
 	}
 
+	public ReceiptProduct findById(int receiptProductId) {
+		return em.find(ReceiptProduct.class, receiptProductId);
+	}
+
 	public List<ReceiptProduct> findForReceipt(int receiptId) {
 		Query query = em.createNamedQuery(ReceiptProduct.QUERY_FIND_FOR_RECEIPT);
 		query.setParameter("RECEIPT_ID", receiptId);

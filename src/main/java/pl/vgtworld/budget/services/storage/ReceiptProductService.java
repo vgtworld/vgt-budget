@@ -25,11 +25,25 @@ public class ReceiptProductService {
 		receiptProductDao.create(entity);
 	}
 
+	public ReceiptProductDto findProductById(int receiptProductId) {
+		return asReceiptProductDto(receiptProductDao.findById(receiptProductId));
+	}
+
 	public List<ReceiptProductDto> findProductsForReceipt(int receiptId) {
 		return receiptProductDao.findForReceipt(receiptId).stream().map(ReceiptProductService::asReceiptProductDto).collect(Collectors.toList());
 	}
 
+	public void updateProduct(ReceiptProductDto product) {
+		ReceiptProduct entity = receiptProductDao.findById(product.getId());
+		entity.setAmount(product.getAmount());
+		entity.setPricePerUnit(product.getPricePerUnit());
+		entity.setDescription(product.getDescription());
+	}
+
 	private static ReceiptProductDto asReceiptProductDto(ReceiptProduct entity) {
+		if (entity == null) {
+			return null;
+		}
 		ReceiptProductDto dto = new ReceiptProductDto();
 		dto.setId(entity.getId());
 		dto.setReceiptId(entity.getReceiptId());
