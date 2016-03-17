@@ -49,7 +49,11 @@
                 <ui:repeat value="#{receiptProductListController.products}" var="product">
                     <tr>
                         <td>#{product.productName}</td>
-                        <td class="text-right">#{product.amount}</td>
+                        <td class="text-right">
+                            <h:outputText value="#{product.amount}">
+                                <f:convertNumber pattern="#.###"/>
+                            </h:outputText>
+                        </td>
                         <td class="text-right">#{product.pricePerUnit}</td>
                         <td class="text-right">#{product.totalPrice}</td>
                     </tr>
