@@ -45,6 +45,7 @@
                     <th class="text-right">Amount</th>
                     <th class="text-right">Price per unit</th>
                     <th class="text-right">Total price</th>
+                    <th class="text-right">Action</th>
                 </tr>
                 <ui:repeat value="#{receiptProductListController.products}" var="product">
                     <tr>
@@ -56,6 +57,11 @@
                         </td>
                         <td class="text-right">#{product.pricePerUnit}</td>
                         <td class="text-right">#{product.totalPrice}</td>
+                        <td class="text-right">
+                            <h:link styleClass="btn btn-default btn-xs" outcome="receipt-product-edit" value="Edit">
+                                <f:param name="receiptProductId" value="#{product.id}"/>
+                            </h:link>
+                        </td>
                     </tr>
                 </ui:repeat>
             </table>

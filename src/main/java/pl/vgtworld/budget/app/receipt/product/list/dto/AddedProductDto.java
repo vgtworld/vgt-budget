@@ -5,11 +5,21 @@ import java.math.RoundingMode;
 
 public class AddedProductDto {
 
+	private Integer id;
+
 	private String productName;
 
 	private BigDecimal amount;
 
 	private BigDecimal pricePerUnit;
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
 
 	public String getProductName() {
 		return productName;

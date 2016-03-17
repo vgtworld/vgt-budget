@@ -31,6 +31,7 @@ public class ReceiptProductService {
 
 	private static ReceiptProductDto asReceiptProductDto(ReceiptProduct entity) {
 		ReceiptProductDto dto = new ReceiptProductDto();
+		dto.setId(entity.getId());
 		dto.setReceiptId(entity.getReceiptId());
 		dto.setProductId(entity.getProductId());
 		dto.setAmount(entity.getAmount());

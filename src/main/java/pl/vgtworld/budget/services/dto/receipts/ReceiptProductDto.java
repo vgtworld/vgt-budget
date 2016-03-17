@@ -4,6 +4,8 @@ import java.math.BigDecimal;
 
 public class ReceiptProductDto {
 
+	private Integer id;
+
 	private Integer receiptId;
 
 	private Integer productId;
@@ -13,6 +15,14 @@ public class ReceiptProductDto {
 	private BigDecimal pricePerUnit;
 
 	private String description;
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
 
 	public Integer getReceiptId() {
 		return receiptId;
