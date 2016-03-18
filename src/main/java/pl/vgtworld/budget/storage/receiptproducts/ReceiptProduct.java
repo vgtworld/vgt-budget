@@ -21,7 +21,7 @@ import java.math.BigDecimal;
 @NamedQueries({
 	  @NamedQuery(
 			name = ReceiptProduct.QUERY_FIND_FOR_RECEIPT,
-			query = "SELECT rp FROM ReceiptProduct rp WHERE rp.receiptId = :RECEIPT_ID ORDER BY rp.receiptId ASC"
+			query = "SELECT rp FROM ReceiptProduct rp WHERE rp.receiptId = :RECEIPT_ID ORDER BY rp.id ASC"
 	  )
 })
 public class ReceiptProduct {
