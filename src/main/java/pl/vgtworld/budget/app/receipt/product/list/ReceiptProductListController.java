@@ -6,6 +6,7 @@ import pl.vgtworld.budget.app.receipt.product.ReceiptProductControllerService;
 import pl.vgtworld.budget.app.receipt.product.list.dto.AddedProductDto;
 import pl.vgtworld.budget.services.dto.receipts.ReceiptDto;
 import pl.vgtworld.budget.services.dto.stores.StoreDto;
+import pl.vgtworld.budget.services.storage.ReceiptProductService;
 import pl.vgtworld.budget.services.storage.ReceiptService;
 import pl.vgtworld.budget.services.storage.StoreService;
 
@@ -30,6 +31,9 @@ public class ReceiptProductListController implements Serializable {
 
 	@EJB
 	private ReceiptProductControllerService receiptProductControllerService;
+
+	@EJB
+	private ReceiptProductService receiptProductService;
 
 	private ReceiptDto receipt;
 
@@ -84,5 +88,12 @@ public class ReceiptProductListController implements Serializable {
 		}
 		LOGGER.warn("Receipt id not available. Unable to fill form.");
 		return "receipt-list?faces-redirect=true";
+	}
+
+	public void deleteProduct(int receiptProductId) {
+		LOGGER.debug("Delete product. receiptProductId:{}", receiptProductId);
+		receiptProductService.deleteProduct(receiptProductId);
+		receipt.setTotalAmount(receiptProductControllerService.updateReceiptTotalAmount(receiptId));
+		products = receiptProductControllerService.findProductsForReceipt(receiptId);
 	}
 }

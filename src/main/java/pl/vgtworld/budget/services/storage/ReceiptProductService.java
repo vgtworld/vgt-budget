@@ -40,6 +40,10 @@ public class ReceiptProductService {
 		entity.setDescription(product.getDescription());
 	}
 
+	public void deleteProduct(int receiptProductId) {
+		receiptProductDao.delete(receiptProductId);
+	}
+
 	private static ReceiptProductDto asReceiptProductDto(ReceiptProduct entity) {
 		if (entity == null) {
 			return null;

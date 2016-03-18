@@ -34,14 +34,14 @@ public class ReceiptProductControllerService {
 		return productList.stream().map(this::asReceiptProductDto).collect(Collectors.toList());
 	}
 
-	public void updateReceiptTotalAmount(int receiptId) {
+	public BigDecimal updateReceiptTotalAmount(int receiptId) {
 		LOGGER.debug("Update receipt total amount. receiptId: {}", receiptId);
 		List<AddedProductDto> productList = findProductsForReceipt(receiptId);
 		BigDecimal totalAmount = BigDecimal.ZERO;
 		for (AddedProductDto product : productList) {
 			totalAmount = totalAmount.add(product.getTotalPrice());
 		}
-		receiptService.updateReceiptTotalAmount(receiptId, totalAmount);
+		return receiptService.updateReceiptTotalAmount(receiptId, totalAmount);
 	}
 
 	private AddedProductDto asReceiptProductDto(pl.vgtworld.budget.services.dto.receipts.ReceiptProductDto input) {

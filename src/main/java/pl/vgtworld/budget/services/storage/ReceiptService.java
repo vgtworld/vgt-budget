@@ -42,9 +42,10 @@ public class ReceiptService {
 		entity.setPurchaseDate(receipt.getPurchaseDate());
 	}
 
-	public void updateReceiptTotalAmount(int receiptId, BigDecimal total) {
+	public BigDecimal updateReceiptTotalAmount(int receiptId, BigDecimal total) {
 		Receipt entity = receiptDao.findById(receiptId);
 		entity.setTotalAmount(total);
+		return total;
 	}
 
 	public List<ReceiptDto> listNewestReceipts() {

@@ -61,6 +61,9 @@
                             <h:link styleClass="btn btn-default btn-xs" outcome="receipt-product-edit" value="Edit">
                                 <f:param name="receiptProductId" value="#{product.id}"/>
                             </h:link>
+                            <h:form style="display:inline;">
+                                <h:commandButton styleClass="btn btn-default btn-xs" value="Remove" action="#{receiptProductListController.deleteProduct(product.id)}"/>
+                            </h:form>
                         </td>
                     </tr>
                 </ui:repeat>
