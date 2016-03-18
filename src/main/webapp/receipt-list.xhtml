@@ -28,6 +28,9 @@
                         <td class="text-right">
                             <h:link styleClass="btn btn-default btn-xs" outcome="/receipt-edit?receiptId=#{receipt.id}" value="Edit"/>
                             <h:link styleClass="btn btn-default btn-xs" outcome="/receipt-product-list?receiptId=#{receipt.id}" value="Products"/>
+                            <h:form style="display:inline;">
+                                <h:commandButton styleClass="btn btn-default btn-xs" value="Remove" action="#{receiptListController.removeReceipt(receipt.id)}"/>
+                            </h:form>
                         </td>
                     </tr>
                 </ui:repeat>

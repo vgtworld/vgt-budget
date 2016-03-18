@@ -30,6 +30,15 @@ public class ReceiptListController {
 
 	@PostConstruct
 	public void init() {
+		loadReceiptList();
+	}
+
+	public void removeReceipt(int receiptId) {
+		receiptService.deleteReceipt(receiptId);
+		loadReceiptList();
+	}
+
+	private void loadReceiptList() {
 		List<ReceiptDto> receiptDtos = receiptService.listNewestReceipts();
 		receiptList = new ArrayList<>();
 		for (ReceiptDto receiptDto : receiptDtos) {

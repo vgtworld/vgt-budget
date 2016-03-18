@@ -53,6 +53,10 @@ public class ReceiptService {
 		return entities.stream().map(ReceiptService::asReceiptDto).collect(Collectors.toList());
 	}
 
+	public void deleteReceipt(int receiptId) {
+		receiptDao.delete(receiptId);
+	}
+
 	private static ReceiptDto asReceiptDto(Receipt receipt) {
 		if (receipt == null) {
 			return null;

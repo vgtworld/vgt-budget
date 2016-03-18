@@ -28,4 +28,9 @@ public class ReceiptDao {
 		return PersistenceUtil.getResultList(query);
 	}
 
+	public void delete(int id) {
+		Receipt entity = findById(id);
+		em.remove(entity);
+	}
+
 }
