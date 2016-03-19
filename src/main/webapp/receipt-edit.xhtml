@@ -7,11 +7,14 @@
         >
     <f:metadata>
         <f:viewParam name="receiptId" value="#{receiptEditController.receiptId}"/>
-        <f:viewAction if="#{not empty param.receiptId}" action="#{receiptEditController.fillFormWithEditedReceiptData()}"/>
+        <f:viewAction action="#{receiptEditController.initData()}"/>
     </f:metadata>
     <ui:define name="pageTitle">Create receipt</ui:define>
     <ui:define name="content">
-        <h2 class="text-center">Create new receipt</h2>
+        <h2 class="text-center">
+            <h:outputText rendered="#{empty receiptEditController.receiptId}" value="Create new receipt"/>
+            <h:outputText rendered="#{not empty receiptEditController.receiptId}" value="Edit receipt"/>
+        </h2>
 
         <div class="container-fluid col-lg-6 col-lg-offset-3">
 

@@ -12,6 +12,7 @@ import javax.ejb.EJB;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 import java.io.Serializable;
+import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -53,7 +54,8 @@ public class ReceiptEditController implements Serializable {
 		Map<String, Integer> result = new LinkedHashMap<>();
 		result.put("Choose store...", null);
 		for (StoreDto store : stores) {
-			result.put(store.getName(), store.getId());
+			String label = String.format("%s - %s - %s", store.getName(), store.getCity(), store.getAddress());
+			result.put(label, store.getId());
 		}
 		return result;
 	}
@@ -70,7 +72,7 @@ public class ReceiptEditController implements Serializable {
 		return "receipt-list?faces-redirect=true";
 	}
 
-	public void fillFormWithEditedReceiptData() {
+	public void initData() {
 		if (receiptId != null) {
 			ReceiptDto dto = receiptService.findById(receiptId);
 			if (dto != null) {
@@ -82,7 +84,8 @@ public class ReceiptEditController implements Serializable {
 			receiptId = null;
 			return;
 		}
-		LOGGER.warn("Receipt id not available. Unable to fill form.");
+		LOGGER.debug("Receipt id not provided. Switching to create receipt flow.");
+		receipt.setPurchaseDate(new Date());
 	}
 
 	private ReceiptDto asReceiptDto(ReceiptForm receipt) {
