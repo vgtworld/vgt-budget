@@ -39,6 +39,9 @@ public class Receipt {
 	@Column(name = "total_amount")
 	private BigDecimal totalAmount;
 
+	@Column(name = "deleted", nullable = false)
+	private Boolean deleted;
+
 	@Column(name = "created_at")
 	private Date createdAt;
 
@@ -72,6 +75,14 @@ public class Receipt {
 
 	public void setTotalAmount(BigDecimal totalAmount) {
 		this.totalAmount = totalAmount;
+	}
+
+	public Boolean getDeleted() {
+		return deleted;
+	}
+
+	public void setDeleted(Boolean deleted) {
+		this.deleted = deleted;
 	}
 
 	public Date getCreatedAt() {

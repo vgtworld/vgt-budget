@@ -32,6 +32,7 @@ public class ReceiptService {
 		entity.setStoreId(receipt.getStoreId());
 		entity.setPurchaseDate(receipt.getPurchaseDate());
 		entity.setTotalAmount(BigDecimal.ZERO);
+		entity.setDeleted(false);
 		entity.setCreatedAt(new Date());
 		return receiptDao.create(entity);
 	}

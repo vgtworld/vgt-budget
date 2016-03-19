@@ -92,6 +92,9 @@
 			<column name="total_amount" type="decimal(10,2)">
 				<constraints nullable="false"/>
 			</column>
+			<column name="deleted" type="boolean">
+				<constraints nullable="false"/>
+			</column>
 			<column name="created_at" type="datetime">
 				<constraints nullable="false"/>
 			</column>
