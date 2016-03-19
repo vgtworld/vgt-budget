@@ -22,9 +22,6 @@
 			<column name="created_at" type="datetime">
 				<constraints nullable="false"/>
 			</column>
-			<column name="archived" type="boolean">
-				<constraints nullable="false"/>
-			</column>
 		</createTable>
 	</changeSet>
 

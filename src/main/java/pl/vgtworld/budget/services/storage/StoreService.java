@@ -42,7 +42,6 @@ public class StoreService {
 		entity.setCity(newStore.getCity());
 		entity.setAddress(newStore.getAddress());
 		entity.setCreatedAt(new Date());
-		entity.setArchived(false);
 		int id = storeDao.create(entity);
 		LOGGER.debug("Saved store with id: {}", id);
 	}

@@ -15,7 +15,7 @@ import java.util.Date;
 @NamedQueries({
 	  @NamedQuery(
 			name = Store.QUERY_LIST_AVAILABLE,
-			query = "SELECT s FROM Store s WHERE s.archived = FALSE ORDER BY s.name ASC"
+			query = "SELECT s FROM Store s ORDER BY s.name ASC"
 	  )
 })
 public class Store {
@@ -37,9 +37,6 @@ public class Store {
 
 	@Column(name = "created_at", nullable = false)
 	private Date createdAt;
-
-	@Column(name = "archived", nullable = false)
-	private Boolean archived;
 
 	public Integer getId() {
 		return id;
@@ -79,14 +76,6 @@ public class Store {
 
 	public void setCreatedAt(Date createdAt) {
 		this.createdAt = createdAt;
-	}
-
-	public Boolean getArchived() {
-		return archived;
-	}
-
-	public void setArchived(Boolean archived) {
-		this.archived = archived;
 	}
 
 }
