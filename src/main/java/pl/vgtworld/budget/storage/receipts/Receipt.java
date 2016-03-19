@@ -18,7 +18,7 @@ import java.util.Date;
 @NamedQueries({
 	  @NamedQuery(
 			name = Receipt.QUERY_LIST_NEWEST,
-			query = "SELECT r FROM Receipt r ORDER BY r.id DESC"
+			query = "SELECT r FROM Receipt r WHERE r.deleted = false ORDER BY r.id DESC"
 	  )
 })
 public class Receipt {

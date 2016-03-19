@@ -33,8 +33,8 @@ public class ReceiptListController {
 		loadReceiptList();
 	}
 
-	public void removeReceipt(int receiptId) {
-		receiptService.deleteReceipt(receiptId);
+	public void moveReceiptToTrash(int receiptId) {
+		receiptService.moveToTrash(receiptId);
 		loadReceiptList();
 	}
 
