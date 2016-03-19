@@ -27,7 +27,7 @@ public class LiquibaseSetup {
 
 	private static final String SCHEMA_FILE = "liquibase/schema.xml";
 
-	@Resource(lookup = "java:jboss/datasources/ExampleDS")
+	@Resource(lookup = "java:jboss/datasources/vgt-budget")
 	private DataSource ds;
 
 	@PostConstruct
