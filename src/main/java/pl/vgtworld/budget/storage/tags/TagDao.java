@@ -31,4 +31,10 @@ public class TagDao {
 		return PersistenceUtil.getResultList(query);
 	}
 
+	public void deleteForProduct(int productId) {
+		Query query = em.createNamedQuery(Tag.QUERY_DELETE_FOR_PRODUCT);
+		query.setParameter("PRODUCT_ID", productId);
+		query.executeUpdate();
+	}
+
 }

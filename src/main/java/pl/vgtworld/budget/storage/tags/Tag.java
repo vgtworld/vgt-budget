@@ -19,6 +19,10 @@ import javax.persistence.Table;
 	  @NamedQuery(
 			name = Tag.QUERY_FIND_FOR_PRODUCT,
 			query = "SELECT t FROM ProductTag pt INNER JOIN pt.tag t WHERE pt.product.id = :PRODUCT_ID ORDER BY pt.tag.name ASC"
+	  ),
+	  @NamedQuery(
+			name = Tag.QUERY_DELETE_FOR_PRODUCT,
+			query = "DELETE FROM ProductTag pt WHERE pt.product.id = :PRODUCT_ID"
 	  )
 })
 public class Tag {
@@ -26,6 +30,8 @@ public class Tag {
 	static final String QUERY_FIND_BY_NAME = "Tag.findByName";
 
 	static final String QUERY_FIND_FOR_PRODUCT = "Tag.findForProduct";
+
+	static final String QUERY_DELETE_FOR_PRODUCT = "Tag.deleteForProduct";
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

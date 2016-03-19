@@ -35,6 +35,10 @@ public class TagService {
 		return tagDao.findForProduct(productId).stream().map(TagService::asTagItem).collect(Collectors.toList());
 	}
 
+	public void deleteForProduct(int productId) {
+		tagDao.deleteForProduct(productId);
+	}
+
 	public boolean existWithName(String name) {
 		return findByName(name) != null;
 	}

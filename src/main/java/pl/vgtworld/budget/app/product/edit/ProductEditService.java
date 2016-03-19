@@ -32,16 +32,31 @@ public class ProductEditService {
 		productServiceDto.setName(product.getName());
 		int productId = productService.createNewProduct(productServiceDto);
 		for (String tagName : product.getTags()) {
-			TagDto tag;
-			if (tagService.existWithName(tagName)) {
-				tag = tagService.findByName(tagName);
-			} else {
-				TagDto newTag = new TagDto();
-				newTag.setName(tagName);
-				tag = tagService.createNewTag(newTag);
-			}
-			productTagService.createNewLink(productId, tag.getId());
+			linkProductWithTag(productId, tagName);
 		}
+	}
+
+	public void updateExistingProduct(int productId, ProductWithTags product) {
+		ProductDto productDto = new ProductDto();
+		productDto.setId(productId);
+		productDto.setName(product.getName());
+		productService.updateExistingProduct(productDto);
+		tagService.deleteForProduct(productId);
+		for (String tagName : product.getTags()) {
+			linkProductWithTag(productId, tagName);
+		}
+	}
+
+	private void linkProductWithTag(int productId, String tagName) {
+		TagDto tag;
+		if (tagService.existWithName(tagName)) {
+			tag = tagService.findByName(tagName);
+		} else {
+			TagDto newTag = new TagDto();
+			newTag.setName(tagName);
+			tag = tagService.createNewTag(newTag);
+		}
+		productTagService.createNewLink(productId, tag.getId());
 	}
 
 }

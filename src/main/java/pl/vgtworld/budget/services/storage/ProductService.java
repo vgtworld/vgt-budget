@@ -54,6 +54,11 @@ public class ProductService {
 		return productDao.listAll().stream().map(ProductService::asProductItem).collect(Collectors.toList());
 	}
 
+	public void updateExistingProduct(ProductDto product) {
+		Product entity = productDao.findById(product.getId());
+		entity.setName(product.getName());
+	}
+
 	private static ProductDto asProductItem(Product product) {
 		if (product == null) {
 			return null;

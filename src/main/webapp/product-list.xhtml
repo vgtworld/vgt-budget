@@ -1,5 +1,6 @@
 <ui:composition
         xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:f="http://xmlns.jcp.org/jsf/core"
         xmlns:h="http://xmlns.jcp.org/jsf/html"
         xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
         template="/WEB-INF/templates/basic.xhtml"
@@ -27,8 +28,10 @@
                                 <span class="label label-primary">#{tag.name}</span>
                             </ui:repeat>
                         </td>
-                        <td>
-
+                        <td class="text-right">
+                            <h:link styleClass="btn btn-default btn-xs" outcome="/product-edit" value="Edit">
+                                <f:param name="productId" value="#{product.product.id}"/>
+                            </h:link>
                         </td>
                     </tr>
                 </ui:repeat>
