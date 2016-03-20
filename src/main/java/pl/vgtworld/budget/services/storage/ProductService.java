@@ -41,6 +41,15 @@ public class ProductService {
 		return productDao.searchByName(phrase).stream().map(ProductService::asProductItem).collect(Collectors.toList());
 	}
 
+	public List<ProductDto> searchProductsRecentlyBoughtInStore(int storeId) {
+		return productDao
+			  .searchRecentlyBoughtInStore(storeId)
+			  .stream()
+			  .map(ProductService::asProductItem)
+			  .collect(Collectors.toList()
+			  );
+	}
+
 	public int createNewProduct(ProductDto product) {
 		LOGGER.debug("Create new product: {}", product);
 		Product entity = new Product();

@@ -3,6 +3,7 @@ package pl.vgtworld.budget.app.receipt.product.search;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pl.vgtworld.budget.services.dto.products.ProductDto;
+import pl.vgtworld.budget.services.dto.receipts.ReceiptDto;
 import pl.vgtworld.budget.services.storage.ProductService;
 import pl.vgtworld.budget.services.storage.ReceiptService;
 
@@ -30,6 +31,8 @@ public class ReceiptProductSearchController implements Serializable {
 
 	private List<ProductDto> productsSearch;
 
+	private List<ProductDto> recentlyBought;
+
 	public Integer getReceiptId() {
 		return receiptId;
 	}
@@ -56,12 +59,18 @@ public class ReceiptProductSearchController implements Serializable {
 		LOGGER.debug("Products found: {}", productsSearch.size());
 	}
 
+	public List<ProductDto> getRecentlyBought() {
+		return recentlyBought;
+	}
+
 	public String initData() {
 		if (receiptId != null) {
-			if (receiptService.findById(receiptId) == null) {
+			ReceiptDto receipt = receiptService.findById(receiptId);
+			if (receipt == null) {
 				LOGGER.debug("Receipt with provided id does not exist. ID:{}", receiptId);
 				return "receipt-list?faces-redirect=true";
 			}
+			recentlyBought = productService.searchProductsRecentlyBoughtInStore(receipt.getStoreId());
 			return null;
 		}
 		LOGGER.warn("Receipt id not available. Unable to fill form.");

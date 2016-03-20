@@ -28,6 +28,17 @@ public class Product {
 
 	static final String QUERY_SEARCH_BY_NAME = "Product.searchByName";
 
+	static final String NATIVE_QUERY_RECENTLY_BOUGHT_IN_STORE = "SELECT DISTINCT * FROM " +
+		  "( " +
+		  "SELECT p.* " +
+		  "FROM receipt_products rp " +
+		  "INNER JOIN receipts r ON r.id = rp.receipt_id " +
+		  "INNER JOIN products p ON p.id = rp.product_id " +
+		  "WHERE r.store_id = ?1 AND r.deleted = false " +
+		  "ORDER BY r.purchase_date DESC, rp.id DESC " +
+		  ") temp " +
+		  "ORDER BY name ASC";
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
