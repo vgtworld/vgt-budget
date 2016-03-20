@@ -16,13 +16,25 @@
         </div>
         <div class="container-fluid col-lg-6">
             <h2>Search product</h2>
-            <h:form styleClass="form-inline">
-                <div class="form-group">
-                    <h:inputText styleClass="form-control" value="#{receiptProductSearchController.searchPhrase}"/>
-                    <h:commandButton styleClass="btn btn-default" value="Search" type="submit" action="#{receiptProductSearchController.searchProducts()}"/>
-                </div>
-            </h:form>
 
+            <div>
+                <h:form style="display:inline;" styleClass="form-inline">
+                    <div class="form-group">
+                        <h:inputText styleClass="form-control" value="#{receiptProductSearchController.searchPhrase}"/>
+                        <h:commandButton styleClass="btn btn-default" value="Search" type="submit" action="#{receiptProductSearchController.searchProducts()}"/>
+                    </div>
+                </h:form>
+                or
+                <h:link styleClass="btn btn-default" outcome="product-edit" value="Create new">
+                    <f:param name="receiptId" value="#{receiptProductSearchController.receiptId}"/>
+                </h:link>
+            </div>
+
+            <h:panelGroup rendered="#{not empty receiptProductSearchController.searchPhrase and empty receiptProductSearchController.productsSearch}">
+                <div class="alert alert-danger">
+                    No products found
+                </div>
+            </h:panelGroup>
             <h:panelGroup rendered="#{not empty receiptProductSearchController.productsSearch}">
                 <table class="table">
                     <tr>

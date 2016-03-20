@@ -34,6 +34,8 @@ public class ProductEditController {
 
 	private Integer productId;
 
+	private Integer receiptId;
+
 	public ProductForm getProduct() {
 		return product;
 	}
@@ -48,6 +50,14 @@ public class ProductEditController {
 
 	public void setProductId(Integer productId) {
 		this.productId = productId;
+	}
+
+	public Integer getReceiptId() {
+		return receiptId;
+	}
+
+	public void setReceiptId(Integer receiptId) {
+		this.receiptId = receiptId;
 	}
 
 	public String initData() {
@@ -69,7 +79,14 @@ public class ProductEditController {
 	public String submitForm() {
 		LOGGER.debug("Submitted product form: {}", product);
 		if (isCreateProductFlow()) {
-			productEditService.createNewProduct(asProductWithTags(product));
+			int newProductId = productEditService.createNewProduct(asProductWithTags(product));
+			if (receiptId != null) {
+				return String.format(
+					  "receipt-product-edit?productId=%s&receiptId=%s&faces-redirect=true",
+					  newProductId,
+					  receiptId
+				);
+			}
 			return "product-list?faces-redirect=true";
 		}
 		if (isEditProductFlow()) {

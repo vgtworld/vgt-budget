@@ -26,7 +26,7 @@ public class ProductEditService {
 	@EJB
 	private ProductTagService productTagService;
 
-	public void createNewProduct(ProductWithTags product) {
+	public int createNewProduct(ProductWithTags product) {
 		LOGGER.debug("Create new product with tags: {}", product);
 		ProductDto productServiceDto = new ProductDto();
 		productServiceDto.setName(product.getName());
@@ -34,6 +34,7 @@ public class ProductEditService {
 		for (String tagName : product.getTags()) {
 			linkProductWithTag(productId, tagName);
 		}
+		return productId;
 	}
 
 	public void updateExistingProduct(int productId, ProductWithTags product) {
