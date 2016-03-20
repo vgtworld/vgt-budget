@@ -34,7 +34,7 @@ public class Product {
 		  "FROM receipt_products rp " +
 		  "INNER JOIN receipts r ON r.id = rp.receipt_id " +
 		  "INNER JOIN products p ON p.id = rp.product_id " +
-		  "WHERE r.store_id = ?1 AND r.deleted = false " +
+		  "WHERE r.store_id = ?1 AND r.deleted = false AND r.id != ?2 " +
 		  "ORDER BY r.purchase_date DESC, rp.id DESC " +
 		  ") temp " +
 		  "ORDER BY name ASC";

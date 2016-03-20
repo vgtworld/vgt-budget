@@ -29,9 +29,10 @@ public class ProductDao {
 		return PersistenceUtil.getResultList(query);
 	}
 
-	public List<Product> searchRecentlyBoughtInStore(int storeId) {
+	public List<Product> searchRecentlyBoughtInStore(int storeId, int excludedReceiptId) {
 		Query query = em.createNativeQuery(Product.NATIVE_QUERY_RECENTLY_BOUGHT_IN_STORE, Product.class);
 		query.setParameter(1, storeId);
+		query.setParameter(2, excludedReceiptId);
 		query.setMaxResults(20);
 		return PersistenceUtil.getResultList(query);
 	}

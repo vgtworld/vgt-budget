@@ -41,9 +41,9 @@ public class ProductService {
 		return productDao.searchByName(phrase).stream().map(ProductService::asProductItem).collect(Collectors.toList());
 	}
 
-	public List<ProductDto> searchProductsRecentlyBoughtInStore(int storeId) {
+	public List<ProductDto> searchProductsRecentlyBoughtInStore(int storeId, int excludedReceiptId) {
 		return productDao
-			  .searchRecentlyBoughtInStore(storeId)
+			  .searchRecentlyBoughtInStore(storeId, excludedReceiptId)
 			  .stream()
 			  .map(ProductService::asProductItem)
 			  .collect(Collectors.toList()

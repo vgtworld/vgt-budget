@@ -70,7 +70,7 @@ public class ReceiptProductSearchController implements Serializable {
 				LOGGER.debug("Receipt with provided id does not exist. ID:{}", receiptId);
 				return "receipt-list?faces-redirect=true";
 			}
-			recentlyBought = productService.searchProductsRecentlyBoughtInStore(receipt.getStoreId());
+			recentlyBought = productService.searchProductsRecentlyBoughtInStore(receipt.getStoreId(), receiptId);
 			return null;
 		}
 		LOGGER.warn("Receipt id not available. Unable to fill form.");
