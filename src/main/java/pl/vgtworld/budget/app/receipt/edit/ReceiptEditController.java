@@ -64,12 +64,13 @@ public class ReceiptEditController implements Serializable {
 		LOGGER.debug("Submitted receipt form: {}", receipt);
 		ReceiptDto dto = asReceiptDto(this.receipt);
 		if (receiptId == null) {
-			receiptService.createNewReceipt(dto);
+			int newReceiptId = receiptService.createNewReceipt(dto);
+			return "receipt-product-list?receiptId=" + newReceiptId + "&faces-redirect=true";
 		} else {
 			dto.setId(receiptId);
 			receiptService.updateReceipt(dto);
+			return "receipt-list?faces-redirect=true";
 		}
-		return "receipt-list?faces-redirect=true";
 	}
 
 	public void initData() {
