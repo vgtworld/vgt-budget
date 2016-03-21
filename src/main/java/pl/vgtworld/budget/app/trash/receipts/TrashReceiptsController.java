@@ -33,6 +33,11 @@ public class TrashReceiptsController {
 		loadReceiptList();
 	}
 
+	public void restoreReceipt(int receiptId) {
+		receiptService.restoreFromTrash(receiptId);
+		loadReceiptList();
+	}
+
 	private void loadReceiptList() {
 		//TODO Code similar to ReceiptListController::loadReceiptsList. Extract to common service.
 		List<ReceiptDto> receiptDtos = receiptService.listDeletedReceipts();

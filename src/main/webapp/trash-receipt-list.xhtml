@@ -26,6 +26,9 @@
                         <td class="text-right">#{receipt.purchaseDate}</td>
                         <td class="text-right">#{receipt.totalAmount}</td>
                         <td class="text-right">
+                            <h:form style="display:inline;">
+                                <h:commandButton styleClass="btn btn-default btn-xs" value="Restore" action="#{trashReceiptsController.restoreReceipt(receipt.id)}"/>
+                            </h:form>
                         </td>
                     </tr>
                 </ui:repeat>

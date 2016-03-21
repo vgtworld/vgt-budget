@@ -63,6 +63,11 @@ public class ReceiptService {
 		receiptDao.moveToTrash(receiptId);
 	}
 
+	public void restoreFromTrash(int receiptId) {
+		Receipt entity = receiptDao.findById(receiptId);
+		entity.setDeleted(false);
+	}
+
 	private static ReceiptDto asReceiptDto(Receipt receipt) {
 		if (receipt == null) {
 			return null;
