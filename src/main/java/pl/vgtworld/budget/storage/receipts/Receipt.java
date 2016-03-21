@@ -19,11 +19,17 @@ import java.util.Date;
 	  @NamedQuery(
 			name = Receipt.QUERY_LIST_NEWEST,
 			query = "SELECT r FROM Receipt r WHERE r.deleted = false ORDER BY r.id DESC"
+	  ),
+	  @NamedQuery(
+			name = Receipt.QUERY_LIST_DELETED,
+			query = "SELECT r FROM Receipt r WHERE r.deleted = true ORDER BY r.id DESC"
 	  )
 })
 public class Receipt {
 
 	static final String QUERY_LIST_NEWEST = "Receipt.listNewest";
+
+	static final String QUERY_LIST_DELETED = "Receipt.listDeleted";
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -4,14 +4,13 @@
         xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
         template="/WEB-INF/templates/basic.xhtml"
         >
-    <ui:define name="pageTitle">Receipt list</ui:define>
+    <ui:define name="pageTitle">Trash receipt list</ui:define>
     <ui:define name="content">
-        <h2 class="text-center">Receipt list</h2>
+        <h2 class="text-center">Trash receipt list</h2>
 
         <div class="container-fluid col-lg-6 col-lg-offset-3">
             <div class="text-right">
-                <h:link styleClass="btn btn-default" outcome="trash-receipt-list" value="Trash"/>
-                <h:link styleClass="btn btn-default" outcome="receipt-edit" value="Add receipt"/>
+                <h:link styleClass="btn btn-default" outcome="receipt-list" value="Back to receipt list"/>
             </div>
 
             <table class="table">
@@ -21,17 +20,12 @@
                     <th class="text-right">Total amount</th>
                     <th class="text-right">Options</th>
                 </tr>
-                <ui:repeat value="#{receiptListController.receiptList}" var="receipt">
+                <ui:repeat value="#{trashReceiptsController.deletedReceipts}" var="receipt">
                     <tr>
                         <td>#{receipt.store}</td>
                         <td class="text-right">#{receipt.purchaseDate}</td>
                         <td class="text-right">#{receipt.totalAmount}</td>
                         <td class="text-right">
-                            <h:link styleClass="btn btn-default btn-xs" outcome="/receipt-edit?receiptId=#{receipt.id}" value="Edit"/>
-                            <h:link styleClass="btn btn-default btn-xs" outcome="/receipt-product-list?receiptId=#{receipt.id}" value="Products"/>
-                            <h:form style="display:inline;">
-                                <h:commandButton styleClass="btn btn-default btn-xs" value="Move to trash" action="#{receiptListController.moveReceiptToTrash(receipt.id)}"/>
-                            </h:form>
                         </td>
                     </tr>
                 </ui:repeat>

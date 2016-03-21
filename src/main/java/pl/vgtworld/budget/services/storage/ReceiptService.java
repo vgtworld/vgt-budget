@@ -54,6 +54,11 @@ public class ReceiptService {
 		return entities.stream().map(ReceiptService::asReceiptDto).collect(Collectors.toList());
 	}
 
+	public List<ReceiptDto> listDeletedReceipts() {
+		List<Receipt> entities = receiptDao.listDeleted();
+		return entities.stream().map(ReceiptService::asReceiptDto).collect(Collectors.toList());
+	}
+
 	public void moveToTrash(int receiptId) {
 		receiptDao.moveToTrash(receiptId);
 	}

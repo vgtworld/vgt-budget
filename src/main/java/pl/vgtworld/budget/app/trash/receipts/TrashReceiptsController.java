@@ -1,4 +1,4 @@
-package pl.vgtworld.budget.app.receipt.list;
+package pl.vgtworld.budget.app.trash.receipts;
 
 import pl.vgtworld.budget.services.dto.receipts.ReceiptDto;
 import pl.vgtworld.budget.services.dto.receipts.ReceiptWithStoreDto;
@@ -14,7 +14,7 @@ import java.util.List;
 
 @Named
 @RequestScoped
-public class ReceiptListController {
+public class TrashReceiptsController {
 
 	@EJB
 	private ReceiptService receiptService;
@@ -22,10 +22,10 @@ public class ReceiptListController {
 	@EJB
 	private StoreService storeService;
 
-	private List<ReceiptWithStoreDto> receiptList;
+	private List<ReceiptWithStoreDto> deletedReceipts;
 
-	public List<ReceiptWithStoreDto> getReceiptList() {
-		return receiptList;
+	public List<ReceiptWithStoreDto> getDeletedReceipts() {
+		return deletedReceipts;
 	}
 
 	@PostConstruct
@@ -33,22 +33,17 @@ public class ReceiptListController {
 		loadReceiptList();
 	}
 
-	public void moveReceiptToTrash(int receiptId) {
-		receiptService.moveToTrash(receiptId);
-		loadReceiptList();
-	}
-
 	private void loadReceiptList() {
-		//TODO Code similar to TrashReceiptsController::loadReceiptsList. Extract to common service.
-		List<ReceiptDto> receiptDtos = receiptService.listNewestReceipts();
-		receiptList = new ArrayList<>();
+		//TODO Code similar to ReceiptListController::loadReceiptsList. Extract to common service.
+		List<ReceiptDto> receiptDtos = receiptService.listDeletedReceipts();
+		deletedReceipts = new ArrayList<>();
 		for (ReceiptDto receiptDto : receiptDtos) {
 			ReceiptWithStoreDto receiptWithStore = new ReceiptWithStoreDto();
 			receiptWithStore.setId(receiptDto.getId());
 			receiptWithStore.setPurchaseDate(receiptDto.getPurchaseDate());
 			receiptWithStore.setTotalAmount(receiptDto.getTotalAmount());
 			receiptWithStore.setStore(storeService.findById(receiptDto.getStoreId()).getName());
-			receiptList.add(receiptWithStore);
+			deletedReceipts.add(receiptWithStore);
 		}
 	}
 

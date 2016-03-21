@@ -1,9 +1,9 @@
-package pl.vgtworld.budget.app.receipt.list.dto;
+package pl.vgtworld.budget.services.dto.receipts;
 
 import java.math.BigDecimal;
 import java.util.Date;
 
-public class ReceiptWithStore {
+public class ReceiptWithStoreDto {
 
 	private Integer id;
 
