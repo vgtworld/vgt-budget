@@ -33,9 +33,4 @@ public class ReceiptDao {
 		return PersistenceUtil.getResultList(query);
 	}
 
-	public void moveToTrash(int id) {
-		Receipt entity = findById(id);
-		entity.setDeleted(true);
-	}
-
 }
