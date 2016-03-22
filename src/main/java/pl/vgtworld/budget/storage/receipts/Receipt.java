@@ -23,6 +23,10 @@ import java.util.Date;
 	  @NamedQuery(
 			name = Receipt.QUERY_LIST_DELETED,
 			query = "SELECT r FROM Receipt r WHERE r.deleted = true ORDER BY r.id DESC"
+	  ),
+	  @NamedQuery(
+			name = Receipt.QUERY_REMOVE_MARKED_AS_DELETED,
+			query = "DELETE FROM Receipt r WHERE r.deleted = true"
 	  )
 })
 public class Receipt {
@@ -30,6 +34,8 @@ public class Receipt {
 	static final String QUERY_LIST_NEWEST = "Receipt.listNewest";
 
 	static final String QUERY_LIST_DELETED = "Receipt.listDeleted";
+
+	static final String QUERY_REMOVE_MARKED_AS_DELETED = "Receipt.removeMarkedAsDeleted";
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -38,6 +38,11 @@ public class TrashReceiptsController {
 		loadReceiptList();
 	}
 
+	public void emptyTrash() {
+		receiptService.emptyTrash();
+		deletedReceipts = new ArrayList<>();
+	}
+
 	private void loadReceiptList() {
 		//TODO Code similar to ReceiptListController::loadReceiptsList. Extract to common service.
 		List<ReceiptDto> receiptDtos = receiptService.listDeletedReceipts();

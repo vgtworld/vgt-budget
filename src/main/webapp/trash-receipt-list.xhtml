@@ -10,6 +10,9 @@
 
         <div class="container-fluid col-lg-6 col-lg-offset-3">
             <div class="text-right">
+                <h:form style="display:inline;">
+                    <h:commandButton styleClass="btn btn-default" value="Empty trash" action="#{trashReceiptsController.emptyTrash()}"/>
+                </h:form>
                 <h:link styleClass="btn btn-default" outcome="receipt-list" value="Back to receipt list"/>
             </div>
 

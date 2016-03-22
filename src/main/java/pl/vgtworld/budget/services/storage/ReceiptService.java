@@ -69,6 +69,10 @@ public class ReceiptService {
 		entity.setDeleted(false);
 	}
 
+	public void emptyTrash() {
+		receiptDao.removeMarkedAsDeleted();
+	}
+
 	private static ReceiptDto asReceiptDto(Receipt receipt) {
 		if (receipt == null) {
 			return null;

@@ -33,4 +33,9 @@ public class ReceiptDao {
 		return PersistenceUtil.getResultList(query);
 	}
 
+	public void removeMarkedAsDeleted() {
+		Query query = em.createNamedQuery(Receipt.QUERY_REMOVE_MARKED_AS_DELETED);
+		query.executeUpdate();
+	}
+
 }
