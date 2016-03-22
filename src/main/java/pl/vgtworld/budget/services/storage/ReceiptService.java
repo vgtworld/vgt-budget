@@ -5,13 +5,13 @@ import org.slf4j.LoggerFactory;
 import pl.vgtworld.budget.services.dto.receipts.ReceiptDto;
 import pl.vgtworld.budget.storage.receipts.Receipt;
 import pl.vgtworld.budget.storage.receipts.ReceiptDao;
+import pl.vgtworld.budget.storage.receipts.ReceiptWithStoreDto;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Stateless
 public class ReceiptService {
@@ -49,14 +49,12 @@ public class ReceiptService {
 		return total;
 	}
 
-	public List<ReceiptDto> listNewestReceipts() {
-		List<Receipt> entities = receiptDao.listNewest();
-		return entities.stream().map(ReceiptService::asReceiptDto).collect(Collectors.toList());
+	public List<ReceiptWithStoreDto> listNewestReceipts() {
+		return receiptDao.listNewest();
 	}
 
-	public List<ReceiptDto> listDeletedReceipts() {
-		List<Receipt> entities = receiptDao.listDeleted();
-		return entities.stream().map(ReceiptService::asReceiptDto).collect(Collectors.toList());
+	public List<ReceiptWithStoreDto> listDeletedReceipts() {
+		return receiptDao.listDeleted();
 	}
 
 	public void moveToTrash(int receiptId) {

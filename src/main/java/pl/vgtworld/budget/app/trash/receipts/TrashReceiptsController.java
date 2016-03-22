@@ -1,9 +1,8 @@
 package pl.vgtworld.budget.app.trash.receipts;
 
-import pl.vgtworld.budget.services.dto.receipts.ReceiptDto;
-import pl.vgtworld.budget.services.dto.receipts.ReceiptWithStoreDto;
 import pl.vgtworld.budget.services.storage.ReceiptService;
 import pl.vgtworld.budget.services.storage.StoreService;
+import pl.vgtworld.budget.storage.receipts.ReceiptWithStoreDto;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
@@ -44,17 +43,7 @@ public class TrashReceiptsController {
 	}
 
 	private void loadReceiptList() {
-		//TODO Code similar to ReceiptListController::loadReceiptsList. Extract to common service.
-		List<ReceiptDto> receiptDtos = receiptService.listDeletedReceipts();
-		deletedReceipts = new ArrayList<>();
-		for (ReceiptDto receiptDto : receiptDtos) {
-			ReceiptWithStoreDto receiptWithStore = new ReceiptWithStoreDto();
-			receiptWithStore.setId(receiptDto.getId());
-			receiptWithStore.setPurchaseDate(receiptDto.getPurchaseDate());
-			receiptWithStore.setTotalAmount(receiptDto.getTotalAmount());
-			receiptWithStore.setStore(storeService.findById(receiptDto.getStoreId()).getName());
-			deletedReceipts.add(receiptWithStore);
-		}
+		deletedReceipts = receiptService.listDeletedReceipts();
 	}
 
 }
