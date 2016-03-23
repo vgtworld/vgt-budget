@@ -24,12 +24,12 @@ public class ReceiptDao {
 	}
 
 	public List<ReceiptWithStoreDto> listNewest() {
-		Query query = em.createNativeQuery(Receipt.NATIVE_QUERY_LIST_NEWEST, ReceiptWithStoreDto.RESULT_SET_MAPPING_NAME);
+		Query query = em.createNativeQuery(ReceiptWithStoreDto.NATIVE_QUERY_LIST_NEWEST, ReceiptWithStoreDto.RESULT_SET_MAPPING_NAME);
 		return PersistenceUtil.getResultList(query);
 	}
 
 	public List<ReceiptWithStoreDto> listDeleted() {
-		Query query = em.createNativeQuery(Receipt.NATIVE_QUERY_LIST_DELETED, ReceiptWithStoreDto.RESULT_SET_MAPPING_NAME);
+		Query query = em.createNativeQuery(ReceiptWithStoreDto.NATIVE_QUERY_LIST_DELETED, ReceiptWithStoreDto.RESULT_SET_MAPPING_NAME);
 		return PersistenceUtil.getResultList(query);
 	}
 

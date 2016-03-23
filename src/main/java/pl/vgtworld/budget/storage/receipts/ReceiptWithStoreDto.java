@@ -22,6 +22,22 @@ import java.util.Date;
 )
 public class ReceiptWithStoreDto {
 
+	static final String NATIVE_QUERY_LIST_NEWEST =
+		  "SELECT r.id, s.name AS store_name, r.purchase_date, r.total_amount " +
+				"FROM receipts r " +
+				"INNER JOIN stores s " +
+				"ON r.store_id = s.id " +
+				"WHERE r.deleted = false " +
+				"ORDER BY r.id DESC";
+
+	static final String NATIVE_QUERY_LIST_DELETED =
+		  "SELECT r.id, s.name AS store_name, r.purchase_date, r.total_amount " +
+				"FROM receipts r " +
+				"INNER JOIN stores s " +
+				"ON r.store_id = s.id " +
+				"WHERE r.deleted = true " +
+				"ORDER BY r.id DESC";
+
 	static final String RESULT_SET_MAPPING_NAME = "ReceiptWithStoreDtoMapping";
 
 	private Integer id;
