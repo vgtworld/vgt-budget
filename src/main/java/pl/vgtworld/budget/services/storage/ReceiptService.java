@@ -72,13 +72,9 @@ public class ReceiptService {
 		receiptDao.removeMarkedAsDeleted();
 	}
 
-	public BigDecimal getTotalAmountSumForCurrentMonth() {
+	public BigDecimal getTotalAmountSum(int year, int month) {
 		Calendar calendar = Calendar.getInstance();
-		calendar.set(Calendar.DAY_OF_MONTH, 1);
-		calendar.set(Calendar.HOUR, 0);
-		calendar.set(Calendar.MINUTE, 0);
-		calendar.set(Calendar.SECOND, 0);
-		calendar.set(Calendar.MILLISECOND, 0);
+		calendar.set(year, month, 1, 0, 0, 0);
 		Date startDate = calendar.getTime();
 		calendar.set(Calendar.DAY_OF_MONTH, calendar.getMaximum(Calendar.DAY_OF_MONTH));
 		Date endDate = calendar.getTime();
