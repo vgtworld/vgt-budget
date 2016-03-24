@@ -19,11 +19,18 @@ import java.util.Date;
 	  @NamedQuery(
 			name = Receipt.QUERY_REMOVE_MARKED_AS_DELETED,
 			query = "DELETE FROM Receipt r WHERE r.deleted = true"
+	  ),
+	  @NamedQuery(
+			name = Receipt.QUERY_TOTAL_AMOUNT_SUM_DATE_RANGE,
+			query = "SELECT sum(r.totalAmount) FROM Receipt r " +
+				  "WHERE r.purchaseDate >= :DATE_FROM AND r.purchaseDate <= :DATE_TO AND r.deleted = false"
 	  )
 })
 public class Receipt {
 
 	static final String QUERY_REMOVE_MARKED_AS_DELETED = "Receipt.removeMarkedAsDeleted";
+
+	static final String QUERY_TOTAL_AMOUNT_SUM_DATE_RANGE = "Receipt.totalAmountSumDateRange";
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -10,6 +10,7 @@ import pl.vgtworld.budget.storage.receipts.ReceiptWithStoreDto;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import java.math.BigDecimal;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -69,6 +70,19 @@ public class ReceiptService {
 
 	public void emptyTrash() {
 		receiptDao.removeMarkedAsDeleted();
+	}
+
+	public BigDecimal getTotalAmountSumForCurrentMonth() {
+		Calendar calendar = Calendar.getInstance();
+		calendar.set(Calendar.DAY_OF_MONTH, 1);
+		calendar.set(Calendar.HOUR, 0);
+		calendar.set(Calendar.MINUTE, 0);
+		calendar.set(Calendar.SECOND, 0);
+		calendar.set(Calendar.MILLISECOND, 0);
+		Date startDate = calendar.getTime();
+		calendar.set(Calendar.DAY_OF_MONTH, calendar.getMaximum(Calendar.DAY_OF_MONTH));
+		Date endDate = calendar.getTime();
+		return receiptDao.getTotalAmountSum(startDate, endDate);
 	}
 
 	private static ReceiptDto asReceiptDto(Receipt receipt) {

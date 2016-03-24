@@ -6,6 +6,8 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import java.math.BigDecimal;
+import java.util.Date;
 import java.util.List;
 
 @Stateless
@@ -31,6 +33,13 @@ public class ReceiptDao {
 	public List<ReceiptWithStoreDto> listDeleted() {
 		Query query = em.createNativeQuery(ReceiptWithStoreDto.NATIVE_QUERY_LIST_DELETED, ReceiptWithStoreDto.RESULT_SET_MAPPING_NAME);
 		return PersistenceUtil.getResultList(query);
+	}
+
+	public BigDecimal getTotalAmountSum(Date from, Date to) {
+		Query query = em.createNamedQuery(Receipt.QUERY_TOTAL_AMOUNT_SUM_DATE_RANGE);
+		query.setParameter("DATE_FROM", from);
+		query.setParameter("DATE_TO", to);
+		return (BigDecimal)query.getSingleResult();
 	}
 
 	public void removeMarkedAsDeleted() {
