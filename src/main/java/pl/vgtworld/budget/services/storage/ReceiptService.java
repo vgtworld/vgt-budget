@@ -76,7 +76,7 @@ public class ReceiptService {
 		Calendar calendar = Calendar.getInstance();
 		calendar.set(year, month, 1, 0, 0, 0);
 		Date startDate = calendar.getTime();
-		calendar.set(Calendar.DAY_OF_MONTH, calendar.getMaximum(Calendar.DAY_OF_MONTH));
+		calendar.set(Calendar.DAY_OF_MONTH, calendar.getActualMaximum(Calendar.DAY_OF_MONTH));
 		Date endDate = calendar.getTime();
 		return receiptDao.getTotalAmountSum(startDate, endDate);
 	}
