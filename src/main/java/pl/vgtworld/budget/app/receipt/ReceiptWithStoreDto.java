@@ -1,4 +1,4 @@
-package pl.vgtworld.budget.storage.receipts;
+package pl.vgtworld.budget.app.receipt;
 
 import javax.persistence.ColumnResult;
 import javax.persistence.ConstructorResult;

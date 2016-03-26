@@ -5,14 +5,12 @@ import org.slf4j.LoggerFactory;
 import pl.vgtworld.budget.services.dto.receipts.ReceiptDto;
 import pl.vgtworld.budget.storage.receipts.Receipt;
 import pl.vgtworld.budget.storage.receipts.ReceiptDao;
-import pl.vgtworld.budget.storage.receipts.ReceiptWithStoreDto;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import java.math.BigDecimal;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.List;
 
 @Stateless
 public class ReceiptService {
@@ -48,14 +46,6 @@ public class ReceiptService {
 		Receipt entity = receiptDao.findById(receiptId);
 		entity.setTotalAmount(total);
 		return total;
-	}
-
-	public List<ReceiptWithStoreDto> listNewestReceipts() {
-		return receiptDao.listNewest();
-	}
-
-	public List<ReceiptWithStoreDto> listDeletedReceipts() {
-		return receiptDao.listDeleted();
 	}
 
 	public void moveToTrash(int receiptId) {

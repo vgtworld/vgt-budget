@@ -1,8 +1,9 @@
 package pl.vgtworld.budget.app.receipt.list;
 
+import pl.vgtworld.budget.app.receipt.ReceiptRepository;
+import pl.vgtworld.budget.app.receipt.ReceiptWithStoreDto;
 import pl.vgtworld.budget.services.storage.ReceiptService;
 import pl.vgtworld.budget.services.storage.StoreService;
-import pl.vgtworld.budget.storage.receipts.ReceiptWithStoreDto;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
@@ -19,6 +20,9 @@ public class ReceiptListController {
 
 	@EJB
 	private StoreService storeService;
+
+	@EJB
+	private ReceiptRepository receiptRepository;
 
 	private List<ReceiptWithStoreDto> receiptList;
 
@@ -37,7 +41,7 @@ public class ReceiptListController {
 	}
 
 	private void loadReceiptList() {
-		receiptList = receiptService.listNewestReceipts();
+		receiptList = receiptRepository.listNewestReceipts();
 	}
 
 }

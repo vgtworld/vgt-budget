@@ -1,8 +1,9 @@
-package pl.vgtworld.budget.app.trash.receipts;
+package pl.vgtworld.budget.app.receipt.trash;
 
+import pl.vgtworld.budget.app.receipt.ReceiptRepository;
+import pl.vgtworld.budget.app.receipt.ReceiptWithStoreDto;
 import pl.vgtworld.budget.services.storage.ReceiptService;
 import pl.vgtworld.budget.services.storage.StoreService;
-import pl.vgtworld.budget.storage.receipts.ReceiptWithStoreDto;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
@@ -20,6 +21,9 @@ public class TrashReceiptsController {
 
 	@EJB
 	private StoreService storeService;
+
+	@EJB
+	private ReceiptRepository receiptRepository;
 
 	private List<ReceiptWithStoreDto> deletedReceipts;
 
@@ -43,7 +47,7 @@ public class TrashReceiptsController {
 	}
 
 	private void loadReceiptList() {
-		deletedReceipts = receiptService.listDeletedReceipts();
+		deletedReceipts = receiptRepository.listDeletedReceipts();
 	}
 
 }
