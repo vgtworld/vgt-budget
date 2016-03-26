@@ -1,4 +1,4 @@
-package pl.vgtworld.budget.services.storage;
+package pl.vgtworld.budget.services;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,9 +12,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Stateless
-public class TagService {
+public class TagStorageService {
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(TagService.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(TagStorageService.class);
 
 	@EJB
 	private TagDao tagDao;
@@ -32,7 +32,7 @@ public class TagService {
 	}
 
 	public List<TagDto> findForProduct(int productId) {
-		return tagDao.findForProduct(productId).stream().map(TagService::asTagItem).collect(Collectors.toList());
+		return tagDao.findForProduct(productId).stream().map(TagStorageService::asTagItem).collect(Collectors.toList());
 	}
 
 	public void deleteForProduct(int productId) {

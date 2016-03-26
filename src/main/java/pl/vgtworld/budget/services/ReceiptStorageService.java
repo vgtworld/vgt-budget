@@ -1,4 +1,4 @@
-package pl.vgtworld.budget.services.storage;
+package pl.vgtworld.budget.services;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,9 +13,9 @@ import java.util.Calendar;
 import java.util.Date;
 
 @Stateless
-public class ReceiptService {
+public class ReceiptStorageService {
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(ReceiptService.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(ReceiptStorageService.class);
 
 	@EJB
 	private ReceiptDao receiptDao;

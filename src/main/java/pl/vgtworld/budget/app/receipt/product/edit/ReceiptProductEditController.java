@@ -4,12 +4,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pl.vgtworld.budget.app.receipt.product.ReceiptProductControllerService;
 import pl.vgtworld.budget.app.receipt.product.edit.dto.ReceiptProductForm;
+import pl.vgtworld.budget.services.ProductStorageService;
+import pl.vgtworld.budget.services.ReceiptProductStorageService;
+import pl.vgtworld.budget.services.ReceiptStorageService;
 import pl.vgtworld.budget.services.dto.products.ProductDto;
 import pl.vgtworld.budget.services.dto.receipts.ReceiptDto;
 import pl.vgtworld.budget.services.dto.receipts.ReceiptProductDto;
-import pl.vgtworld.budget.services.storage.ProductService;
-import pl.vgtworld.budget.services.storage.ReceiptProductService;
-import pl.vgtworld.budget.services.storage.ReceiptService;
 
 import javax.ejb.EJB;
 import javax.faces.view.ViewScoped;
@@ -23,13 +23,13 @@ public class ReceiptProductEditController implements Serializable {
 	private static final Logger LOGGER = LoggerFactory.getLogger(ReceiptProductEditController.class);
 
 	@EJB
-	private ReceiptService receiptService;
+	private ReceiptStorageService receiptStorageService;
 
 	@EJB
-	private ProductService productService;
+	private ProductStorageService productStorageService;
 
 	@EJB
-	private ReceiptProductService receiptProductService;
+	private ReceiptProductStorageService receiptProductStorageService;
 
 	@EJB
 	private ReceiptProductControllerService receiptProductControllerService;
@@ -84,7 +84,7 @@ public class ReceiptProductEditController implements Serializable {
 		LOGGER.debug("Submitted receipt product form: {}", form);
 		if (isCreateNewAction()) {
 			LOGGER.trace("Creating new product.");
-			receiptProductService.addNewProduct(asReceiptProductDto(receiptId, productId, form));
+			receiptProductStorageService.addNewProduct(asReceiptProductDto(receiptId, productId, form));
 			receiptProductControllerService.updateReceiptTotalAmount(receiptId);
 			LOGGER.info("New product added to receipt. receiptId:{}, productId:{}, productName:{}", receiptId, productId, product.getName());
 			return "receipt-product-list?receiptId=" + receiptId + "&amp;faces-redirect=true";
@@ -93,7 +93,7 @@ public class ReceiptProductEditController implements Serializable {
 			LOGGER.trace("Editing existing product.");
 			ReceiptProductDto newProduct = asReceiptProductDto(receiptId, product.getId(), form);
 			newProduct.setId(receiptProductId);
-			receiptProductService.updateProduct(newProduct);
+			receiptProductStorageService.updateProduct(newProduct);
 			receiptProductControllerService.updateReceiptTotalAmount(receiptId);
 			LOGGER.info("Updated existing product. receiptId:{}, productId:{}, productName:{}", receiptId, product.getId(), product.getName());
 			return "receipt-product-list?receiptId=" + receiptId + "&amp;faces-redirect=true";
@@ -126,10 +126,10 @@ public class ReceiptProductEditController implements Serializable {
 
 	private String initDataForEditingExistingProduct() {
 		LOGGER.trace("Init data for editing existing product");
-		ReceiptProductDto receiptProduct = receiptProductService.findProductById(receiptProductId);
+		ReceiptProductDto receiptProduct = receiptProductStorageService.findProductById(receiptProductId);
 		if (receiptProduct != null) {
 			receiptId = receiptProduct.getReceiptId();
-			product = productService.findById(receiptProduct.getProductId());
+			product = productStorageService.findById(receiptProduct.getProductId());
 			form.setAmount(receiptProduct.getAmount());
 			form.setUnitPrice(receiptProduct.getPricePerUnit());
 			form.setDescription(receiptProduct.getDescription());
@@ -141,9 +141,9 @@ public class ReceiptProductEditController implements Serializable {
 
 	private String initDataForAddingNewProduct() {
 		LOGGER.trace("Init data for adding new product");
-		ReceiptDto receipt = receiptService.findById(receiptId);
+		ReceiptDto receipt = receiptStorageService.findById(receiptId);
 		if (receipt != null) {
-			product = productService.findById(productId);
+			product = productStorageService.findById(productId);
 			if (product != null) {
 				return null;
 			}

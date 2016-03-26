@@ -1,4 +1,4 @@
-package pl.vgtworld.budget.services.storage;
+package pl.vgtworld.budget.services;
 
 import pl.vgtworld.budget.services.dto.receipts.ReceiptProductDto;
 import pl.vgtworld.budget.storage.receiptproducts.ReceiptProduct;
@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Stateless
-public class ReceiptProductService {
+public class ReceiptProductStorageService {
 
 	@EJB
 	private ReceiptProductDao receiptProductDao;
@@ -30,7 +30,7 @@ public class ReceiptProductService {
 	}
 
 	public List<ReceiptProductDto> findProductsForReceipt(int receiptId) {
-		return receiptProductDao.findForReceipt(receiptId).stream().map(ReceiptProductService::asReceiptProductDto).collect(Collectors.toList());
+		return receiptProductDao.findForReceipt(receiptId).stream().map(ReceiptProductStorageService::asReceiptProductDto).collect(Collectors.toList());
 	}
 
 	public void updateProduct(ReceiptProductDto product) {

@@ -3,8 +3,8 @@ package pl.vgtworld.budget.app.store.edit;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pl.vgtworld.budget.app.store.edit.dto.StoreForm;
+import pl.vgtworld.budget.services.StoreStorageService;
 import pl.vgtworld.budget.services.dto.stores.StoreDto;
-import pl.vgtworld.budget.services.storage.StoreService;
 
 import javax.ejb.EJB;
 import javax.faces.view.ViewScoped;
@@ -18,7 +18,7 @@ public class StoreEditController implements Serializable {
 	private static final Logger LOGGER = LoggerFactory.getLogger(StoreEditController.class);
 
 	@EJB
-	private StoreService storeService;
+	private StoreStorageService storeStorageService;
 
 	private StoreForm store = new StoreForm();
 
@@ -44,17 +44,17 @@ public class StoreEditController implements Serializable {
 		LOGGER.debug("Submitted store form: {}", store);
 		StoreDto dto = asStoreDto(store);
 		if (storeId == null) {
-			storeService.createNewStore(dto);
+			storeStorageService.createNewStore(dto);
 		} else {
 			dto.setId(storeId);
-			storeService.updateStore(dto);
+			storeStorageService.updateStore(dto);
 		}
 		return "store-list?faces-redirect=true";
 	}
 
 	public void fillFormWithEditedStoreData() {
 		if (storeId != null) {
-			StoreDto dto = storeService.findById(storeId);
+			StoreDto dto = storeStorageService.findById(storeId);
 			if (dto != null) {
 				store.setStoreName(dto.getName());
 				store.setStoreCity(dto.getCity());

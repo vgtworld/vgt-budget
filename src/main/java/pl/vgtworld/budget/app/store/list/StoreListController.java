@@ -1,7 +1,7 @@
 package pl.vgtworld.budget.app.store.list;
 
+import pl.vgtworld.budget.services.StoreStorageService;
 import pl.vgtworld.budget.services.dto.stores.StoreDto;
-import pl.vgtworld.budget.services.storage.StoreService;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
@@ -14,7 +14,7 @@ import java.util.List;
 public class StoreListController {
 
 	@EJB
-	private StoreService storeService;
+	private StoreStorageService storeStorageService;
 
 	private List<StoreDto> storeList;
 
@@ -28,6 +28,6 @@ public class StoreListController {
 
 	@PostConstruct
 	public void loadStores() {
-		storeList = storeService.listAvailableStores();
+		storeList = storeStorageService.listAvailableStores();
 	}
 }

@@ -3,11 +3,11 @@ package pl.vgtworld.budget.app.product.edit;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pl.vgtworld.budget.app.product.edit.dto.ProductWithTags;
+import pl.vgtworld.budget.services.ProductStorageService;
+import pl.vgtworld.budget.services.ProductTagStorageService;
+import pl.vgtworld.budget.services.TagStorageService;
 import pl.vgtworld.budget.services.dto.products.ProductDto;
 import pl.vgtworld.budget.services.dto.tags.TagDto;
-import pl.vgtworld.budget.services.storage.ProductService;
-import pl.vgtworld.budget.services.storage.ProductTagService;
-import pl.vgtworld.budget.services.storage.TagService;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -18,19 +18,19 @@ public class ProductEditService {
 	private static final Logger LOGGER = LoggerFactory.getLogger(ProductEditService.class);
 
 	@EJB
-	private ProductService productService;
+	private ProductStorageService productStorageService;
 
 	@EJB
-	private TagService tagService;
+	private TagStorageService tagStorageService;
 
 	@EJB
-	private ProductTagService productTagService;
+	private ProductTagStorageService productTagStorageService;
 
 	public int createNewProduct(ProductWithTags product) {
 		LOGGER.debug("Create new product with tags: {}", product);
 		ProductDto productServiceDto = new ProductDto();
 		productServiceDto.setName(product.getName());
-		int productId = productService.createNewProduct(productServiceDto);
+		int productId = productStorageService.createNewProduct(productServiceDto);
 		for (String tagName : product.getTags()) {
 			linkProductWithTag(productId, tagName);
 		}
@@ -41,8 +41,8 @@ public class ProductEditService {
 		ProductDto productDto = new ProductDto();
 		productDto.setId(productId);
 		productDto.setName(product.getName());
-		productService.updateExistingProduct(productDto);
-		tagService.deleteForProduct(productId);
+		productStorageService.updateExistingProduct(productDto);
+		tagStorageService.deleteForProduct(productId);
 		for (String tagName : product.getTags()) {
 			linkProductWithTag(productId, tagName);
 		}
@@ -50,14 +50,14 @@ public class ProductEditService {
 
 	private void linkProductWithTag(int productId, String tagName) {
 		TagDto tag;
-		if (tagService.existWithName(tagName)) {
-			tag = tagService.findByName(tagName);
+		if (tagStorageService.existWithName(tagName)) {
+			tag = tagStorageService.findByName(tagName);
 		} else {
 			TagDto newTag = new TagDto();
 			newTag.setName(tagName);
-			tag = tagService.createNewTag(newTag);
+			tag = tagStorageService.createNewTag(newTag);
 		}
-		productTagService.createNewLink(productId, tag.getId());
+		productTagStorageService.createNewLink(productId, tag.getId());
 	}
 
 }

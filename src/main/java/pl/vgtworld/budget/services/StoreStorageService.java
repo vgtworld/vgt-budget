@@ -1,4 +1,4 @@
-package pl.vgtworld.budget.services.storage;
+package pl.vgtworld.budget.services;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,9 +13,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Stateless
-public class StoreService {
+public class StoreStorageService {
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(StoreService.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(StoreStorageService.class);
 
 	@EJB
 	private StoreDao storeDao;
@@ -55,7 +55,7 @@ public class StoreService {
 
 	public List<StoreDto> listAvailableStores() {
 		LOGGER.debug("List all stores");
-		return storeDao.listAvailable().stream().map(StoreService::asStoreItem).collect(Collectors.toList());
+		return storeDao.listAvailable().stream().map(StoreStorageService::asStoreItem).collect(Collectors.toList());
 	}
 
 	private static StoreDto asStoreItem(Store store) {
