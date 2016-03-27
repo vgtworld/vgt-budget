@@ -2,6 +2,8 @@ package pl.vgtworld.budget.services;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import pl.vgtworld.budget.core.utils.calendar.DateRangeUtil;
+import pl.vgtworld.budget.core.utils.calendar.MonthRangeDto;
 import pl.vgtworld.budget.services.dto.receipts.ReceiptDto;
 import pl.vgtworld.budget.storage.receipts.Receipt;
 import pl.vgtworld.budget.storage.receipts.ReceiptDao;
@@ -9,7 +11,6 @@ import pl.vgtworld.budget.storage.receipts.ReceiptDao;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import java.math.BigDecimal;
-import java.util.Calendar;
 import java.util.Date;
 
 @Stateless
@@ -63,12 +64,8 @@ public class ReceiptStorageService {
 	}
 
 	public BigDecimal getTotalAmountSum(int year, int month) {
-		Calendar calendar = Calendar.getInstance();
-		calendar.set(year, month, 1, 0, 0, 0);
-		Date startDate = calendar.getTime();
-		calendar.set(Calendar.DAY_OF_MONTH, calendar.getActualMaximum(Calendar.DAY_OF_MONTH));
-		Date endDate = calendar.getTime();
-		return receiptDao.getTotalAmountSum(startDate, endDate);
+		MonthRangeDto monthRange = DateRangeUtil.findFirstAndLastDayOfMonth(year, month);
+		return receiptDao.getTotalAmountSum(monthRange.getStartDate(), monthRange.getEndDate());
 	}
 
 	private static ReceiptDto asReceiptDto(Receipt receipt) {
