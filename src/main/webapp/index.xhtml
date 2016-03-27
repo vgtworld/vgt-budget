@@ -7,7 +7,7 @@
     <ui:define name="content">
         <h1 class="text-center">VGT Budget</h1>
 
-        <div class="container-fluid col-lg-3">
+        <div class="container-fluid col-lg-4">
             <div class="bubble">
                 <h2>Spending this month:</h2>
                 <p class="mainpage-total-amount">#{indexController.spendingThisMonth}</p>
@@ -16,6 +16,22 @@
                 <h2>Spending last month:</h2>
                 <p class="mainpage-total-amount">#{indexController.spendingLastMonth}</p>
             </div>
+        </div>
+
+        <div class="container-fluid col-lg-4">
+            <h2>10 products with most spending this month:</h2>
+            <table class="table">
+                <tr>
+                    <th>Product</th>
+                    <th class="text-right">Total</th>
+                </tr>
+                <ui:repeat value="#{indexController.listProductsWithMostSpendingThisMonth()}" var="product">
+                    <tr>
+                        <td>#{product.productName}</td>
+                        <td class="text-right">#{product.totalAmount}</td>
+                    </tr>
+                </ui:repeat>
+            </table>
         </div>
     </ui:define>
 </ui:composition>
