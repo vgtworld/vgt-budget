@@ -19,6 +19,17 @@
             </h:outputText>
         </h2>
 
+        <div class="text-center">
+            <h:link styleClass="btn btn-default" value="Previous month" outcome="products-monthly-spending">
+                <f:param name="year" value="#{monthlySpendingController.previousPageYear}"/>
+                <f:param name="month" value="#{monthlySpendingController.previousPageMonth}"/>
+            </h:link>
+            <h:link styleClass="btn btn-default" value="Next month" outcome="products-monthly-spending">
+                <f:param name="year" value="#{monthlySpendingController.nextPageYear}"/>
+                <f:param name="month" value="#{monthlySpendingController.nextPageMonth}"/>
+            </h:link>
+        </div>
+
         <div class="container-fluid col-lg-4 col-lg-offset-4">
             <table class="table">
                 <tr>
