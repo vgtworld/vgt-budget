@@ -11,7 +11,13 @@ import java.util.List;
 @RequestScoped
 public class MonthlySpendingController {
 
-	private Calendar calendar = Calendar.getInstance();
+	private Calendar calendar;
+
+	private Integer year;
+
+	private Integer month;
+
+	private List<ProductWithSpendingDto> productsWithSpending;
 
 	@EJB
 	private ProductWithSpendingRepository productWithSpendingRepository;
@@ -20,10 +26,39 @@ public class MonthlySpendingController {
 		return calendar.getTime();
 	}
 
-	public List<ProductWithSpendingDto> listProductsWithMostSpending() {
-		int month = calendar.get(Calendar.MONTH);
-		int year = calendar.get(Calendar.YEAR);
-		return productWithSpendingRepository.listProductsWithBiggestSpending(year, month, null);
+	public Integer getYear() {
+		return year;
+	}
+
+	public void setYear(Integer year) {
+		this.year = year;
+	}
+
+	public Integer getMonth() {
+		return month;
+	}
+
+	public void setMonth(Integer month) {
+		this.month = month;
+	}
+
+	public List<ProductWithSpendingDto> getProductsWithSpending() {
+		return productsWithSpending;
+	}
+
+	public String initData() {
+		calendar = Calendar.getInstance();
+		if (month == null && year == null) {
+			month = calendar.get(Calendar.MONTH);
+			year = calendar.get(Calendar.YEAR);
+		}
+		if (month == null || year == null || month < 0 || month > 11 || year < 1) {
+			return "index?faces-redirect==true";
+		}
+		calendar.set(Calendar.YEAR, year);
+		calendar.set(Calendar.MONTH, month);
+		productsWithSpending = productWithSpendingRepository.listProductsWithBiggestSpending(year, month, null);
+		return null;
 	}
 
 }

@@ -5,6 +5,11 @@
         xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
         template="/WEB-INF/templates/basic.xhtml"
         >
+    <f:metadata>
+        <f:viewParam name="year" value="#{monthlySpendingController.year}"/>
+        <f:viewParam name="month" value="#{monthlySpendingController.month}"/>
+        <f:viewAction action="#{monthlySpendingController.initData()}"/>
+    </f:metadata>
     <ui:define name="pageTitle">Product monthly spending</ui:define>
     <ui:define name="content">
         <h2 class="text-center">
@@ -20,7 +25,7 @@
                     <th>Product</th>
                     <th class="text-right">Total</th>
                 </tr>
-                <ui:repeat value="#{monthlySpendingController.listProductsWithMostSpending()}" var="product">
+                <ui:repeat value="#{monthlySpendingController.productsWithSpending}" var="product">
                     <tr>
                         <td>#{product.productName}</td>
                         <td class="text-right">#{product.totalAmount}</td>
