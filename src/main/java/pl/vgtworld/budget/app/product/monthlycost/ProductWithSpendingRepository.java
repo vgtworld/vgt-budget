@@ -1,4 +1,4 @@
-package pl.vgtworld.budget.app.index;
+package pl.vgtworld.budget.app.product.monthlycost;
 
 import pl.vgtworld.budget.core.utils.PersistenceUtil;
 import pl.vgtworld.budget.core.utils.calendar.DateRangeUtil;
@@ -22,7 +22,7 @@ public class ProductWithSpendingRepository {
 		return listProductsWithBiggestSpending(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), 10);
 	}
 
-	private List<ProductWithSpendingDto> listProductsWithBiggestSpending(int year, int month, Integer limit) {
+	public List<ProductWithSpendingDto> listProductsWithBiggestSpending(int year, int month, Integer limit) {
 		MonthRangeDto monthRange = DateRangeUtil.findFirstAndLastDayOfMonth(year, month);
 		Query query = em.createNativeQuery(ProductWithSpendingDto.NATIVE_QUERY_LIST_PRODUCTS, ProductWithSpendingDto.RESULT_SET_MAPPING_NAME);
 		query.setParameter(1, monthRange.getStartDate());

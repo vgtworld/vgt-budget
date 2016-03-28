@@ -1,0 +1,25 @@
+<ui:composition
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+        template="/WEB-INF/templates/basic.xhtml"
+        >
+    <ui:define name="pageTitle">Product monthly spending</ui:define>
+    <ui:define name="content">
+        <h2 class="text-center">Product monthly spending</h2>
+
+        <div class="container-fluid col-lg-4 col-lg-offset-4">
+            <table class="table">
+                <tr>
+                    <th>Product</th>
+                    <th class="text-right">Total</th>
+                </tr>
+                <ui:repeat value="#{monthlySpendingController.listProductsWithMostSpending()}" var="product">
+                    <tr>
+                        <td>#{product.productName}</td>
+                        <td class="text-right">#{product.totalAmount}</td>
+                    </tr>
+                </ui:repeat>
+            </table>
+        </div>
+    </ui:define>
+</ui:composition>

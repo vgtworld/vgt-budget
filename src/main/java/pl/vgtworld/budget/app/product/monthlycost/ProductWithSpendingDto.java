@@ -1,4 +1,4 @@
-package pl.vgtworld.budget.app.index;
+package pl.vgtworld.budget.app.product.monthlycost;
 
 import javax.persistence.ColumnResult;
 import javax.persistence.ConstructorResult;
