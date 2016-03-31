@@ -1,9 +1,15 @@
 <ui:composition
         xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:f="http://xmlns.jcp.org/jsf/core"
         xmlns:h="http://xmlns.jcp.org/jsf/html"
         xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
         template="/WEB-INF/templates/basic.xhtml"
         >
+    <f:metadata>
+        <f:viewParam name="page" value="#{receiptListController.pageNumber}"/>
+        <f:viewParam name="count" value="#{receiptListController.resultsPerPage}"/>
+        <f:viewAction action="#{receiptListController.init()}"/>
+    </f:metadata>
     <ui:define name="pageTitle">Receipt list</ui:define>
     <ui:define name="content">
         <h2 class="text-center">Receipt list</h2>

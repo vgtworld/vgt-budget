@@ -14,8 +14,14 @@ public class ReceiptRepository {
 	@PersistenceContext
 	private EntityManager em;
 
-	public List<ReceiptWithStoreDto> listNewestReceipts() {
+	public List<ReceiptWithStoreDto> listNewestReceipts(Integer offset, Integer limit) {
 		Query query = em.createNativeQuery(ReceiptWithStoreDto.NATIVE_QUERY_LIST_NEWEST, ReceiptWithStoreDto.RESULT_SET_MAPPING_NAME);
+		if (offset != null) {
+			query.setFirstResult(offset);
+		}
+		if (limit != null) {
+			query.setMaxResults(limit);
+		}
 		return PersistenceUtil.getResultList(query);
 	}
 

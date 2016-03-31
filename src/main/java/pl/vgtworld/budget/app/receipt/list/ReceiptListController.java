@@ -5,7 +5,6 @@ import pl.vgtworld.budget.app.receipt.ReceiptWithStoreDto;
 import pl.vgtworld.budget.services.ReceiptStorageService;
 import pl.vgtworld.budget.services.StoreStorageService;
 
-import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
@@ -26,12 +25,32 @@ public class ReceiptListController {
 
 	private List<ReceiptWithStoreDto> receiptList;
 
+	private Integer resultsPerPage;
+
+	private Integer pageNumber;
+
 	public List<ReceiptWithStoreDto> getReceiptList() {
 		return receiptList;
 	}
 
-	@PostConstruct
+	public Integer getResultsPerPage() {
+		return resultsPerPage;
+	}
+
+	public void setResultsPerPage(Integer resultsPerPage) {
+		this.resultsPerPage = resultsPerPage;
+	}
+
+	public Integer getPageNumber() {
+		return pageNumber;
+	}
+
+	public void setPageNumber(Integer pageNumber) {
+		this.pageNumber = pageNumber;
+	}
+
 	public void init() {
+		validateParameters();
 		loadReceiptList();
 	}
 
@@ -40,8 +59,18 @@ public class ReceiptListController {
 		loadReceiptList();
 	}
 
+	private void validateParameters() {
+		if (pageNumber != null && pageNumber < 1) {
+			pageNumber = null;
+		}
+		if (resultsPerPage != null && resultsPerPage < 1) {
+			resultsPerPage = null;
+		}
+	}
+
 	private void loadReceiptList() {
-		receiptList = receiptRepository.listNewestReceipts();
+		Integer offset = resultsPerPage != null && pageNumber != null ? resultsPerPage * (pageNumber - 1) : null;
+		receiptList = receiptRepository.listNewestReceipts(offset, resultsPerPage);
 	}
 
 }
