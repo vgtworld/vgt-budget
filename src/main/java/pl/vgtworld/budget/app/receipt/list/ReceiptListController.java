@@ -56,7 +56,7 @@ public class ReceiptListController {
 	}
 
 	public boolean isPaginationEnabled() {
-		return pageNumber > 0 && resultsPerPage > 0 && maxPageNumber > 0;
+		return pageNumber > 0 && resultsPerPage > 0 && maxPageNumber > 1;
 	}
 
 	public String init() {
