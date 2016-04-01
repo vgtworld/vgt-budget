@@ -25,9 +25,9 @@ public class ReceiptListController {
 
 	private List<ReceiptWithStoreDto> receiptList;
 
-	private Integer resultsPerPage;
+	private int resultsPerPage;
 
-	private Integer pageNumber;
+	private int pageNumber;
 
 	private long maxPageNumber;
 
@@ -35,28 +35,36 @@ public class ReceiptListController {
 		return receiptList;
 	}
 
-	public Integer getResultsPerPage() {
+	public int getResultsPerPage() {
 		return resultsPerPage;
 	}
 
-	public void setResultsPerPage(Integer resultsPerPage) {
+	public void setResultsPerPage(int resultsPerPage) {
 		this.resultsPerPage = resultsPerPage;
 	}
 
-	public Integer getPageNumber() {
+	public int getPageNumber() {
 		return pageNumber;
 	}
 
-	public void setPageNumber(Integer pageNumber) {
+	public void setPageNumber(int pageNumber) {
 		this.pageNumber = pageNumber;
+	}
+
+	public long getMaxPageNumber() {
+		return maxPageNumber;
+	}
+
+	public boolean isPaginationEnabled() {
+		return pageNumber > 0 && resultsPerPage > 0 && maxPageNumber > 0;
 	}
 
 	public String init() {
 		if (!validateParameters()) {
 			return "index?faces-redirect=true";
 		}
-		if (resultsPerPage != null) {
-			if (pageNumber == null) {
+		if (resultsPerPage != 0) {
+			if (pageNumber == 0) {
 				pageNumber = 1;
 			}
 			long receiptCount = receiptStorageService.countNotDeleted();
@@ -72,18 +80,17 @@ public class ReceiptListController {
 	}
 
 	private boolean validateParameters() {
-		if (pageNumber != null && pageNumber < 1) {
+		if (pageNumber < 0) {
 			return false;
 		}
-		if (resultsPerPage != null && resultsPerPage < 1) {
+		if (resultsPerPage < 0) {
 			return false;
 		}
 		return true;
 	}
 
 	private void loadReceiptList() {
-		Integer offset = resultsPerPage != null && pageNumber != null ? resultsPerPage * (pageNumber - 1) : null;
-		receiptList = receiptRepository.listNewestReceipts(offset, resultsPerPage);
+		receiptList = receiptRepository.listNewestReceipts(resultsPerPage * (pageNumber - 1), resultsPerPage);
 	}
 
 }
