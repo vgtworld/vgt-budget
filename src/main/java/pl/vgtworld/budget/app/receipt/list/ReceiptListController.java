@@ -29,6 +29,8 @@ public class ReceiptListController {
 
 	private Integer pageNumber;
 
+	private long maxPageNumber;
+
 	public List<ReceiptWithStoreDto> getReceiptList() {
 		return receiptList;
 	}
@@ -52,6 +54,13 @@ public class ReceiptListController {
 	public String init() {
 		if (!validateParameters()) {
 			return "index?faces-redirect=true";
+		}
+		if (resultsPerPage != null) {
+			if (pageNumber == null) {
+				pageNumber = 1;
+			}
+			long receiptCount = receiptStorageService.countNotDeleted();
+			maxPageNumber = receiptCount / resultsPerPage + (receiptCount % resultsPerPage != 0 ? 1 : 0);
 		}
 		loadReceiptList();
 		return null;
