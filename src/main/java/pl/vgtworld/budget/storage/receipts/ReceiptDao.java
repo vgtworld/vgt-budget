@@ -39,4 +39,9 @@ public class ReceiptDao {
 		query.executeUpdate();
 	}
 
+	public long countNotDeleted() {
+		Query query = em.createNamedQuery(Receipt.QUERY_COUNT_NOT_DELETED);
+		return (Long)query.getSingleResult();
+	}
+
 }

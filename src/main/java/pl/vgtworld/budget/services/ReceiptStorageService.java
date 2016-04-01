@@ -68,6 +68,10 @@ public class ReceiptStorageService {
 		return receiptDao.getTotalAmountSum(monthRange.getStartDate(), monthRange.getEndDate());
 	}
 
+	public long countNotDeleted() {
+		return receiptDao.countNotDeleted();
+	}
+
 	private static ReceiptDto asReceiptDto(Receipt receipt) {
 		if (receipt == null) {
 			return null;
