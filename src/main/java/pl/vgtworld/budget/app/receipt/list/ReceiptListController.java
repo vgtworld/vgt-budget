@@ -49,9 +49,12 @@ public class ReceiptListController {
 		this.pageNumber = pageNumber;
 	}
 
-	public void init() {
-		validateParameters();
+	public String init() {
+		if (!validateParameters()) {
+			return "index?faces-redirect=true";
+		}
 		loadReceiptList();
+		return null;
 	}
 
 	public void moveReceiptToTrash(int receiptId) {
@@ -59,13 +62,14 @@ public class ReceiptListController {
 		loadReceiptList();
 	}
 
-	private void validateParameters() {
+	private boolean validateParameters() {
 		if (pageNumber != null && pageNumber < 1) {
-			pageNumber = null;
+			return false;
 		}
 		if (resultsPerPage != null && resultsPerPage < 1) {
-			resultsPerPage = null;
+			return false;
 		}
+		return true;
 	}
 
 	private void loadReceiptList() {
