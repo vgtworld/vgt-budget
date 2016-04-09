@@ -49,7 +49,11 @@
                 </tr>
                 <ui:repeat value="#{receiptProductListController.products}" var="product">
                     <tr>
-                        <td>#{product.productName}</td>
+                        <td>
+                            <h:link outcome="/product-details" value="#{product.productName}">
+                                <f:param name="productId" value="#{product.id}"/>
+                            </h:link>
+                        </td>
                         <td class="text-right">
                             <h:outputText value="#{product.amount}">
                                 <f:convertNumber pattern="#.###"/>

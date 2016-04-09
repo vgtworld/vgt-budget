@@ -1,5 +1,6 @@
 <ui:composition
         xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:f="http://xmlns.jcp.org/jsf/core"
         xmlns:h="http://xmlns.jcp.org/jsf/html"
         xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
         template="/WEB-INF/templates/basic.xhtml"
@@ -28,7 +29,11 @@
                 </tr>
                 <ui:repeat value="#{indexController.listProductsWithMostSpendingThisMonth()}" var="product">
                     <tr>
-                        <td>#{product.productName}</td>
+                        <td>
+                            <h:link outcome="/product-details" value="#{product.productName}">
+                                <f:param name="productId" value="#{product.id}"/>
+                            </h:link>
+                        </td>
                         <td class="text-right">#{product.totalAmount}</td>
                     </tr>
                 </ui:repeat>

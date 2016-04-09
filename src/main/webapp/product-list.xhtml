@@ -22,7 +22,11 @@
                 </tr>
                 <ui:repeat value="#{productListController.products}" var="product">
                     <tr>
-                        <td>#{product.product.name}</td>
+                        <td>
+                            <h:link outcome="/product-details" value="#{product.product.name}">
+                                <f:param name="productId" value="#{product.product.id}"/>
+                            </h:link>
+                        </td>
                         <td>
                             <ui:repeat value="#{product.tags}" var="tag">
                                 <span class="label label-primary">#{tag.name}</span>

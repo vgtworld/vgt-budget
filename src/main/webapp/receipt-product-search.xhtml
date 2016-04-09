@@ -19,7 +19,11 @@
                 </tr>
                 <ui:repeat value="#{receiptProductSearchController.recentlyBought}" var="product">
                     <tr>
-                        <td>#{product.name}</td>
+                        <td>
+                            <h:link outcome="/product-details" value="#{product.name}">
+                                <f:param name="productId" value="#{product.id}"/>
+                            </h:link>
+                        </td>
                         <td class="text-right">
                             <h:link styleClass="btn btn-default btn-xs" outcome="receipt-product-edit" value="Add to receipt">
                                 <f:param name="receiptId" value="#{receiptProductSearchController.receiptId}"/>
@@ -59,7 +63,11 @@
                     </tr>
                     <ui:repeat value="#{receiptProductSearchController.productsSearch}" var="product">
                         <tr>
-                            <td>#{product.name}</td>
+                            <td>
+                                <h:link outcome="/product-details" value="#{product.name}">
+                                    <f:param name="productId" value="#{product.id}"/>
+                                </h:link>
+                            </td>
                             <td class="text-right">
                                 <h:link styleClass="btn btn-default btn-xs" outcome="receipt-product-edit" value="Add to receipt">
                                     <f:param name="receiptId" value="#{receiptProductSearchController.receiptId}"/>
