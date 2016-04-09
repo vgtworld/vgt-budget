@@ -1,6 +1,7 @@
 <ui:composition
         xmlns="http://www.w3.org/1999/xhtml"
         xmlns:f="http://xmlns.jcp.org/jsf/core"
+        xmlns:h="http://xmlns.jcp.org/jsf/html"
         xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
         template="/WEB-INF/templates/basic.xhtml"
         >
@@ -11,5 +12,32 @@
     <ui:define name="pageTitle">#{productDetailsController.product.name} - product details</ui:define>
     <ui:define name="content">
         <h2 class="text-center">#{productDetailsController.product.name}</h2>
+
+        <div class="container-fluid col-lg-3">
+            <h3 class="text-center">Recent price history</h3>
+
+            <h:panelGroup rendered="#{not empty productDetailsController.productPriceHistory}">
+                <table class="table">
+                    <tr>
+                        <th>Store</th>
+                        <th>Purchase Date</th>
+                        <th class="text-right">Price</th>
+                    </tr>
+                    <ui:repeat value="#{productDetailsController.productPriceHistory}" var="productPriceHistory">
+                        <tr>
+                            <td>#{productPriceHistory.storeName}</td>
+                            <td>#{productPriceHistory.purchaseDate}</td>
+                            <td class="text-right">#{productPriceHistory.price}</td>
+                        </tr>
+                    </ui:repeat>
+                </table>
+            </h:panelGroup>
+            <h:panelGroup rendered="#{empty productDetailsController.productPriceHistory}">
+                <div class="alert alert-danger">
+                    No history found
+                </div>
+            </h:panelGroup>
+
+        </div>
     </ui:define>
 </ui:composition>

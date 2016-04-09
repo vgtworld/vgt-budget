@@ -6,6 +6,7 @@ import pl.vgtworld.budget.services.dto.products.ProductDto;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
+import java.util.List;
 
 @Named
 @RequestScoped
@@ -14,9 +15,14 @@ public class ProductDetailsController {
 	@EJB
 	private ProductStorageService productStorageService;
 
+	@EJB
+	private ProductDetailsRepository productDetailsRepository;
+
 	private Integer productId;
 
 	private ProductDto product;
+
+	private List<ProductPriceHistoryDto> productPriceHistory;
 
 	public Integer getProductId() {
 		return productId;
@@ -30,6 +36,10 @@ public class ProductDetailsController {
 		return product;
 	}
 
+	public List<ProductPriceHistoryDto> getProductPriceHistory() {
+		return productPriceHistory;
+	}
+
 	public String initData() {
 		final String mainPageRedirect = "index?faces-redirect=true";
 		if (productId == null) {
@@ -39,6 +49,7 @@ public class ProductDetailsController {
 		if (product == null) {
 			return mainPageRedirect;
 		}
+		productPriceHistory = productDetailsRepository.listPriceHistoryForProduct(productId, 10);
 		return null;
 	}
 
