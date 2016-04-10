@@ -26,7 +26,11 @@
                     <ui:repeat value="#{productDetailsController.productPriceHistory}" var="productPriceHistory">
                         <tr>
                             <td>#{productPriceHistory.storeName}</td>
-                            <td>#{productPriceHistory.purchaseDate}</td>
+                            <td>
+                                <h:outputText value="#{productPriceHistory.purchaseDate}">
+                                    <f:convertDateTime pattern="#{msg.patterns_display_date}"/>
+                                </h:outputText>
+                            </td>
                             <td class="text-right">#{productPriceHistory.price}</td>
                         </tr>
                     </ui:repeat>

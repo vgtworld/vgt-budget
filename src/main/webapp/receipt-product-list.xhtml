@@ -23,7 +23,9 @@
             </p>
             <h3>Purchase date</h3>
             <p>
-                #{receiptProductListController.receipt.purchaseDate}
+                <h:outputText value="#{receiptProductListController.receipt.purchaseDate}">
+                    <f:convertDateTime pattern="#{msg.patterns_display_date}"/>
+                </h:outputText>
             </p>
             <h3>Total price</h3>
             <p>

@@ -31,7 +31,11 @@
                 <ui:repeat value="#{receiptListController.receiptList}" var="receipt">
                     <tr>
                         <td>#{receipt.store}</td>
-                        <td class="text-right">#{receipt.purchaseDate}</td>
+                        <td class="text-right">
+                            <h:outputText value="#{receipt.purchaseDate}">
+                                <f:convertDateTime pattern="#{msg.patterns_display_date}"/>
+                            </h:outputText>
+                        </td>
                         <td class="text-right">#{receipt.totalAmount}</td>
                         <td class="text-right">
                             <h:link styleClass="btn btn-default btn-xs" outcome="/receipt-edit?receiptId=#{receipt.id}" value="Edit"/>
