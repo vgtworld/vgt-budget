@@ -1,4 +1,4 @@
-package pl.vgtworld.budget.app.product.details;
+package pl.vgtworld.budget.app.product.pricehistory;
 
 import javax.persistence.ColumnResult;
 import javax.persistence.ConstructorResult;

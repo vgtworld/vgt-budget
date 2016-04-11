@@ -1,7 +1,5 @@
-package pl.vgtworld.budget.app.product.details;
+package pl.vgtworld.budget.app.product.pricehistory;
 
-import pl.vgtworld.budget.app.product.pricehistory.ProductPriceHistoryRepository;
-import pl.vgtworld.budget.app.product.pricehistory.ProductPriceHistoryDto;
 import pl.vgtworld.budget.services.ProductStorageService;
 import pl.vgtworld.budget.services.dto.products.ProductDto;
 
@@ -12,7 +10,7 @@ import java.util.List;
 
 @Named
 @RequestScoped
-public class ProductDetailsController {
+public class ProductPriceHistoryController {
 
 	@EJB
 	private ProductStorageService productStorageService;
@@ -51,7 +49,7 @@ public class ProductDetailsController {
 		if (product == null) {
 			return mainPageRedirect;
 		}
-		productPriceHistory = productPriceHistoryRepository.listPriceHistoryForProduct(productId, 10);
+		productPriceHistory = productPriceHistoryRepository.listPriceHistoryForProduct(productId, null);
 		return null;
 	}
 

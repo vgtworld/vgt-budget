@@ -1,4 +1,4 @@
-package pl.vgtworld.budget.app.product.details;
+package pl.vgtworld.budget.app.product.pricehistory;
 
 import pl.vgtworld.budget.core.utils.PersistenceUtil;
 
@@ -9,7 +9,7 @@ import javax.persistence.Query;
 import java.util.List;
 
 @Stateless
-public class ProductDetailsRepository {
+public class ProductPriceHistoryRepository {
 
 	@PersistenceContext
 	private EntityManager em;
