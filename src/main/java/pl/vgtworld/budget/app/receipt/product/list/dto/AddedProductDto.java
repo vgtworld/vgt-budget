@@ -7,6 +7,8 @@ public class AddedProductDto {
 
 	private Integer id;
 
+	private Integer productId;
+
 	private String productName;
 
 	private BigDecimal amount;
@@ -19,6 +21,14 @@ public class AddedProductDto {
 
 	public void setId(Integer id) {
 		this.id = id;
+	}
+
+	public Integer getProductId() {
+		return productId;
+	}
+
+	public void setProductId(Integer productId) {
+		this.productId = productId;
 	}
 
 	public String getProductName() {

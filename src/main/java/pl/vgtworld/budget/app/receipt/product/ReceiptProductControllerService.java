@@ -47,6 +47,7 @@ public class ReceiptProductControllerService {
 	private AddedProductDto asReceiptProductDto(pl.vgtworld.budget.services.dto.receipts.ReceiptProductDto input) {
 		AddedProductDto output = new AddedProductDto();
 		output.setId(input.getId());
+		output.setProductId(input.getProductId());
 		output.setProductName(productStorageService.findById(input.getProductId()).getName());
 		output.setAmount(input.getAmount());
 		output.setPricePerUnit(input.getPricePerUnit());
