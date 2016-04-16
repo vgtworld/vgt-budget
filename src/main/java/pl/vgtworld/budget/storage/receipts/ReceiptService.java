@@ -1,12 +1,9 @@
-package pl.vgtworld.budget.services;
+package pl.vgtworld.budget.storage.receipts;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pl.vgtworld.budget.core.utils.calendar.DateRangeUtil;
 import pl.vgtworld.budget.core.utils.calendar.MonthRangeDto;
-import pl.vgtworld.budget.services.dto.receipts.ReceiptDto;
-import pl.vgtworld.budget.storage.receipts.Receipt;
-import pl.vgtworld.budget.storage.receipts.ReceiptDao;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;

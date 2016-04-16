@@ -4,11 +4,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pl.vgtworld.budget.app.receipt.product.ReceiptProductControllerService;
 import pl.vgtworld.budget.app.receipt.product.list.dto.AddedProductDto;
-import pl.vgtworld.budget.services.ReceiptProductService;
-import pl.vgtworld.budget.services.ReceiptService;
-import pl.vgtworld.budget.services.StoreService;
-import pl.vgtworld.budget.services.dto.receipts.ReceiptDto;
-import pl.vgtworld.budget.services.dto.stores.StoreDto;
+import pl.vgtworld.budget.storage.receiptproducts.ReceiptProductService;
+import pl.vgtworld.budget.storage.receipts.ReceiptService;
+import pl.vgtworld.budget.storage.stores.StoreService;
+import pl.vgtworld.budget.storage.receipts.ReceiptDto;
+import pl.vgtworld.budget.storage.stores.StoreDto;
 
 import javax.ejb.EJB;
 import javax.faces.view.ViewScoped;

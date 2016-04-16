@@ -1,7 +1,7 @@
 package pl.vgtworld.budget.app.product.pricehistory;
 
-import pl.vgtworld.budget.services.ProductService;
-import pl.vgtworld.budget.services.dto.products.ProductDto;
+import pl.vgtworld.budget.storage.products.ProductService;
+import pl.vgtworld.budget.storage.products.ProductDto;
 
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;

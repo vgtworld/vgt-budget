@@ -1,7 +1,7 @@
 package pl.vgtworld.budget.app.product.list.dto;
 
-import pl.vgtworld.budget.services.dto.products.ProductDto;
-import pl.vgtworld.budget.services.dto.tags.TagDto;
+import pl.vgtworld.budget.storage.products.ProductDto;
+import pl.vgtworld.budget.storage.tags.TagDto;
 
 import java.util.List;
 

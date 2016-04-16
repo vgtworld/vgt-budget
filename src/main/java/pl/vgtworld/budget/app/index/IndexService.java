@@ -1,6 +1,6 @@
 package pl.vgtworld.budget.app.index;
 
-import pl.vgtworld.budget.services.ReceiptService;
+import pl.vgtworld.budget.storage.receipts.ReceiptService;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;

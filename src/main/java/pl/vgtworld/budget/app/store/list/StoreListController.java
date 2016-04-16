@@ -1,7 +1,7 @@
 package pl.vgtworld.budget.app.store.list;
 
-import pl.vgtworld.budget.services.StoreService;
-import pl.vgtworld.budget.services.dto.stores.StoreDto;
+import pl.vgtworld.budget.storage.stores.StoreService;
+import pl.vgtworld.budget.storage.stores.StoreDto;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;

@@ -1,10 +1,7 @@
-package pl.vgtworld.budget.services;
+package pl.vgtworld.budget.storage.producttags;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import pl.vgtworld.budget.storage.producttags.ProductTag;
-import pl.vgtworld.budget.storage.producttags.ProductTagDao;
-import pl.vgtworld.budget.storage.producttags.ProductTagPK;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;

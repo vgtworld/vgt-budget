@@ -2,8 +2,8 @@ package pl.vgtworld.budget.app.receipt.trash;
 
 import pl.vgtworld.budget.app.receipt.ReceiptRepository;
 import pl.vgtworld.budget.app.receipt.ReceiptWithStoreDto;
-import pl.vgtworld.budget.services.ReceiptService;
-import pl.vgtworld.budget.services.StoreService;
+import pl.vgtworld.budget.storage.receipts.ReceiptService;
+import pl.vgtworld.budget.storage.stores.StoreService;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;

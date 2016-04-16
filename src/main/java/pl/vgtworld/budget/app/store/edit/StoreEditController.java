@@ -3,8 +3,8 @@ package pl.vgtworld.budget.app.store.edit;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pl.vgtworld.budget.app.store.edit.dto.StoreForm;
-import pl.vgtworld.budget.services.StoreService;
-import pl.vgtworld.budget.services.dto.stores.StoreDto;
+import pl.vgtworld.budget.storage.stores.StoreService;
+import pl.vgtworld.budget.storage.stores.StoreDto;
 
 import javax.ejb.EJB;
 import javax.faces.view.ViewScoped;

@@ -1,8 +1,4 @@
-package pl.vgtworld.budget.services;
-
-import pl.vgtworld.budget.services.dto.receipts.ReceiptProductDto;
-import pl.vgtworld.budget.storage.receiptproducts.ReceiptProduct;
-import pl.vgtworld.budget.storage.receiptproducts.ReceiptProductDao;
+package pl.vgtworld.budget.storage.receiptproducts;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;

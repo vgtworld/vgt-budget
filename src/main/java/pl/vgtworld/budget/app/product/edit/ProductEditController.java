@@ -4,10 +4,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pl.vgtworld.budget.app.product.edit.dto.ProductForm;
 import pl.vgtworld.budget.app.product.edit.dto.ProductWithTags;
-import pl.vgtworld.budget.services.ProductService;
-import pl.vgtworld.budget.services.TagService;
-import pl.vgtworld.budget.services.dto.products.ProductDto;
-import pl.vgtworld.budget.services.dto.tags.TagDto;
+import pl.vgtworld.budget.storage.products.ProductService;
+import pl.vgtworld.budget.storage.tags.TagService;
+import pl.vgtworld.budget.storage.products.ProductDto;
+import pl.vgtworld.budget.storage.tags.TagDto;
 
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;

@@ -1,4 +1,4 @@
-package pl.vgtworld.budget.services.dto.receipts;
+package pl.vgtworld.budget.storage.receipts;
 
 import java.math.BigDecimal;
 import java.util.Date;

@@ -3,10 +3,10 @@ package pl.vgtworld.budget.app.receipt.product;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pl.vgtworld.budget.app.receipt.product.list.dto.AddedProductDto;
-import pl.vgtworld.budget.services.ProductService;
-import pl.vgtworld.budget.services.ReceiptProductService;
-import pl.vgtworld.budget.services.ReceiptService;
-import pl.vgtworld.budget.services.dto.receipts.ReceiptProductDto;
+import pl.vgtworld.budget.storage.products.ProductService;
+import pl.vgtworld.budget.storage.receiptproducts.ReceiptProductService;
+import pl.vgtworld.budget.storage.receipts.ReceiptService;
+import pl.vgtworld.budget.storage.receiptproducts.ReceiptProductDto;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -44,7 +44,7 @@ public class ReceiptProductControllerService {
 		return receiptService.updateReceiptTotalAmount(receiptId, totalAmount);
 	}
 
-	private AddedProductDto asReceiptProductDto(pl.vgtworld.budget.services.dto.receipts.ReceiptProductDto input) {
+	private AddedProductDto asReceiptProductDto(ReceiptProductDto input) {
 		AddedProductDto output = new AddedProductDto();
 		output.setId(input.getId());
 		output.setProductId(input.getProductId());

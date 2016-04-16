@@ -1,4 +1,4 @@
-package pl.vgtworld.budget.services.dto.tags;
+package pl.vgtworld.budget.storage.tags;
 
 public class TagDto {
 

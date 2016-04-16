@@ -1,10 +1,7 @@
-package pl.vgtworld.budget.services;
+package pl.vgtworld.budget.storage.stores;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import pl.vgtworld.budget.services.dto.stores.StoreDto;
-import pl.vgtworld.budget.storage.stores.Store;
-import pl.vgtworld.budget.storage.stores.StoreDao;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
