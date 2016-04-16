@@ -12,9 +12,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Stateless
-public class TagStorageService {
+public class TagService {
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(TagStorageService.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(TagService.class);
 
 	@EJB
 	private TagDao tagDao;
@@ -32,7 +32,7 @@ public class TagStorageService {
 	}
 
 	public List<TagDto> findForProduct(int productId) {
-		return tagDao.findForProduct(productId).stream().map(TagStorageService::asTagItem).collect(Collectors.toList());
+		return tagDao.findForProduct(productId).stream().map(TagService::asTagItem).collect(Collectors.toList());
 	}
 
 	public void deleteForProduct(int productId) {

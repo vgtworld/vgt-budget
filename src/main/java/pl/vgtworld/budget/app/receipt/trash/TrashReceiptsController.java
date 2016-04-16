@@ -2,8 +2,8 @@ package pl.vgtworld.budget.app.receipt.trash;
 
 import pl.vgtworld.budget.app.receipt.ReceiptRepository;
 import pl.vgtworld.budget.app.receipt.ReceiptWithStoreDto;
-import pl.vgtworld.budget.services.ReceiptStorageService;
-import pl.vgtworld.budget.services.StoreStorageService;
+import pl.vgtworld.budget.services.ReceiptService;
+import pl.vgtworld.budget.services.StoreService;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
@@ -17,10 +17,10 @@ import java.util.List;
 public class TrashReceiptsController {
 
 	@EJB
-	private ReceiptStorageService receiptStorageService;
+	private ReceiptService receiptService;
 
 	@EJB
-	private StoreStorageService storeStorageService;
+	private StoreService storeService;
 
 	@EJB
 	private ReceiptRepository receiptRepository;
@@ -37,12 +37,12 @@ public class TrashReceiptsController {
 	}
 
 	public void restoreReceipt(int receiptId) {
-		receiptStorageService.restoreFromTrash(receiptId);
+		receiptService.restoreFromTrash(receiptId);
 		loadReceiptList();
 	}
 
 	public void emptyTrash() {
-		receiptStorageService.emptyTrash();
+		receiptService.emptyTrash();
 		deletedReceipts = new ArrayList<>();
 	}
 

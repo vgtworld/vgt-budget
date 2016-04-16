@@ -2,8 +2,8 @@ package pl.vgtworld.budget.app.receipt.product.search;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import pl.vgtworld.budget.services.ProductStorageService;
-import pl.vgtworld.budget.services.ReceiptStorageService;
+import pl.vgtworld.budget.services.ProductService;
+import pl.vgtworld.budget.services.ReceiptService;
 import pl.vgtworld.budget.services.dto.products.ProductDto;
 import pl.vgtworld.budget.services.dto.receipts.ReceiptDto;
 
@@ -20,10 +20,10 @@ public class ReceiptProductSearchController implements Serializable {
 	private static final Logger LOGGER = LoggerFactory.getLogger(ReceiptProductSearchController.class);
 
 	@EJB
-	private ReceiptStorageService receiptStorageService;
+	private ReceiptService receiptService;
 
 	@EJB
-	private ProductStorageService productStorageService;
+	private ProductService productService;
 
 	private Integer receiptId;
 
@@ -55,7 +55,7 @@ public class ReceiptProductSearchController implements Serializable {
 
 	public void searchProducts() {
 		LOGGER.debug("Search products. Phrase:{}", searchPhrase);
-		productsSearch = productStorageService.searchProductsByName(searchPhrase);
+		productsSearch = productService.searchProductsByName(searchPhrase);
 		LOGGER.debug("Products found: {}", productsSearch.size());
 	}
 
@@ -65,12 +65,12 @@ public class ReceiptProductSearchController implements Serializable {
 
 	public String initData() {
 		if (receiptId != null) {
-			ReceiptDto receipt = receiptStorageService.findById(receiptId);
+			ReceiptDto receipt = receiptService.findById(receiptId);
 			if (receipt == null) {
 				LOGGER.debug("Receipt with provided id does not exist. ID:{}", receiptId);
 				return "receipt-list?faces-redirect=true";
 			}
-			recentlyBought = productStorageService.searchProductsRecentlyBoughtInStore(receipt.getStoreId(), receiptId);
+			recentlyBought = productService.searchProductsRecentlyBoughtInStore(receipt.getStoreId(), receiptId);
 			return null;
 		}
 		LOGGER.warn("Receipt id not available. Unable to fill form.");

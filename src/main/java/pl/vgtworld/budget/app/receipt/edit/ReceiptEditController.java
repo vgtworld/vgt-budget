@@ -3,8 +3,8 @@ package pl.vgtworld.budget.app.receipt.edit;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pl.vgtworld.budget.app.receipt.edit.dto.ReceiptForm;
-import pl.vgtworld.budget.services.ReceiptStorageService;
-import pl.vgtworld.budget.services.StoreStorageService;
+import pl.vgtworld.budget.services.ReceiptService;
+import pl.vgtworld.budget.services.StoreService;
 import pl.vgtworld.budget.services.dto.receipts.ReceiptDto;
 import pl.vgtworld.budget.services.dto.stores.StoreDto;
 
@@ -24,10 +24,10 @@ public class ReceiptEditController implements Serializable {
 	private static final Logger LOGGER = LoggerFactory.getLogger(ReceiptEditController.class);
 
 	@EJB
-	private StoreStorageService storeStorageService;
+	private StoreService storeService;
 
 	@EJB
-	private ReceiptStorageService receiptStorageService;
+	private ReceiptService receiptService;
 
 	private ReceiptForm receipt = new ReceiptForm();
 
@@ -50,7 +50,7 @@ public class ReceiptEditController implements Serializable {
 	}
 
 	public Map<String, Integer> getAvailableStores() {
-		List<StoreDto> stores = storeStorageService.listAvailableStores();
+		List<StoreDto> stores = storeService.listAvailableStores();
 		Map<String, Integer> result = new LinkedHashMap<>();
 		result.put("Choose store...", null);
 		for (StoreDto store : stores) {
@@ -64,18 +64,18 @@ public class ReceiptEditController implements Serializable {
 		LOGGER.debug("Submitted receipt form: {}", receipt);
 		ReceiptDto dto = asReceiptDto(this.receipt);
 		if (receiptId == null) {
-			int newReceiptId = receiptStorageService.createNewReceipt(dto);
+			int newReceiptId = receiptService.createNewReceipt(dto);
 			return "receipt-product-list?receiptId=" + newReceiptId + "&faces-redirect=true";
 		} else {
 			dto.setId(receiptId);
-			receiptStorageService.updateReceipt(dto);
+			receiptService.updateReceipt(dto);
 			return "receipt-list?faces-redirect=true";
 		}
 	}
 
 	public void initData() {
 		if (receiptId != null) {
-			ReceiptDto dto = receiptStorageService.findById(receiptId);
+			ReceiptDto dto = receiptService.findById(receiptId);
 			if (dto != null) {
 				receipt.setStoreId(dto.getStoreId());
 				receipt.setPurchaseDate(dto.getPurchaseDate());

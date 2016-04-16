@@ -2,8 +2,8 @@ package pl.vgtworld.budget.app.receipt.list;
 
 import pl.vgtworld.budget.app.receipt.ReceiptRepository;
 import pl.vgtworld.budget.app.receipt.ReceiptWithStoreDto;
-import pl.vgtworld.budget.services.ReceiptStorageService;
-import pl.vgtworld.budget.services.StoreStorageService;
+import pl.vgtworld.budget.services.ReceiptService;
+import pl.vgtworld.budget.services.StoreService;
 
 import javax.ejb.EJB;
 import javax.faces.view.ViewScoped;
@@ -16,10 +16,10 @@ import java.util.List;
 public class ReceiptListController implements Serializable {
 
 	@EJB
-	private ReceiptStorageService receiptStorageService;
+	private ReceiptService receiptService;
 
 	@EJB
-	private StoreStorageService storeStorageService;
+	private StoreService storeService;
 
 	@EJB
 	private ReceiptRepository receiptRepository;
@@ -68,7 +68,7 @@ public class ReceiptListController implements Serializable {
 			if (pageNumber == 0) {
 				pageNumber = 1;
 			}
-			long receiptCount = receiptStorageService.countNotDeleted();
+			long receiptCount = receiptService.countNotDeleted();
 			maxPageNumber = receiptCount / resultsPerPage + (receiptCount % resultsPerPage != 0 ? 1 : 0);
 		}
 		loadReceiptList();
@@ -76,7 +76,7 @@ public class ReceiptListController implements Serializable {
 	}
 
 	public void moveReceiptToTrash(int receiptId) {
-		receiptStorageService.moveToTrash(receiptId);
+		receiptService.moveToTrash(receiptId);
 		loadReceiptList();
 	}
 

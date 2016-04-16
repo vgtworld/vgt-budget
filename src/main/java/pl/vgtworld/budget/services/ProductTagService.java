@@ -10,9 +10,9 @@ import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
 @Stateless
-public class ProductTagStorageService {
+public class ProductTagService {
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(ProductTagStorageService.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(ProductTagService.class);
 
 	@EJB
 	private ProductTagDao productTagDao;

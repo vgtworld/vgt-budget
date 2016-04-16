@@ -1,6 +1,6 @@
 package pl.vgtworld.budget.app.index;
 
-import pl.vgtworld.budget.services.ReceiptStorageService;
+import pl.vgtworld.budget.services.ReceiptService;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -11,17 +11,17 @@ import java.util.Calendar;
 public class IndexService {
 
 	@EJB
-	private ReceiptStorageService receiptStorageService;
+	private ReceiptService receiptService;
 
 	public BigDecimal getTotalAmountSumForCurrentMonth() {
 		Calendar calendar = Calendar.getInstance();
-		return receiptStorageService.getTotalAmountSum(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH));
+		return receiptService.getTotalAmountSum(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH));
 	}
 
 	public BigDecimal getTotalAmountSumForPreviousMonth() {
 		Calendar calendar = Calendar.getInstance();
 		calendar.add(Calendar.MONTH, -1);
-		return receiptStorageService.getTotalAmountSum(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH));
+		return receiptService.getTotalAmountSum(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH));
 	}
 
 }

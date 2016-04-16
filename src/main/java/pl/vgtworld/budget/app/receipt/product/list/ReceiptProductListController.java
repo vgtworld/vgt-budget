@@ -4,9 +4,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pl.vgtworld.budget.app.receipt.product.ReceiptProductControllerService;
 import pl.vgtworld.budget.app.receipt.product.list.dto.AddedProductDto;
-import pl.vgtworld.budget.services.ReceiptProductStorageService;
-import pl.vgtworld.budget.services.ReceiptStorageService;
-import pl.vgtworld.budget.services.StoreStorageService;
+import pl.vgtworld.budget.services.ReceiptProductService;
+import pl.vgtworld.budget.services.ReceiptService;
+import pl.vgtworld.budget.services.StoreService;
 import pl.vgtworld.budget.services.dto.receipts.ReceiptDto;
 import pl.vgtworld.budget.services.dto.stores.StoreDto;
 
@@ -24,16 +24,16 @@ public class ReceiptProductListController implements Serializable {
 	private static final Logger LOGGER = LoggerFactory.getLogger(ReceiptProductListController.class);
 
 	@EJB
-	private ReceiptStorageService receiptStorageService;
+	private ReceiptService receiptService;
 
 	@EJB
-	private StoreStorageService storeStorageService;
+	private StoreService storeService;
 
 	@EJB
 	private ReceiptProductControllerService receiptProductControllerService;
 
 	@EJB
-	private ReceiptProductStorageService receiptProductStorageService;
+	private ReceiptProductService receiptProductService;
 
 	private ReceiptDto receipt;
 
@@ -74,9 +74,9 @@ public class ReceiptProductListController implements Serializable {
 	public String initData() {
 		LOGGER.debug("Init data");
 		if (receiptId != null) {
-			receipt = receiptStorageService.findById(receiptId);
+			receipt = receiptService.findById(receiptId);
 			if (receipt != null) {
-				store = storeStorageService.findById(receipt.getStoreId());
+				store = storeService.findById(receipt.getStoreId());
 				products = receiptProductControllerService.findProductsForReceipt(receiptId);
 				return null;
 			}
@@ -92,7 +92,7 @@ public class ReceiptProductListController implements Serializable {
 
 	public void deleteProduct(int receiptProductId) {
 		LOGGER.debug("Delete product. receiptProductId:{}", receiptProductId);
-		receiptProductStorageService.deleteProduct(receiptProductId);
+		receiptProductService.deleteProduct(receiptProductId);
 		receipt.setTotalAmount(receiptProductControllerService.updateReceiptTotalAmount(receiptId));
 		products = receiptProductControllerService.findProductsForReceipt(receiptId);
 	}

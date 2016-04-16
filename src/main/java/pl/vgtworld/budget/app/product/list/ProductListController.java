@@ -1,8 +1,8 @@
 package pl.vgtworld.budget.app.product.list;
 
 import pl.vgtworld.budget.app.product.list.dto.ProductWithTags;
-import pl.vgtworld.budget.services.ProductStorageService;
-import pl.vgtworld.budget.services.TagStorageService;
+import pl.vgtworld.budget.services.ProductService;
+import pl.vgtworld.budget.services.TagService;
 import pl.vgtworld.budget.services.dto.products.ProductDto;
 
 import javax.annotation.PostConstruct;
@@ -17,10 +17,10 @@ import java.util.List;
 public class ProductListController {
 
 	@EJB
-	private ProductStorageService productStorageService;
+	private ProductService productService;
 
 	@EJB
-	private TagStorageService tagStorageService;
+	private TagService tagService;
 
 	private List<ProductWithTags> products;
 
@@ -34,12 +34,12 @@ public class ProductListController {
 
 	@PostConstruct
 	public void loadProducts() {
-		List<ProductDto> availableProducts = productStorageService.listAvailableProducts();
+		List<ProductDto> availableProducts = productService.listAvailableProducts();
 		products = new ArrayList<>(availableProducts.size());
 		for (ProductDto availableProduct : availableProducts) {
 			ProductWithTags product = new ProductWithTags();
 			product.setProduct(availableProduct);
-			product.setTags(tagStorageService.findForProduct(availableProduct.getId()));
+			product.setTags(tagService.findForProduct(availableProduct.getId()));
 			products.add(product);
 		}
 	}

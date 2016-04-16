@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Stateless
-public class ReceiptProductStorageService {
+public class ReceiptProductService {
 
 	@EJB
 	private ReceiptProductDao receiptProductDao;
@@ -30,7 +30,7 @@ public class ReceiptProductStorageService {
 	}
 
 	public List<ReceiptProductDto> findProductsForReceipt(int receiptId) {
-		return receiptProductDao.findForReceipt(receiptId).stream().map(ReceiptProductStorageService::asReceiptProductDto).collect(Collectors.toList());
+		return receiptProductDao.findForReceipt(receiptId).stream().map(ReceiptProductService::asReceiptProductDto).collect(Collectors.toList());
 	}
 
 	public void updateProduct(ReceiptProductDto product) {

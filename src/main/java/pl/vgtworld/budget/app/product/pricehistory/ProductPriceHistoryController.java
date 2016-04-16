@@ -1,6 +1,6 @@
 package pl.vgtworld.budget.app.product.pricehistory;
 
-import pl.vgtworld.budget.services.ProductStorageService;
+import pl.vgtworld.budget.services.ProductService;
 import pl.vgtworld.budget.services.dto.products.ProductDto;
 
 import javax.ejb.EJB;
@@ -13,7 +13,7 @@ import java.util.List;
 public class ProductPriceHistoryController {
 
 	@EJB
-	private ProductStorageService productStorageService;
+	private ProductService productService;
 
 	@EJB
 	private ProductPriceHistoryRepository productPriceHistoryRepository;
@@ -45,7 +45,7 @@ public class ProductPriceHistoryController {
 		if (productId == null) {
 			return mainPageRedirect;
 		}
-		product = productStorageService.findById(productId);
+		product = productService.findById(productId);
 		if (product == null) {
 			return mainPageRedirect;
 		}

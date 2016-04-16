@@ -14,9 +14,9 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 @Stateless
-public class ReceiptStorageService {
+public class ReceiptService {
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(ReceiptStorageService.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(ReceiptService.class);
 
 	@EJB
 	private ReceiptDao receiptDao;

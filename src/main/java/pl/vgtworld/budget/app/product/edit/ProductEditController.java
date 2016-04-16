@@ -4,8 +4,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pl.vgtworld.budget.app.product.edit.dto.ProductForm;
 import pl.vgtworld.budget.app.product.edit.dto.ProductWithTags;
-import pl.vgtworld.budget.services.ProductStorageService;
-import pl.vgtworld.budget.services.TagStorageService;
+import pl.vgtworld.budget.services.ProductService;
+import pl.vgtworld.budget.services.TagService;
 import pl.vgtworld.budget.services.dto.products.ProductDto;
 import pl.vgtworld.budget.services.dto.tags.TagDto;
 
@@ -25,10 +25,10 @@ public class ProductEditController {
 	private ProductEditService productEditService;
 
 	@EJB
-	private ProductStorageService productStorageService;
+	private ProductService productService;
 
 	@EJB
-	private TagStorageService tagStorageService;
+	private TagService tagService;
 
 	private ProductForm product = new ProductForm();
 
@@ -62,9 +62,9 @@ public class ProductEditController {
 
 	public String initData() {
 		if (isEditProductFlow()) {
-			ProductDto productDto = productStorageService.findById(productId);
+			ProductDto productDto = productService.findById(productId);
 			if (productDto != null) {
-				List<TagDto> productTags = tagStorageService.findForProduct(productId);
+				List<TagDto> productTags = tagService.findForProduct(productId);
 				product.setName(productDto.getName());
 				product.setTags(productTags.stream().map(TagDto::getName).collect(Collectors.toList()));
 				return null;

@@ -13,9 +13,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Stateless
-public class ProductStorageService {
+public class ProductService {
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(ProductStorageService.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(ProductService.class);
 
 	@EJB
 	private ProductDao productDao;
@@ -38,14 +38,14 @@ public class ProductStorageService {
 
 	public List<ProductDto> searchProductsByName(String phrase) {
 		LOGGER.debug("Search products. phrase:{}", phrase);
-		return productDao.searchByName(phrase).stream().map(ProductStorageService::asProductItem).collect(Collectors.toList());
+		return productDao.searchByName(phrase).stream().map(ProductService::asProductItem).collect(Collectors.toList());
 	}
 
 	public List<ProductDto> searchProductsRecentlyBoughtInStore(int storeId, int excludedReceiptId) {
 		return productDao
 			  .searchRecentlyBoughtInStore(storeId, excludedReceiptId)
 			  .stream()
-			  .map(ProductStorageService::asProductItem)
+			  .map(ProductService::asProductItem)
 			  .collect(Collectors.toList()
 			  );
 	}
@@ -60,7 +60,7 @@ public class ProductStorageService {
 
 	public List<ProductDto> listAvailableProducts() {
 		LOGGER.debug("List available products.");
-		return productDao.listAll().stream().map(ProductStorageService::asProductItem).collect(Collectors.toList());
+		return productDao.listAll().stream().map(ProductService::asProductItem).collect(Collectors.toList());
 	}
 
 	public void updateExistingProduct(ProductDto product) {

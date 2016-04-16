@@ -13,9 +13,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Stateless
-public class StoreStorageService {
+public class StoreService {
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(StoreStorageService.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(StoreService.class);
 
 	@EJB
 	private StoreDao storeDao;
@@ -55,7 +55,7 @@ public class StoreStorageService {
 
 	public List<StoreDto> listAvailableStores() {
 		LOGGER.debug("List all stores");
-		return storeDao.listAvailable().stream().map(StoreStorageService::asStoreItem).collect(Collectors.toList());
+		return storeDao.listAvailable().stream().map(StoreService::asStoreItem).collect(Collectors.toList());
 	}
 
 	private static StoreDto asStoreItem(Store store) {
