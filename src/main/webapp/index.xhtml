@@ -12,11 +12,19 @@
         <div class="container-fluid col-lg-4">
             <div class="bubble">
                 <h2>Spending this month:</h2>
-                <p class="mainpage-total-amount">#{indexController.spendingThisMonth}</p>
+                <p class="mainpage-total-amount">
+                    <h:outputText value="#{indexController.spendingThisMonth}">
+                        <f:convertNumber pattern="#{msg.patterns_display_price}"/>
+                    </h:outputText>
+                </p>
             </div>
             <div class="bubble">
                 <h2>Spending last month:</h2>
-                <p class="mainpage-total-amount">#{indexController.spendingLastMonth}</p>
+                <p class="mainpage-total-amount">
+                    <h:outputText value="#{indexController.spendingLastMonth}">
+                        <f:convertNumber pattern="#{msg.patterns_display_price}"/>
+                    </h:outputText>
+                </p>
             </div>
         </div>
 
@@ -34,7 +42,11 @@
                                 <f:param name="productId" value="#{product.id}"/>
                             </h:link>
                         </td>
-                        <td class="text-right">#{product.totalAmount}</td>
+                        <td class="text-right">
+                            <h:outputText value="#{product.totalAmount}">
+                                <f:convertNumber pattern="#{msg.patterns_display_price}"/>
+                            </h:outputText>
+                        </td>
                     </tr>
                 </ui:repeat>
             </table>

@@ -29,7 +29,9 @@
             </p>
             <h3>Total price</h3>
             <p>
-                #{receiptProductListController.receipt.totalAmount}
+                <h:outputText value="#{receiptProductListController.receipt.totalAmount}">
+                    <f:convertNumber pattern="#{msg.patterns_display_price}"/>
+                </h:outputText>
             </p>
         </div>
 
@@ -61,8 +63,16 @@
                                 <f:convertNumber pattern="#.###"/>
                             </h:outputText>
                         </td>
-                        <td class="text-right">#{product.pricePerUnit}</td>
-                        <td class="text-right">#{product.totalPrice}</td>
+                        <td class="text-right">
+                            <h:outputText value="#{product.pricePerUnit}">
+                                <f:convertNumber pattern="#{msg.patterns_display_price}"/>
+                            </h:outputText>
+                        </td>
+                        <td class="text-right">
+                            <h:outputText value="#{product.totalPrice}">
+                                <f:convertNumber pattern="#{msg.patterns_display_price}"/>
+                            </h:outputText>
+                        </td>
                         <td class="text-right">
                             <h:link styleClass="btn btn-default btn-xs" outcome="receipt-product-edit" value="Edit">
                                 <f:param name="receiptProductId" value="#{product.id}"/>

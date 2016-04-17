@@ -29,7 +29,11 @@
                                     <f:convertDateTime pattern="#{msg.patterns_display_date}"/>
                                 </h:outputText>
                             </td>
-                            <td class="text-right">#{productPriceHistory.price}</td>
+                            <td class="text-right">
+                                <h:outputText value="#{productPriceHistory.price}">
+                                    <f:convertNumber pattern="#{msg.patterns_display_price}"/>
+                                </h:outputText>
+                            </td>
                         </tr>
                     </ui:repeat>
                 </table>

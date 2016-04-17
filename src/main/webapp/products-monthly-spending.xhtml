@@ -39,7 +39,11 @@
                 <ui:repeat value="#{monthlySpendingController.productsWithSpending}" var="product">
                     <tr>
                         <td>#{product.productName}</td>
-                        <td class="text-right">#{product.totalAmount}</td>
+                        <td class="text-right">
+                            <h:outputText value="#{product.totalAmount}">
+                                <f:convertNumber pattern="#{msg.patterns_display_price}"/>
+                            </h:outputText>
+                        </td>
                     </tr>
                 </ui:repeat>
             </table>

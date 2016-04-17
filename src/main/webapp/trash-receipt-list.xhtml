@@ -1,5 +1,6 @@
 <ui:composition
         xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:f="http://xmlns.jcp.org/jsf/core"
         xmlns:h="http://xmlns.jcp.org/jsf/html"
         xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
         template="/WEB-INF/templates/basic.xhtml"
@@ -27,7 +28,11 @@
                     <tr>
                         <td>#{receipt.store}</td>
                         <td class="text-right">#{receipt.purchaseDate}</td>
-                        <td class="text-right">#{receipt.totalAmount}</td>
+                        <td class="text-right">
+                            <h:outputText value="#{receipt.totalAmount}">
+                                <f:convertNumber pattern="#{msg.patterns_display_price}"/>
+                            </h:outputText>
+                        </td>
                         <td class="text-right">
                             <h:form style="display:inline;">
                                 <h:commandButton styleClass="btn btn-default btn-xs" value="Restore" action="#{trashReceiptsController.restoreReceipt(receipt.id)}"/>

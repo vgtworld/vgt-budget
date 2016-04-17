@@ -36,7 +36,11 @@
                                 <f:convertDateTime pattern="#{msg.patterns_display_date}"/>
                             </h:outputText>
                         </td>
-                        <td class="text-right">#{receipt.totalAmount}</td>
+                        <td class="text-right">
+                            <h:outputText value="#{receipt.totalAmount}">
+                                <f:convertNumber pattern="#{msg.patterns_display_price}"/>
+                            </h:outputText>
+                        </td>
                         <td class="text-right">
                             <h:link styleClass="btn btn-default btn-xs" outcome="/receipt-edit?receiptId=#{receipt.id}" value="Edit"/>
                             <h:link styleClass="btn btn-default btn-xs" outcome="/receipt-product-list?receiptId=#{receipt.id}" value="Products"/>
