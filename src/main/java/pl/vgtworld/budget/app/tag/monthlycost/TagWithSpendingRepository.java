@@ -8,6 +8,7 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import java.util.Calendar;
 import java.util.List;
 
 @Stateless
@@ -15,6 +16,11 @@ public class TagWithSpendingRepository {
 
 	@PersistenceContext
 	private EntityManager em;
+
+	public List<TagWithSpendingDto> listTagsWithBiggestSpendingInCurrentMonth() {
+		Calendar calendar = Calendar.getInstance();
+		return listTagsWithBiggestSpending(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), 10);
+	}
 
 	public List<TagWithSpendingDto> listTagsWithBiggestSpending(int year, int month, Integer limit) {
 		MonthRangeDto monthRange = DateRangeUtil.findFirstAndLastDayOfMonth(year, month);
