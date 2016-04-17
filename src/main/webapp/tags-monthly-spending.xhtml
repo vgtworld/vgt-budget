@@ -1,0 +1,48 @@
+<ui:composition
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:f="http://xmlns.jcp.org/jsf/core"
+        xmlns:h="http://xmlns.jcp.org/jsf/html"
+        xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+        template="/WEB-INF/templates/basic.xhtml"
+        >
+    <f:metadata>
+        <f:viewParam name="year" value="#{monthlyTagSpendingController.year}"/>
+        <f:viewParam name="month" value="#{monthlyTagSpendingController.month}"/>
+        <f:viewAction action="#{monthlyTagSpendingController.initData()}"/>
+    </f:metadata>
+    <ui:define name="pageTitle">Tag monthly spending</ui:define>
+    <ui:define name="content">
+        <h2 class="text-center">
+            Tag monthly spending -
+            <h:outputText value="#{monthlyTagSpendingController.timestamp}">
+                <f:convertDateTime pattern="MMMM yyyy"/>
+            </h:outputText>
+        </h2>
+
+        <div class="text-center">
+            <h:link styleClass="btn btn-default" value="Previous month" outcome="tags-monthly-spending">
+                <f:param name="year" value="#{monthlyTagSpendingController.previousPageYear}"/>
+                <f:param name="month" value="#{monthlyTagSpendingController.previousPageMonth}"/>
+            </h:link>
+            <h:link styleClass="btn btn-default" value="Next month" outcome="tags-monthly-spending">
+                <f:param name="year" value="#{monthlyTagSpendingController.nextPageYear}"/>
+                <f:param name="month" value="#{monthlyTagSpendingController.nextPageMonth}"/>
+            </h:link>
+        </div>
+
+        <div class="container-fluid col-lg-4 col-lg-offset-4">
+            <table class="table">
+                <tr>
+                    <th>Tag</th>
+                    <th class="text-right">Total</th>
+                </tr>
+                <ui:repeat value="#{monthlyTagSpendingController.tagsWithSpending}" var="tag">
+                    <tr>
+                        <td>#{tag.tagName}</td>
+                        <td class="text-right">#{tag.totalAmount}</td>
+                    </tr>
+                </ui:repeat>
+            </table>
+        </div>
+    </ui:define>
+</ui:composition>
